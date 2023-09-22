@@ -9,6 +9,7 @@
 </head>
 <body>
 <h1>Rumbler</h1>
+ <p>${SMOKETEST}</p>
 
 </body>
 </html>
