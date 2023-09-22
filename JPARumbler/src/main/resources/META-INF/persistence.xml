@@ -4,6 +4,10 @@
 	
 	<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<!-- begin entities -->
+		<class>com.skilldistillery.jparumbler.entities.Address</class>
+		<class>com.skilldistillery.jparumbler.entities.BlogPost</class>
+		<class>com.skilldistillery.jparumbler.entities.DirectMessage</class>
+		<class>com.skilldistillery.jparumbler.entities.Discipline</class>
 		<class>com.skilldistillery.jparumbler.entities.User</class>
 
 
