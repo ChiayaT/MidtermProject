@@ -47,4 +47,13 @@ class LocationTypeTest {
 
 	}
 
+	@Test
+	void test_LocationType_to_location_mapping() {
+		assertNotNull(locationType);
+		assertNotNull(locationType.getLocations());
+		assertTrue(locationType.getLocations().size() > 0);
+		
+	}
+	
+
 }

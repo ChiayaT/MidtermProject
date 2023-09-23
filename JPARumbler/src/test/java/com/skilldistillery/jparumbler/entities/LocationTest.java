@@ -47,5 +47,19 @@ class LocationTest {
 		assertEquals("Fight Town", location.getName());
 
 	}
+	
+	@Test
+	void test_Location_to_location_type_mapping() {
+		assertNotNull(location);
+		assertNotNull(location.getLocationType());
+		assertEquals("Business", location.getLocationType().getName());
+	}
+
+	@Test
+	void test_Location_to_address_mapping() {
+		assertNotNull(location);
+		assertNotNull(location.getAddress());
+		assertEquals("Denver", location.getAddress().getCity());
+	}
 
 }

@@ -16,7 +16,7 @@ class AddressTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private Address Address;
+	private Address address;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -31,20 +31,28 @@ class AddressTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		Address = em.find(Address.class, 1);
+		address = em.find(Address.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		Address = null;
+		address = null;
 	}
 
 	@Test
 	void test_Address_entity_basic_mapping() {
-		assertNotNull(Address);
-		assertEquals("123 Fake St", Address.getStreet());
+		assertNotNull(address);
+		assertEquals("123 Fake St", address.getStreet());
 
+	}
+	
+	@Test
+	void test_LocationType_to_address_mapping() {
+		assertNotNull(address);
+		assertNotNull(address.getLocation());
+		assertEquals("Fight Town",address.getLocation().getName());
+		
 	}
 
 }

@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 //!!!!!!!!!!!!!!!!!!!!!!!Complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //!!!!!!!!!!!!!!!!!!!!!!!Complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //!!!!!!!!!!!!!!!!!!!!!!!Complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -23,6 +24,9 @@ public class Address {
 	@Column(name = "zip_code")
 	private String zipCode;
 	private String phone;
+	
+	@OneToOne(mappedBy = "address")
+	private Location location;
 	
 	public Address() {
 		super();
@@ -82,6 +86,15 @@ public class Address {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+	
+
+	public Location getLocation() {
+		return location;
+	}
+
+	public void setLocation(Location location) {
+		this.location = location;
 	}
 
 	@Override

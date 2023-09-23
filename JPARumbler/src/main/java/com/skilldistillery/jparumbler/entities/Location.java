@@ -9,11 +9,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
+//!!!!!!!!!!!!!!!!!!!!!!!Complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//!!!!!!!!!!!!!!!!!!!!!!!Complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//!!!!!!!!!!!!!!!!!!!!!!!Complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//!!!!!!!!!!!!!!!!!!!!!!!Complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 @Entity
 public class Location {
 
@@ -38,6 +44,15 @@ public class Location {
 	
 	@OneToMany(mappedBy="location")
 	private List<LocationRating> locationRatings;
+	
+	@ManyToOne
+	@JoinColumn(name="location_type_id")
+	private LocationType locationType;
+
+	@OneToOne
+	@JoinColumn(name="address_id")
+	private Address address;
+	
 	
 	private boolean enabled;
 
@@ -107,6 +122,24 @@ public class Location {
 
 	public void setLocationRatings(List<LocationRating> locationRatings) {
 		this.locationRatings = locationRatings;
+	}
+	
+	
+
+	public LocationType getLocationType() {
+		return locationType;
+	}
+
+	public void setLocationType(LocationType locationType) {
+		this.locationType = locationType;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
 	@Override

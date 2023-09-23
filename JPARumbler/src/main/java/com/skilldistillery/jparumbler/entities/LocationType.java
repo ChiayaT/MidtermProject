@@ -1,13 +1,18 @@
 package com.skilldistillery.jparumbler.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
+//!!!!!!!!!!!!!!!!!!!!!!!Complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//!!!!!!!!!!!!!!!!!!!!!!!Complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//!!!!!!!!!!!!!!!!!!!!!!!Complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//!!!!!!!!!!!!!!!!!!!!!!!Complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 @Entity
 @Table(name = "location_type")
 public class LocationType {
@@ -19,7 +24,9 @@ public class LocationType {
 		private String name;
 	
 		private String description;
-	
+		
+		@OneToMany(mappedBy = "locationType")
+		private List<Location> locations;
 	
 	
 	
@@ -50,6 +57,16 @@ public class LocationType {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	
+
+	public List<Location> getLocations() {
+		return locations;
+	}
+
+	public void setLocations(List<Location> locations) {
+		this.locations = locations;
 	}
 
 	@Override
