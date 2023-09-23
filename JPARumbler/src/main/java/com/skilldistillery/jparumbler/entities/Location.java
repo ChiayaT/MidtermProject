@@ -8,32 +8,35 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
-@Table(name = "blog_post")
-public class BlogPost {
+public class Location {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-
-	@Column(name = "create_date")
+	
+	private String name;
+	
+	private String description;
+	
+	@Column(name="image_url")
+	private String image_url;
+	
+	@Column(name="create_date")
 	@CreationTimestamp
 	private LocalDateTime createDate;
-
-	private String content;
-
-	@Column(name = "last_update")
+	
+	@Column(name="last_update")
 	@UpdateTimestamp
 	private LocalDateTime lastUpdate;
-
+	
 	private boolean enabled;
 
-	public BlogPost() {
+	public Location() {
 		super();
 	}
 
@@ -45,20 +48,36 @@ public class BlogPost {
 		this.id = id;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getImage_url() {
+		return image_url;
+	}
+
+	public void setImage_url(String image_url) {
+		this.image_url = image_url;
+	}
+
 	public LocalDateTime getCreateDate() {
 		return createDate;
 	}
 
 	public void setCreateDate(LocalDateTime createDate) {
 		this.createDate = createDate;
-	}
-
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
 	}
 
 	public LocalDateTime getLastUpdate() {
@@ -78,12 +97,6 @@ public class BlogPost {
 	}
 
 	@Override
-	public String toString() {
-		return "BlogPost [id=" + id + ", createDate=" + createDate + ", content=" + content + ", lastUpdate="
-				+ lastUpdate + ", enabled=" + enabled + "]";
-	}
-
-	@Override
 	public int hashCode() {
 		return Objects.hash(id);
 	}
@@ -96,8 +109,16 @@ public class BlogPost {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		BlogPost other = (BlogPost) obj;
+		Location other = (Location) obj;
 		return id == other.id;
 	}
 
+	@Override
+	public String toString() {
+		return "Location [id=" + id + ", name=" + name + ", description=" + description + ", image_url=" + image_url
+				+ ", createDate=" + createDate + ", lastUpdate=" + lastUpdate + ", enabled=" + enabled + "]";
+	}
+	
+	
+	
 }

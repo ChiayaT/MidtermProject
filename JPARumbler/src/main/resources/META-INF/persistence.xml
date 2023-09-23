@@ -8,6 +8,12 @@
 		<class>com.skilldistillery.jparumbler.entities.BlogPost</class>
 		<class>com.skilldistillery.jparumbler.entities.DirectMessage</class>
 		<class>com.skilldistillery.jparumbler.entities.Discipline</class>
+		<class>com.skilldistillery.jparumbler.entities.ExperienceLevel</class>
+		<class>com.skilldistillery.jparumbler.entities.FightingStance</class>
+		<class>com.skilldistillery.jparumbler.entities.Location</class>
+		<!-- FIX BEFORE ADDING BACK IN <class>com.skilldistillery.jparumbler.entities.LocationRating</class>-->
+		<class>com.skilldistillery.jparumbler.entities.Rumble</class>
+		<class>com.skilldistillery.jparumbler.entities.RumbleMessage</class>
 		<class>com.skilldistillery.jparumbler.entities.User</class>
 
 

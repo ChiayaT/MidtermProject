@@ -11,29 +11,25 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
-@Table(name = "blog_post")
-public class BlogPost {
+@Table(name="rumble_message")
+public class RumbleMessage {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-
-	@Column(name = "create_date")
+	
+	@Column(name = "message_date")
+	private LocalDateTime messageDate;
+	
+	private String content;
+	
+	@Column(name="create_date")
 	@CreationTimestamp
 	private LocalDateTime createDate;
 
-	private String content;
-
-	@Column(name = "last_update")
-	@UpdateTimestamp
-	private LocalDateTime lastUpdate;
-
-	private boolean enabled;
-
-	public BlogPost() {
+	public RumbleMessage() {
 		super();
 	}
 
@@ -45,12 +41,12 @@ public class BlogPost {
 		this.id = id;
 	}
 
-	public LocalDateTime getCreateDate() {
-		return createDate;
+	public LocalDateTime getMessageDate() {
+		return messageDate;
 	}
 
-	public void setCreateDate(LocalDateTime createDate) {
-		this.createDate = createDate;
+	public void setMessageDate(LocalDateTime messageDate) {
+		this.messageDate = messageDate;
 	}
 
 	public String getContent() {
@@ -61,26 +57,12 @@ public class BlogPost {
 		this.content = content;
 	}
 
-	public LocalDateTime getLastUpdate() {
-		return lastUpdate;
+	public LocalDateTime getCreateDate() {
+		return createDate;
 	}
 
-	public void setLastUpdate(LocalDateTime lastUpdate) {
-		this.lastUpdate = lastUpdate;
-	}
-
-	public boolean isEnabled() {
-		return enabled;
-	}
-
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
-
-	@Override
-	public String toString() {
-		return "BlogPost [id=" + id + ", createDate=" + createDate + ", content=" + content + ", lastUpdate="
-				+ lastUpdate + ", enabled=" + enabled + "]";
+	public void setCreateDate(LocalDateTime createDate) {
+		this.createDate = createDate;
 	}
 
 	@Override
@@ -96,8 +78,16 @@ public class BlogPost {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		BlogPost other = (BlogPost) obj;
+		RumbleMessage other = (RumbleMessage) obj;
 		return id == other.id;
 	}
 
+	@Override
+	public String toString() {
+		return "RumbleMessage [id=" + id + ", messageDate=" + messageDate + ", content=" + content + ", createDate="
+				+ createDate + "]";
+	}
+	
+	
+	
 }
