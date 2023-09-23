@@ -67,5 +67,22 @@ class UserTest {
 		
 	}
 	
+	@Test
+	void test_User_to_sender_user_mapping() {
+		assertNotNull(user);
+		List<DirectMessage> senderMessages = user.getSenderMessages();
+		assertNotNull(senderMessages);
+		assertTrue(senderMessages.size() > 0);
+	}
+	
+	@Test
+	void test_User_to_recipient_user_mapping() {
+		user = em.find(User.class, 3);
+		assertNotNull(user);
+		List<DirectMessage> recipientMessages = user.getRecipientMessages();
+		assertNotNull(recipientMessages);
+		assertTrue(recipientMessages.size() > 0);
+	}
+	
 
 }

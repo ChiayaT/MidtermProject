@@ -27,6 +27,9 @@ public class User {
 	private boolean enabled;
 	private String role;
 	
+	
+
+	
 	@OneToMany(mappedBy="user")
 	private List<LocationRating> locationRatings;
 	
@@ -35,6 +38,13 @@ public class User {
 	
 	@OneToMany(mappedBy = "user")
 	private List<BlogPost> blogPosts;
+	
+	@OneToMany(mappedBy = "senderUser")
+	private List<DirectMessage> senderMessages;
+	
+	@OneToMany(mappedBy = "recipientUser")
+	private List<DirectMessage> recipientMessages;
+	
 	
 	@Column(name = "first_name")
 	private String firstName;
@@ -68,6 +78,27 @@ public class User {
 	public User() {
 		super();
 	}
+
+
+	public List<DirectMessage> getSenderMessages() {
+		return senderMessages;
+	}
+
+
+	public void setSenderMessages(List<DirectMessage> senderMessages) {
+		this.senderMessages = senderMessages;
+	}
+
+
+	public List<DirectMessage> getRecipientMessages() {
+		return recipientMessages;
+	}
+
+
+	public void setRecipientMessages(List<DirectMessage> recipientMessages) {
+		this.recipientMessages = recipientMessages;
+	}
+
 
 	public int getId() {
 		return id;

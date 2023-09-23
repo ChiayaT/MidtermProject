@@ -46,7 +46,18 @@ class DirectMessgeTest {
 	void test_DirectMessage_entity_basic_mapping() {
 		assertNotNull(directMessage);
 		assertEquals(Month.SEPTEMBER, directMessage.getCreateDate().getMonth());
-
 	}
-
+	
+	@Test
+	void test_DirectMessage_sender_id_to_user_mapping() {
+		assertNotNull(directMessage);
+		assertNotNull(directMessage.getSenderUser());
+		assertEquals("Jackie",directMessage.getSenderUser().getFirstName());
+	}
+	@Test
+	void test_DirectMessage_recipient_id_to_user_mapping() {
+		assertNotNull(directMessage);	
+		assertNotNull(directMessage.getRecipientUser());	
+		assertEquals("Mike",directMessage.getRecipientUser().getFirstName());
+	}
 }

@@ -8,10 +8,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
-
+import org.hibernate.annotations.ManyToAny;
+//!!!!!!!!!!!!!!!!!!!!!!!Complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//!!!!!!!!!!!!!!!!!!!!!!!Complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//!!!!!!!!!!!!!!!!!!!!!!!Complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//!!!!!!!!!!!!!!!!!!!!!!!Complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 @Entity
 @Table(name="direct_message")
 public class DirectMessage {
@@ -25,9 +31,34 @@ public class DirectMessage {
 	private LocalDateTime createDate;
 	
 	private String content;
+	
+	
+	@ManyToOne
+	@JoinColumn(name="sender_id")
+	private User senderUser;
+	
+	@ManyToOne
+	@JoinColumn(name="recipient_id")
+	private User recipientUser;
 
 	public DirectMessage() {
 		super();
+	}
+
+	public User getSenderUser() {
+		return senderUser;
+	}
+
+	public void setSenderUser(User senderUser) {
+		this.senderUser = senderUser;
+	}
+
+	public User getRecipientUser() {
+		return recipientUser;
+	}
+
+	public void setRecipientUser(User recipientUser) {
+		this.recipientUser = recipientUser;
 	}
 
 	public int getId() {
@@ -56,7 +87,8 @@ public class DirectMessage {
 
 	@Override
 	public String toString() {
-		return "DirectMessage [id=" + id + ", createDate=" + createDate + ", content=" + content + "]";
+		return "DirectMessage [id=" + id + ", createDate=" + createDate + ", content=" + content + ", senderUser="
+				+ senderUser + ", recipientUser=" + recipientUser + "]";
 	}
 
 	@Override
