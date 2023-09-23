@@ -4,61 +4,59 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-//@Entity
-@Table(name="location_rating")
+@Entity
+@Table(name = "location_rating")
 public class LocationRating {
-	
-	
-	
-	@Id
-	@Column(name="user_id")
-	private int userId;
-	
-	@Id
-	@Column(name="location_id")
-	private int locationId;
-	
-	@Column(name="rating_scale")
+
+	@EmbeddedId
+	private LocationRatingId id;
+
+	@Column(name = "rating_scale")
 	private int ratingScale;
-	
-	@Column(name="rating_comment")
-	private int ratingComment;
-	
-	@Column(name="create_date")
+
+	@Column(name = "rating_comment")
+	private String ratingComment;
+
+	@Column(name = "create_date")
 	@CreationTimestamp
 	private LocalDateTime createDate;
-	
-	@Column(name="last_update")
+
+	@Column(name = "last_update")
 	@UpdateTimestamp
 	private LocalDateTime lastUpdate;
-	
+
 	private boolean enabled;
+	
+	@ManyToOne
+	@JoinColumn(name = "user_id") 
+	@MapsId(value = "userId")
+	private User user;
+	
+	@ManyToOne
+	@JoinColumn(name = "location_id") 
+	@MapsId(value = "locationId")
+	private Location location;
 
 	public LocationRating() {
 		super();
 	}
 
-	public int getUserId() {
-		return userId;
+	public LocationRatingId getId() {
+		return id;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
-
-	public int getLocationId() {
-		return locationId;
-	}
-
-	public void setLocationId(int locationId) {
-		this.locationId = locationId;
+	public void setId(LocationRatingId id) {
+		this.id = id;
 	}
 
 	public int getRatingScale() {
@@ -69,12 +67,28 @@ public class LocationRating {
 		this.ratingScale = ratingScale;
 	}
 
-	public int getRatingComment() {
+	public String getRatingComment() {
 		return ratingComment;
 	}
 
-	public void setRatingComment(int ratingComment) {
+	public void setRatingComment(String ratingComment) {
 		this.ratingComment = ratingComment;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Location getLocation() {
+		return location;
+	}
+
+	public void setLocation(Location location) {
+		this.location = location;
 	}
 
 	public LocalDateTime getCreateDate() {
@@ -103,14 +117,13 @@ public class LocationRating {
 
 	@Override
 	public String toString() {
-		return "LocationRating [userId=" + userId + ", locationId=" + locationId + ", ratingScale=" + ratingScale
-				+ ", ratingComment=" + ratingComment + ", createDate=" + createDate + ", lastUpdate=" + lastUpdate
-				+ ", enabled=" + enabled + "]";
+		return "LocationRating [id=" + id + ", ratingScale=" + ratingScale + ", ratingComment=" + ratingComment
+				+ ", createDate=" + createDate + ", lastUpdate=" + lastUpdate + ", enabled=" + enabled + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(locationId, userId);
+		return Objects.hash(id);
 	}
 
 	@Override
@@ -122,9 +135,7 @@ public class LocationRating {
 		if (getClass() != obj.getClass())
 			return false;
 		LocationRating other = (LocationRating) obj;
-		return locationId == other.locationId && userId == other.userId;
+		return Objects.equals(id, other.id);
 	}
-	
-	
-	
+
 }

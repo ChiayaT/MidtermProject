@@ -12,7 +12,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class LocationRatingRatingTest {
+class LocationRatingTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
@@ -31,8 +31,11 @@ class LocationRatingRatingTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		locationRating = em.find(LocationRating.class, 3);
-		//FIX ME
+		LocationRatingId lid = new LocationRatingId();
+		lid.setUserId(3);
+		lid.setLocationId(2);
+		locationRating = em.find(LocationRating.class, lid);
+		
 	}
 
 	@AfterEach

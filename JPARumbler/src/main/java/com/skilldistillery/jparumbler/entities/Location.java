@@ -1,6 +1,7 @@
 package com.skilldistillery.jparumbler.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -8,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -33,6 +35,9 @@ public class Location {
 	@Column(name="last_update")
 	@UpdateTimestamp
 	private LocalDateTime lastUpdate;
+	
+	@OneToMany(mappedBy="location")
+	private List<LocationRating> locationRatings;
 	
 	private boolean enabled;
 
@@ -94,6 +99,14 @@ public class Location {
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+	}
+
+	public List<LocationRating> getLocationRatings() {
+		return locationRatings;
+	}
+
+	public void setLocationRatings(List<LocationRating> locationRatings) {
+		this.locationRatings = locationRatings;
 	}
 
 	@Override

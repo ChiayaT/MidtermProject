@@ -1,11 +1,13 @@
 package com.skilldistillery.jparumbler.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class User {
@@ -18,6 +20,9 @@ public class User {
 	private String password;
 	private boolean enabled;
 	private String role;
+	
+	@OneToMany(mappedBy="user")
+	private List<LocationRating> locationRatings;
 
 	public User() {
 		super();
@@ -61,6 +66,14 @@ public class User {
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	public List<LocationRating> getLocationRatings() {
+		return locationRatings;
+	}
+
+	public void setLocationRatings(List<LocationRating> locationRatings) {
+		this.locationRatings = locationRatings;
 	}
 
 	@Override
