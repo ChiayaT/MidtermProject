@@ -47,5 +47,12 @@ class RumbleMessageTest {
 		assertEquals("This is the first Rumble message.", rumbleMessage.getContent());
 
 	}
+	
+	@Test
+	void test_RumbleMessage_user_ManyTOone_mapping() {
+		assertNotNull(rumbleMessage);
+		assertEquals(1, rumbleMessage.getRumble().getId());
+
+	}
 
 }

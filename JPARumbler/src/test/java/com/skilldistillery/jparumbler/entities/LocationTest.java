@@ -2,6 +2,8 @@ package com.skilldistillery.jparumbler.entities;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -60,6 +62,15 @@ class LocationTest {
 		assertNotNull(location);
 		assertNotNull(location.getAddress());
 		assertEquals("Denver", location.getAddress().getCity());
+	}
+	
+	@Test
+	void test_location_to_rumble_location_mapping() {
+		location = em.find(Location.class, 2);
+		assertNotNull(location);
+		List<Rumble> rumbles = location.getRumbles();
+		assertNotNull(rumbles);
+		assertTrue(rumbles.size() > 0);
 	}
 
 }

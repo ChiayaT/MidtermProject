@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -28,6 +30,16 @@ public class RumbleMessage {
 	@Column(name="create_date")
 	@CreationTimestamp
 	private LocalDateTime createDate;
+	
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User user;
+	
+	@ManyToOne
+	@JoinColumn(name="rumble_id")
+	private Rumble rumble;
+	
+	
 
 	public RumbleMessage() {
 		super();
@@ -64,6 +76,24 @@ public class RumbleMessage {
 	public void setCreateDate(LocalDateTime createDate) {
 		this.createDate = createDate;
 	}
+	
+	
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Rumble getRumble() {
+		return rumble;
+	}
+
+	public void setRumble(Rumble rumble) {
+		this.rumble = rumble;
+	}
 
 	@Override
 	public int hashCode() {
@@ -87,6 +117,7 @@ public class RumbleMessage {
 		return "RumbleMessage [id=" + id + ", messageDate=" + messageDate + ", content=" + content + ", createDate="
 				+ createDate + "]";
 	}
+	
 	
 	
 	

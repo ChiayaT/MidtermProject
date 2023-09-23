@@ -2,6 +2,8 @@ package com.skilldistillery.jparumbler.entities;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -46,6 +48,20 @@ class RumbleTest {
 		assertEquals(2023, rumble.getCreateDate().getYear());
 		assertEquals("This is the first rumble.", rumble.getDescription());
 
+	}
+	
+	@Test
+	void test_Rumble_user_ManyTOone_mapping() {
+		assertNotNull(rumble);
+		assertEquals(2, rumble.getHost().getId());
+
+	}
+	
+	@Test
+	void test_Rumble_to_RumbleMessage_to_Rumble_mapping() {
+		List<RumbleMessage> rumbleMessages = rumble.getRumbleMessages();
+		assertNotNull(rumbleMessages);
+		assertTrue(rumbleMessages.size() > 0);
 	}
 
 }

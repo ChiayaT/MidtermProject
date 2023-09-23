@@ -84,5 +84,29 @@ class UserTest {
 		assertTrue(recipientMessages.size() > 0);
 	}
 	
+	@Test
+	void test_User_to_host_user_mapping() {
+		List<Rumble> hostRumbles = user.getHostRumbles();
+		assertNotNull(hostRumbles);
+		assertTrue(hostRumbles.size() > 0);
+	}
+	
+	@Test
+	void test_User_to_guest_user_mapping() {
+		user = em.find(User.class, 3);
+		assertNotNull(user);
+		List<Rumble> guestRumbles = user.getGuestRumbles();
+		assertNotNull(guestRumbles);
+		assertTrue(guestRumbles.size() > 0);
+	}
+	
+	
+	@Test
+	void test_User_to_RumbleMessage_user_mapping() {
+		List<RumbleMessage> rumbleMessages = user.getRumbleMessages();
+		assertNotNull(rumbleMessages);
+		assertTrue(rumbleMessages.size() > 0);
+	}
+	
 
 }

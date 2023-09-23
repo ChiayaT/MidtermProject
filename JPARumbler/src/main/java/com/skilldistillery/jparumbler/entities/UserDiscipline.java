@@ -39,7 +39,7 @@ public class UserDiscipline {
 	@JoinColumn(name = "discipline_id")
 	@MapsId(value = "disciplineId")
 	private Discipline discipline;
-
+	
 	public UserDiscipline() {
 	}
 

@@ -2,6 +2,8 @@ package com.skilldistillery.jparumbler.entities;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -45,6 +47,13 @@ class DisciplineTest {
 		assertNotNull(discipline);
 		assertEquals("Boxing", discipline.getName());
 
+	}
+	
+	@Test
+	void test_Discipline_to_rumble_discipline_mapping() {
+		List<Rumble> rumbles = discipline.getRumbles();
+		assertNotNull(rumbles);
+		assertTrue(rumbles.size() > 0);
 	}
 
 }

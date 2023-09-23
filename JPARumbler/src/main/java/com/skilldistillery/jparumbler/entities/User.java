@@ -45,6 +45,17 @@ public class User {
 	@OneToMany(mappedBy = "recipientUser")
 	private List<DirectMessage> recipientMessages;
 	
+	@OneToMany(mappedBy = "host")
+	private List<Rumble> hostRumbles;
+	
+	@OneToMany(mappedBy = "guest")
+	private List<Rumble> guestRumbles;
+	
+	@OneToMany(mappedBy = "user")
+	private List<RumbleMessage> rumbleMessages;
+	
+	
+	
 	
 	@Column(name = "first_name")
 	private String firstName;
@@ -74,10 +85,41 @@ public class User {
 	private Address address;
 	
 	private String description;
+	
 
 	public User() {
 		super();
 	}
+	
+	
+
+
+	public List<Rumble> getHostRumbles() {
+		return hostRumbles;
+	}
+
+
+
+
+	public void setHostRumbles(List<Rumble> hostRumbles) {
+		this.hostRumbles = hostRumbles;
+	}
+
+
+
+
+	public List<Rumble> getGuestRumbles() {
+		return guestRumbles;
+	}
+
+
+
+
+	public void setGuestRumbles(List<Rumble> guestRumbles) {
+		this.guestRumbles = guestRumbles;
+	}
+
+
 
 
 	public List<DirectMessage> getSenderMessages() {
@@ -258,5 +300,21 @@ public class User {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", enabled=" + enabled
 				+ ", role=" + role + "]";
 	}
+
+
+
+
+	public List<RumbleMessage> getRumbleMessages() {
+		return rumbleMessages;
+	}
+
+
+
+
+	public void setRumbleMessages(List<RumbleMessage> rumbleMessages) {
+		this.rumbleMessages = rumbleMessages;
+	}
+	
+	
 
 }

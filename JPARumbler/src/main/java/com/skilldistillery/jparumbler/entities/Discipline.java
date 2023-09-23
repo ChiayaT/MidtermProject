@@ -28,6 +28,9 @@ public class Discipline {
 	
 	@OneToMany(mappedBy="discipline")
 	private List<UserDiscipline> userDisciplines;
+	
+	@OneToMany(mappedBy="discipline")
+	private List<Rumble> rumbles;
 
 	public Discipline() {
 		super();
@@ -71,6 +74,17 @@ public class Discipline {
 
 	public void setUserDisciplines(List<UserDiscipline> userDisciplines) {
 		this.userDisciplines = userDisciplines;
+	}
+	
+	
+	
+
+	public List<Rumble> getRumbles() {
+		return rumbles;
+	}
+
+	public void setRumbles(List<Rumble> rumbles) {
+		this.rumbles = rumbles;
 	}
 
 	@Override

@@ -53,6 +53,9 @@ public class Location {
 	@JoinColumn(name="address_id")
 	private Address address;
 	
+	@OneToMany(mappedBy="location")
+	private List<Rumble> rumbles;
+	
 	
 	private boolean enabled;
 
@@ -125,6 +128,15 @@ public class Location {
 	}
 	
 	
+	
+
+	public List<Rumble> getRumbles() {
+		return rumbles;
+	}
+
+	public void setRumbles(List<Rumble> rumbles) {
+		this.rumbles = rumbles;
+	}
 
 	public LocationType getLocationType() {
 		return locationType;

@@ -3,6 +3,7 @@ package com.skilldistillery.jparumbler.entities;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -10,6 +11,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -58,6 +62,25 @@ public class Rumble {
 	
 	@Column(name="open_to_public")
 	private Boolean openToPublic;
+	
+	@ManyToOne
+	@JoinColumn(name="host_id")
+	private User host;
+	
+	@ManyToOne
+	@JoinColumn(name="guest_id")
+	private User guest;
+	
+	@ManyToOne
+	@JoinColumn(name = "location_id")
+	private Location location;
+	
+	@ManyToOne
+	@JoinColumn(name = "discipline_id")
+	private Discipline discipline;
+	
+	@OneToMany(mappedBy="rumble")
+	private List<RumbleMessage> rumbleMessages;
 
 	public Rumble() {
 		super();
@@ -173,6 +196,50 @@ public class Rumble {
 
 	public void setOpenToPublic(Boolean openToPublic) {
 		this.openToPublic = openToPublic;
+	}
+	
+	
+
+	public User getHost() {
+		return host;
+	}
+
+	public void setHost(User host) {
+		this.host = host;
+	}
+
+	public User getGuest() {
+		return guest;
+	}
+
+	public void setGuest(User guest) {
+		this.guest = guest;
+	}
+
+	public Location getLocation() {
+		return location;
+	}
+
+	public void setLocation(Location location) {
+		this.location = location;
+	}
+
+	public Discipline getDiscipline() {
+		return discipline;
+	}
+
+	public void setDiscipline(Discipline discipline) {
+		this.discipline = discipline;
+	}
+	
+	
+
+	public List<RumbleMessage> getRumbleMessages() {
+		return rumbleMessages;
+	}
+
+	public void setRumbleMessages(List<RumbleMessage> rumbleMessages) {
+		this.rumbleMessages = rumbleMessages;
 	}
 
 	@Override
