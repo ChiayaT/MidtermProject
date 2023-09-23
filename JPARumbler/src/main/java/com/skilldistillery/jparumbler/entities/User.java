@@ -23,6 +23,9 @@ public class User {
 	
 	@OneToMany(mappedBy="user")
 	private List<LocationRating> locationRatings;
+	
+	@OneToMany(mappedBy="user")
+	private List<UserDiscipline> userDisciplines;
 
 	public User() {
 		super();
@@ -74,6 +77,14 @@ public class User {
 
 	public void setLocationRatings(List<LocationRating> locationRatings) {
 		this.locationRatings = locationRatings;
+	}
+
+	public List<UserDiscipline> getUserDisciplines() {
+		return userDisciplines;
+	}
+
+	public void setUserDisciplines(List<UserDiscipline> userDisciplines) {
+		this.userDisciplines = userDisciplines;
 	}
 
 	@Override

@@ -16,6 +16,8 @@
 		<class>com.skilldistillery.jparumbler.entities.Rumble</class>
 		<class>com.skilldistillery.jparumbler.entities.RumbleMessage</class>
 		<class>com.skilldistillery.jparumbler.entities.User</class>
+		<class>com.skilldistillery.jparumbler.entities.UserDiscipline</class>
+		<class>com.skilldistillery.jparumbler.entities.UserDisciplineId</class>
 
 
 		<!-- end entities -->

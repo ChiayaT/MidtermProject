@@ -1,5 +1,6 @@
 package com.skilldistillery.jparumbler.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -7,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Discipline {
@@ -20,6 +22,9 @@ public class Discipline {
 	
 	@Column(name="image_url")
 	private String imageUrl;
+	
+	@OneToMany(mappedBy="discipline")
+	private List<UserDiscipline> userDisciplines;
 
 	public Discipline() {
 		super();
@@ -55,6 +60,14 @@ public class Discipline {
 
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
+	}
+
+	public List<UserDiscipline> getUserDisciplines() {
+		return userDisciplines;
+	}
+
+	public void setUserDisciplines(List<UserDiscipline> userDisciplines) {
+		this.userDisciplines = userDisciplines;
 	}
 
 	@Override
