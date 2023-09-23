@@ -1,6 +1,10 @@
 package com.skilldistillery.jparumbler.entities;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -31,7 +35,7 @@ class UserTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		user = em.find(User.class, 1);
+		user = em.find(User.class, 2);
 	}
 
 	@AfterEach
@@ -43,8 +47,25 @@ class UserTest {
 	@Test
 	void test_User_entity_basic_mapping() {
 		assertNotNull(user);
-		assertEquals("admin", user.getUsername());
+		assertEquals("jchan", user.getUsername());
 
 	}
+	
+	@Test
+	void test_User_blogpost_OneToMany_mapping() {
+		assertNotNull(user);
+		List<BlogPost> blogPosts = user.getBlogPosts();
+		assertNotNull(blogPosts);
+		assertTrue(blogPosts.size() > 0);
+
+	}
+	
+	@Test
+	void test_User_adress_OneToOne_mapping() {
+		assertNotNull(user);
+		assertEquals("360 High Kick Dr", user.getAddress().getStreet());
+		
+	}
+	
 
 }

@@ -48,6 +48,13 @@ class BlogPostTest {
 		assertEquals(Month.SEPTEMBER, blogPost.getCreateDate().getMonth());
 
 	}
+	
+	@Test
+	void test_blogPost_user_ManyTOone_mapping() {
+		assertNotNull(blogPost);
+		assertEquals(2, blogPost.getUser().getId());
+
+	}
 
 
 }

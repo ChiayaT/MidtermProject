@@ -1,13 +1,19 @@
 package com.skilldistillery.jparumbler.entities;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 public class User {
@@ -26,6 +32,38 @@ public class User {
 	
 	@OneToMany(mappedBy="user")
 	private List<UserDiscipline> userDisciplines;
+	
+	@OneToMany(mappedBy = "user")
+	private List<BlogPost> blogPosts;
+	
+	@Column(name = "first_name")
+	private String firstName;
+	
+	@Column(name = "last_name")
+	private String lastName;
+	
+	@Column(name = "profile_image_url")
+	private String profileImageURL;
+	
+	@Column(name = "height_in_inches")
+	private int heightInInches;
+	
+	@Column(name = "weight_in_pounds")
+	private int weightInPounds;
+	
+	
+	@Column(name = "create_date")
+	@CreationTimestamp
+	private LocalDateTime createDate;
+	
+	@Column(name = "last_update")
+	private LocalDateTime lastUpdate;
+	
+	@OneToOne
+	@JoinColumn(name = "address_id")
+	private Address address;
+	
+	private String description;
 
 	public User() {
 		super();
@@ -85,6 +123,86 @@ public class User {
 
 	public void setUserDisciplines(List<UserDiscipline> userDisciplines) {
 		this.userDisciplines = userDisciplines;
+	}
+
+	public List<BlogPost> getBlogPosts() {
+		return blogPosts;
+	}
+
+	public void setBlogPosts(List<BlogPost> blogPosts) {
+		this.blogPosts = blogPosts;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getProfileImageURL() {
+		return profileImageURL;
+	}
+
+	public void setProfileImageURL(String profileImageURL) {
+		this.profileImageURL = profileImageURL;
+	}
+
+	public int getHeightInInches() {
+		return heightInInches;
+	}
+
+	public void setHeightInInches(int heightInInches) {
+		this.heightInInches = heightInInches;
+	}
+
+	public int getWeightInPounds() {
+		return weightInPounds;
+	}
+
+	public void setWeightInPounds(int weightInPounds) {
+		this.weightInPounds = weightInPounds;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public LocalDateTime getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(LocalDateTime createDate) {
+		this.createDate = createDate;
+	}
+
+	public LocalDateTime getLastUpdate() {
+		return lastUpdate;
+	}
+
+	public void setLastUpdate(LocalDateTime lastUpdate) {
+		this.lastUpdate = lastUpdate;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	@Override
