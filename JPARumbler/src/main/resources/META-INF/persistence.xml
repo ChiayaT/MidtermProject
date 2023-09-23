@@ -13,6 +13,7 @@
 		<class>com.skilldistillery.jparumbler.entities.Location</class>
 		<class>com.skilldistillery.jparumbler.entities.LocationRating</class>
 		<class>com.skilldistillery.jparumbler.entities.LocationRatingId</class>
+		<class>com.skilldistillery.jparumbler.entities.LocationType</class>
 		<class>com.skilldistillery.jparumbler.entities.Rumble</class>
 		<class>com.skilldistillery.jparumbler.entities.RumbleMessage</class>
 		<class>com.skilldistillery.jparumbler.entities.User</class>
