@@ -8,5 +8,10 @@ public interface UserDAO {
 	
 	@Autowired
 	User authenticateUser(User user);
+	User findUserById(int id);
+	User createUser(User user);
+	User updateUser(User user);
+	boolean deleteUser (int id);
+	
 
 }

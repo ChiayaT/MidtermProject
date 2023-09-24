@@ -1,5 +1,6 @@
 package com.skilldistillery.jparumbler.entities;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -91,6 +92,9 @@ public class User {
 	private Address address;
 
 	private String description;
+	
+	@Column(name="date_of_birth")
+	private LocalDate dateOfBirth;
 
 	public User() {
 		super();
@@ -216,12 +220,11 @@ public class User {
 		this.friends = friends;
 	}
 
-//FIXME
 	public void addFriend(User friend) {
 		if (friends == null) {
 			friends = new ArrayList<>();
 		}
-		if (!friends.contains(friend)) {
+		if (!friends.contains(friend) && (friend != this)) {
 			friends.add(friend);
 			friend.addFriend(this);
 		}
@@ -428,6 +431,14 @@ public class User {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public LocalDate getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+	public void setDateOfBirth(LocalDate dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
 	}
 
 	@Override

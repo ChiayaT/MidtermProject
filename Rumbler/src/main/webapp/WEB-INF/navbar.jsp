@@ -8,8 +8,8 @@
 <title>Rumbler</title>
 </head>
 <body>
-	<%@ include file="navbar.jsp"%>
-<h1>Rumbler</h1>
+<a href="index.do">Home</a>
+<a href="login.do">Login</a>
 
 </body>
 </html>
