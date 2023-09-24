@@ -8,6 +8,7 @@
 <title>Rumbler</title>
 </head>
 <body>
+	<%@ include file="navbar.jsp"%>
 <h1>Rumbler</h1>
 <form action="loginUser.do" method="post">
 		<h3>Login To Your Account</h3>

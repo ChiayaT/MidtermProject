@@ -2,6 +2,8 @@ package com.skilldistillery.jparumbler.entities;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -44,6 +46,16 @@ class ExperienceLevelTest {
 	void test_ExperienceLevel_entity_basic_mapping() {
 		assertNotNull(experienceLevel);
 		assertEquals("Beginner", experienceLevel.getName());
+
+	}
+	
+	@Test
+	void test_ExperienceLevel_OTM_UserDiscipline_mapping() {
+		experienceLevel = em.find(ExperienceLevel.class, 3);
+		assertNotNull(experienceLevel);
+		List<UserDiscipline> userDisciplines = experienceLevel.getUserDisciplines();
+		assertNotNull(userDisciplines);
+		assertTrue(userDisciplines.size() > 0);
 
 	}
 

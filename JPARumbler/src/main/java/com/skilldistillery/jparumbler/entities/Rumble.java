@@ -3,6 +3,7 @@ package com.skilldistillery.jparumbler.entities;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -17,6 +18,12 @@ import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+//!!!!!!!!!!!!!!!!!!!!!!!Complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//!!!!!!!!!!!!!!!!!!!!!!!Complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//!!!!!!!!!!!!!!!!!!!!!!!Complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//!!!!!!!!!!!!!!!!!!!!!!!Complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+//add and remove methods added
 
 @Entity
 public class Rumble {
@@ -33,13 +40,13 @@ public class Rumble {
 	private String hostRatingComment;
 	
 	@Column(name="host_rating_scale")
-	private String hostRatingScale;
+	private int hostRatingScale;
 	
 	@Column(name="guest_rating_comment")
 	private String guestRatingComment;
 	
 	@Column(name="guest_rating_scale")
-	private String guestRatingScale;
+	private int guestRatingScale;
 	
 	@Column(name="rumble_date")
 	private LocalDate rumbleDate;
@@ -118,12 +125,21 @@ public class Rumble {
 		this.hostRatingComment = hostRatingComment;
 	}
 
-	public String getHostRatingScale() {
+
+	public int getHostRatingScale() {
 		return hostRatingScale;
 	}
 
-	public void setHostRatingScale(String hostRatingScale) {
+	public void setHostRatingScale(int hostRatingScale) {
 		this.hostRatingScale = hostRatingScale;
+	}
+
+	public int getGuestRatingScale() {
+		return guestRatingScale;
+	}
+
+	public void setGuestRatingScale(int guestRatingScale) {
+		this.guestRatingScale = guestRatingScale;
 	}
 
 	public String getGuestRatingComment() {
@@ -134,13 +150,6 @@ public class Rumble {
 		this.guestRatingComment = guestRatingComment;
 	}
 
-	public String getGuestRatingScale() {
-		return guestRatingScale;
-	}
-
-	public void setGuestRatingScale(String guestRatingScale) {
-		this.guestRatingScale = guestRatingScale;
-	}
 
 	public LocalDate getRumbleDate() {
 		return rumbleDate;
@@ -198,7 +207,6 @@ public class Rumble {
 		this.openToPublic = openToPublic;
 	}
 	
-	
 
 	public User getHost() {
 		return host;
@@ -240,6 +248,24 @@ public class Rumble {
 
 	public void setRumbleMessages(List<RumbleMessage> rumbleMessages) {
 		this.rumbleMessages = rumbleMessages;
+	}
+	
+	public void addRumbleMessage(RumbleMessage rumbleMessage) {
+		if (rumbleMessages == null) {rumbleMessages = new ArrayList<>(); }
+		if (!rumbleMessages.contains(rumbleMessage)) {
+			rumbleMessages.add(rumbleMessage);
+			if (rumbleMessage.getRumble() != null) {
+				rumbleMessage.getRumble().removeRumbleMessage(rumbleMessage);
+			}
+			rumbleMessage.setRumble(this);
+		}
+	}
+	
+	public void removeRumbleMessage(RumbleMessage rumbleMessage) {
+		if(rumbleMessages != null && rumbleMessages.contains(rumbleMessage)) {
+			rumbleMessages.remove(rumbleMessage);
+			rumbleMessage.setRumble(null);
+		}
 	}
 
 	@Override

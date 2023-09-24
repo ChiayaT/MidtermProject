@@ -1,5 +1,6 @@
 package com.skilldistillery.jparumbler.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -13,6 +14,9 @@ import javax.persistence.Table;
 //!!!!!!!!!!!!!!!!!!!!!!!Complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //!!!!!!!!!!!!!!!!!!!!!!!Complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //!!!!!!!!!!!!!!!!!!!!!!!Complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+//add and remove methods added
+
 @Entity
 @Table(name = "location_type")
 public class LocationType {
@@ -67,6 +71,24 @@ public class LocationType {
 
 	public void setLocations(List<Location> locations) {
 		this.locations = locations;
+	}
+	
+	public void addLocation(Location location) {
+		if (locations == null) {locations = new ArrayList<>(); }
+		if (!locations.contains(location)) {
+			locations.add(location);
+			if (location.getLocationType() != null) {
+				location.getLocationType().removeLocation(location);
+			}
+			location.setLocationType(this);
+		}
+	}
+	
+	public void removeLocation(Location location) {
+		if(locations != null && locations.contains(location)) {
+			locations.remove(location);
+			location.setLocationType(null);
+		}
 	}
 
 	@Override

@@ -1,6 +1,7 @@
 package com.skilldistillery.jparumbler.entities;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -12,7 +13,10 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
+//!!!!!!!!!!!!!!!!!!!!!!!Complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//!!!!!!!!!!!!!!!!!!!!!!!Complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//!!!!!!!!!!!!!!!!!!!!!!!Complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//!!!!!!!!!!!!!!!!!!!!!!!Complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 @Entity
 @Table(name="user_discipline")
 public class UserDiscipline {
@@ -39,6 +43,14 @@ public class UserDiscipline {
 	@JoinColumn(name = "discipline_id")
 	@MapsId(value = "disciplineId")
 	private Discipline discipline;
+	
+	@ManyToOne
+	@JoinColumn(name = "experience_level_id")
+	private ExperienceLevel experienceLevel;
+	
+	@ManyToOne
+	@JoinColumn(name = "fighting_stance_id")
+	private FightingStance fightingStance;
 	
 	public UserDiscipline() {
 	}
@@ -91,10 +103,43 @@ public class UserDiscipline {
 		this.discipline = discipline;
 	}
 
+	public ExperienceLevel getExperienceLevel() {
+		return experienceLevel;
+	}
+
+	public void setExperienceLevel(ExperienceLevel experienceLevel) {
+		this.experienceLevel = experienceLevel;
+	}
+
+	public FightingStance getFightingStance() {
+		return fightingStance;
+	}
+
+	public void setFightingStance(FightingStance fightingStance) {
+		this.fightingStance = fightingStance;
+	}
+
 	@Override
 	public String toString() {
 		return "UserDiscipline [description=" + description + ", createDate=" + createDate + ", lastUpdate="
 				+ lastUpdate + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		UserDiscipline other = (UserDiscipline) obj;
+		return Objects.equals(id, other.id);
 	}
 	
 	

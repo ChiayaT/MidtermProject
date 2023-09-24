@@ -15,14 +15,8 @@ public class UserController {
 	private UserDAO userDao;
 	
 	@RequestMapping(path = {"/", "home.do"}	)
-
 	private String goHome(Model model) {
-		
-		
-		User TESTUSER = new User();
-		TESTUSER.setUsername("admin");
-		TESTUSER.setPassword("admin");
-		model.addAttribute("SMOKETEST", userDao.authenticateUser(TESTUSER));
+	
 		return "home";
 	}
 }
