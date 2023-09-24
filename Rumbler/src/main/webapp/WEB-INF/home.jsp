@@ -10,7 +10,7 @@
 <body>
 	<%@ include file="navbar.jsp"%>
 <h1>Rumbler</h1>
-<form action="loginUser.do" method="post">
+<form action="login.do" method="post">
 		<h3>Login To Your Account</h3>
 		<br>
 
