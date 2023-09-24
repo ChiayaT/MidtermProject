@@ -1,5 +1,6 @@
 package com.skilldistillery.jparumbler.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -11,6 +12,9 @@ import javax.persistence.Table;
 //!!!!!!!!!!!!!!!!!!!!!!!Complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //!!!!!!!!!!!!!!!!!!!!!!!Complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //!!!!!!!!!!!!!!!!!!!!!!!Complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+//add and remove methods added
+
 @Entity
 @Table(name="fighting_stance")
 public class FightingStance {
@@ -59,6 +63,24 @@ public class FightingStance {
 
 	public void setUserDisciplines(List<UserDiscipline> userDisciplines) {
 		this.userDisciplines = userDisciplines;
+	}
+	
+	public void addUserDiscipline(UserDiscipline userDiscipline) {
+		if (userDisciplines == null) {userDisciplines = new ArrayList<>(); }
+		if (!userDisciplines.contains(userDiscipline)) {
+			userDisciplines.add(userDiscipline);
+			if (userDiscipline.getFightingStance() != null) {
+				userDiscipline.getFightingStance().removeUserDiscipline(userDiscipline);
+			}
+			userDiscipline.setFightingStance(this);
+		}
+	}
+	
+	public void removeUserDiscipline(UserDiscipline userDiscipline) {
+		if(userDisciplines != null && userDisciplines.contains(userDiscipline)) {
+			userDisciplines.remove(userDiscipline);
+			userDiscipline.setFightingStance(null);
+		}
 	}
 
 	@Override

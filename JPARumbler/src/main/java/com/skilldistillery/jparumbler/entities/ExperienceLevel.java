@@ -1,5 +1,6 @@
 package com.skilldistillery.jparumbler.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -13,6 +14,9 @@ import javax.persistence.Table;
 //!!!!!!!!!!!!!!!!!!!!!!!Complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //!!!!!!!!!!!!!!!!!!!!!!!Complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //!!!!!!!!!!!!!!!!!!!!!!!Complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+//add and remove methods added
+
 @Entity
 @Table(name="experience_level")
 public class ExperienceLevel {
@@ -53,6 +57,24 @@ public class ExperienceLevel {
 
 	public void setUserDisciplines(List<UserDiscipline> userDisciplines) {
 		this.userDisciplines = userDisciplines;
+	}
+	
+	public void addUserDiscipline(UserDiscipline userDiscipline) {
+		if (userDisciplines == null) {userDisciplines = new ArrayList<>(); }
+		if (!userDisciplines.contains(userDiscipline)) {
+			userDisciplines.add(userDiscipline);
+			if (userDiscipline.getExperienceLevel() != null) {
+				userDiscipline.getExperienceLevel().removeUserDiscipline(userDiscipline);
+			}
+			userDiscipline.setExperienceLevel(this);
+		}
+	}
+	
+	public void removeUserDiscipline(UserDiscipline userDiscipline) {
+		if(userDisciplines != null && userDisciplines.contains(userDiscipline)) {
+			userDisciplines.remove(userDiscipline);
+			userDiscipline.setExperienceLevel(null);
+		}
 	}
 
 	@Override

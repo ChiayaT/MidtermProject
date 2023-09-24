@@ -3,6 +3,7 @@ package com.skilldistillery.jparumbler.entities;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -21,6 +22,9 @@ import org.hibernate.annotations.UpdateTimestamp;
 //!!!!!!!!!!!!!!!!!!!!!!!Complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //!!!!!!!!!!!!!!!!!!!!!!!Complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //!!!!!!!!!!!!!!!!!!!!!!!Complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+//add and remove methods added
+
 @Entity
 public class Rumble {
 
@@ -203,7 +207,6 @@ public class Rumble {
 		this.openToPublic = openToPublic;
 	}
 	
-	
 
 	public User getHost() {
 		return host;
@@ -245,6 +248,24 @@ public class Rumble {
 
 	public void setRumbleMessages(List<RumbleMessage> rumbleMessages) {
 		this.rumbleMessages = rumbleMessages;
+	}
+	
+	public void addRumbleMessage(RumbleMessage rumbleMessage) {
+		if (rumbleMessages == null) {rumbleMessages = new ArrayList<>(); }
+		if (!rumbleMessages.contains(rumbleMessage)) {
+			rumbleMessages.add(rumbleMessage);
+			if (rumbleMessage.getRumble() != null) {
+				rumbleMessage.getRumble().removeRumbleMessage(rumbleMessage);
+			}
+			rumbleMessage.setRumble(this);
+		}
+	}
+	
+	public void removeRumbleMessage(RumbleMessage rumbleMessage) {
+		if(rumbleMessages != null && rumbleMessages.contains(rumbleMessage)) {
+			rumbleMessages.remove(rumbleMessage);
+			rumbleMessage.setRumble(null);
+		}
 	}
 
 	@Override

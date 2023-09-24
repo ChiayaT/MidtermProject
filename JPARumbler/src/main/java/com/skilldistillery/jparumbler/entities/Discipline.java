@@ -1,5 +1,6 @@
 package com.skilldistillery.jparumbler.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -13,6 +14,9 @@ import javax.persistence.OneToMany;
 //!!!!!!!!!!!!!!!!!!!!!!!Complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //!!!!!!!!!!!!!!!!!!!!!!!Complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //!!!!!!!!!!!!!!!!!!!!!!!Complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+//add and remove methods added
+
 @Entity
 public class Discipline {
 	@Id
@@ -76,7 +80,23 @@ public class Discipline {
 		this.userDisciplines = userDisciplines;
 	}
 	
+	public void addUserDiscipline(UserDiscipline userDiscipline) {
+		if (userDisciplines == null) {userDisciplines = new ArrayList<>(); }
+		if (!userDisciplines.contains(userDiscipline)) {
+			userDisciplines.add(userDiscipline);
+			if (userDiscipline.getDiscipline() != null) {
+				userDiscipline.getDiscipline().removeUserDiscipline(userDiscipline);
+			}
+			userDiscipline.setDiscipline(this);
+		}
+	}
 	
+	public void removeUserDiscipline(UserDiscipline userDiscipline) {
+		if(userDisciplines != null && userDisciplines.contains(userDiscipline)) {
+			userDisciplines.remove(userDiscipline);
+			userDiscipline.setDiscipline(null);
+		}
+	}
 	
 
 	public List<Rumble> getRumbles() {
@@ -85,6 +105,24 @@ public class Discipline {
 
 	public void setRumbles(List<Rumble> rumbles) {
 		this.rumbles = rumbles;
+	}
+	
+	public void addRumble(Rumble rumble) {
+		if (rumbles == null) {rumbles = new ArrayList<>(); }
+		if (!rumbles.contains(rumble)) {
+			rumbles.add(rumble);
+			if (rumble.getDiscipline() != null) {
+				rumble.getDiscipline().removeRumble(rumble);
+			}
+			rumble.setDiscipline(this);
+		}
+	}
+	
+	public void removeRumble(Rumble rumble) {
+		if(rumbles != null && rumbles.contains(rumble)) {
+			rumbles.remove(rumble);
+			rumble.setDiscipline(null);
+		}
 	}
 
 	@Override

@@ -1,6 +1,7 @@
 package com.skilldistillery.jparumbler.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -20,6 +21,9 @@ import org.hibernate.annotations.UpdateTimestamp;
 //!!!!!!!!!!!!!!!!!!!!!!!Complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //!!!!!!!!!!!!!!!!!!!!!!!Complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //!!!!!!!!!!!!!!!!!!!!!!!Complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+//add and remove methods added
+
 @Entity
 public class Location {
 
@@ -127,7 +131,23 @@ public class Location {
 		this.locationRatings = locationRatings;
 	}
 	
+	public void addLocationRating(LocationRating locationRating) {
+		if (locationRatings == null) {locationRatings = new ArrayList<>(); }
+		if (!locationRatings.contains(locationRating)) {
+			locationRatings.add(locationRating);
+			if (locationRating.getLocation() != null) {
+				locationRating.getLocation().removeLocationRating(locationRating);
+			}
+			locationRating.setLocation(this);
+		}
+	}
 	
+	public void removeLocationRating(LocationRating locationRating) {
+		if(locationRatings != null && locationRatings.contains(locationRating)) {
+			locationRatings.remove(locationRating);
+			locationRating.setLocation(null);
+		}
+	}
 	
 
 	public List<Rumble> getRumbles() {
@@ -136,6 +156,24 @@ public class Location {
 
 	public void setRumbles(List<Rumble> rumbles) {
 		this.rumbles = rumbles;
+	}
+	
+	public void addRumble(Rumble rumble) {
+		if (rumbles == null) {rumbles = new ArrayList<>(); }
+		if (!rumbles.contains(rumble)) {
+			rumbles.add(rumble);
+			if (rumble.getLocation() != null) {
+				rumble.getLocation().removeRumble(rumble);
+			}
+			rumble.setLocation(this);
+		}
+	}
+	
+	public void removeRumble(Rumble rumble) {
+		if(rumbles != null && rumbles.contains(rumble)) {
+			rumbles.remove(rumble);
+			rumble.setLocation(null);
+		}
 	}
 
 	public LocationType getLocationType() {
