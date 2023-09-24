@@ -9,7 +9,13 @@
 </head>
 <body>
 <h1>Rumbler</h1>
- <p>${SMOKETEST}</p>
+<form action="loginUser.do" method="post">
+		<h3>Login To Your Account</h3>
+		<br>
 
+		User Name:
+		<input type="text" name="username" required="required field"><br>
+		Height In Inches:
+		<input type="password" name="password" required="required field"><br>
 </body>
 </html>
