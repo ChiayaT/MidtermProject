@@ -1,11 +1,13 @@
 package com.skilldistillery.jparumbler.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 //!!!!!!!!!!!!!!!!!!!!!!!Complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //!!!!!!!!!!!!!!!!!!!!!!!Complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -20,6 +22,9 @@ public class ExperienceLevel {
 	private int id;
 	
 	private String name;
+	
+	@OneToMany(mappedBy = "experienceLevel")
+	private List<UserDiscipline> userDisciplines;
 
 	
 	public ExperienceLevel() {
@@ -40,6 +45,14 @@ public class ExperienceLevel {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public List<UserDiscipline> getUserDisciplines() {
+		return userDisciplines;
+	}
+
+	public void setUserDisciplines(List<UserDiscipline> userDisciplines) {
+		this.userDisciplines = userDisciplines;
 	}
 
 	@Override

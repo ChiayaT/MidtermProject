@@ -1,9 +1,11 @@
 package com.skilldistillery.jparumbler.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 //!!!!!!!!!!!!!!!!!!!!!!!Complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //!!!!!!!!!!!!!!!!!!!!!!!Complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -19,6 +21,9 @@ public class FightingStance {
 	private String stance;
 	
 	private String description;
+	
+	@OneToMany(mappedBy = "fightingStance")
+	private List<UserDiscipline> userDisciplines;
 
 	public FightingStance() {
 		super();
@@ -46,6 +51,14 @@ public class FightingStance {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public List<UserDiscipline> getUserDisciplines() {
+		return userDisciplines;
+	}
+
+	public void setUserDisciplines(List<UserDiscipline> userDisciplines) {
+		this.userDisciplines = userDisciplines;
 	}
 
 	@Override

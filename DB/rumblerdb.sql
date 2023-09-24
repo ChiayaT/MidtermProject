@@ -70,7 +70,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `location_type` ;
 
 CREATE TABLE IF NOT EXISTS `location_type` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
   `description` TEXT NULL,
   PRIMARY KEY (`id`))
@@ -91,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `location` (
   `create_date` DATETIME NULL,
   `last_update` DATETIME NULL,
   `location_type_id` INT NOT NULL,
-  `enabled` TINYINT NULL,
+  `enabled` TINYINT NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   INDEX `fk_location_address1_idx` (`address_id` ASC),
   INDEX `fk_location_location_type1_idx` (`location_type_id` ASC),
@@ -114,7 +114,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `discipline` ;
 
 CREATE TABLE IF NOT EXISTS `discipline` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `description` TEXT NULL,
   `image_url` VARCHAR(2000) NULL,
@@ -128,7 +128,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `experience_level` ;
 
 CREATE TABLE IF NOT EXISTS `experience_level` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
@@ -140,7 +140,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `fighting_stance` ;
 
 CREATE TABLE IF NOT EXISTS `fighting_stance` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `stance` VARCHAR(45) NULL,
   `description` TEXT NULL,
   PRIMARY KEY (`id`))
@@ -201,15 +201,15 @@ CREATE TABLE IF NOT EXISTS `rumble` (
   `guest_id` INT NOT NULL,
   `location_id` INT NOT NULL,
   `host_rating_comment` VARCHAR(150) NULL,
-  `host_rating_scale` INT NULL,
+  `host_rating_scale` INT NOT NULL,
   `guest_rating_comment` VARCHAR(150) NULL,
-  `guest_rating_scale` INT NULL,
+  `guest_rating_scale` INT NOT NULL,
   `rumble_date` DATE NULL,
   `start_time` TIME NULL,
   `end_time` TIME NULL,
   `create_date` DATE NULL,
   `last_update` DATETIME NULL,
-  `enabled` TINYINT NULL,
+  `enabled` TINYINT NOT NULL DEFAULT 1,
   `open_to_public` TINYINT NULL,
   `discipline_id` INT NOT NULL,
   PRIMARY KEY (`id`),
@@ -272,11 +272,11 @@ DROP TABLE IF EXISTS `location_rating` ;
 CREATE TABLE IF NOT EXISTS `location_rating` (
   `user_id` INT NOT NULL,
   `location_id` INT NOT NULL,
-  `rating_scale` INT NULL,
+  `rating_scale` INT NOT NULL,
   `rating_comment` TEXT NULL,
   `create_date` DATETIME NULL,
   `last_update` DATETIME NULL,
-  `enabled` TINYINT NULL,
+  `enabled` TINYINT NOT NULL DEFAULT 1,
   PRIMARY KEY (`user_id`, `location_id`),
   INDEX `fk_user_has_location_location1_idx` (`location_id` ASC),
   INDEX `fk_user_has_location_user1_idx` (`user_id` ASC),
@@ -299,7 +299,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `rumble_message` ;
 
 CREATE TABLE IF NOT EXISTS `rumble_message` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `message_date` DATETIME NULL,
   `content` TEXT NULL,
   `create_date` DATETIME NULL,
@@ -327,7 +327,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `direct_message` ;
 
 CREATE TABLE IF NOT EXISTS `direct_message` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `create_date` DATETIME NULL,
   `content` TEXT NULL,
   `sender_id` INT NOT NULL,
@@ -354,12 +354,12 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `blog_post` ;
 
 CREATE TABLE IF NOT EXISTS `blog_post` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `create_date` DATETIME NULL,
   `content` TEXT NULL,
   `last_update` DATETIME NULL,
   `user_id` INT NOT NULL,
-  `enabled` TINYINT NULL,
+  `enabled` TINYINT NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   INDEX `fk_blog_post_user1_idx` (`user_id` ASC),
   CONSTRAINT `fk_blog_post_user1`
@@ -480,7 +480,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rumblerdb`;
-INSERT INTO `rumble` (`id`, `title`, `description`, `host_id`, `guest_id`, `location_id`, `host_rating_comment`, `host_rating_scale`, `guest_rating_comment`, `guest_rating_scale`, `rumble_date`, `start_time`, `end_time`, `create_date`, `last_update`, `enabled`, `open_to_public`, `discipline_id`) VALUES (1, 'First Rumble', 'This is the first rumble.', 2, 3, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-09-22', NULL, 1, NULL, 1);
+INSERT INTO `rumble` (`id`, `title`, `description`, `host_id`, `guest_id`, `location_id`, `host_rating_comment`, `host_rating_scale`, `guest_rating_comment`, `guest_rating_scale`, `rumble_date`, `start_time`, `end_time`, `create_date`, `last_update`, `enabled`, `open_to_public`, `discipline_id`) VALUES (1, 'First Rumble', 'This is the first rumble.', 2, 3, 2, NULL, 5, NULL, 5, NULL, NULL, NULL, '2023-09-22', NULL, 1, NULL, 1);
 
 COMMIT;
 

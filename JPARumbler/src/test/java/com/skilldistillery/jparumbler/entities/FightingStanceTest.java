@@ -2,6 +2,8 @@ package com.skilldistillery.jparumbler.entities;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -45,6 +47,14 @@ class FightingStanceTest {
 		assertNotNull(fightingStance);
 		assertEquals("Orthodox", fightingStance.getStance());
 
+	}
+
+	@Test
+	void test_FightingStance_OTM_UserDiscipline_mapping() {
+		assertNotNull(fightingStance);
+		List<UserDiscipline> userDisciplines = fightingStance.getUserDisciplines();
+		assertNotNull(userDisciplines);
+		assertTrue(userDisciplines.size() > 0);
 	}
 
 }

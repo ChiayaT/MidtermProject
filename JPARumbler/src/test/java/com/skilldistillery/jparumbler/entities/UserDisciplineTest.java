@@ -51,4 +51,11 @@ class UserDisciplineTest {
 
 	}
 
+	@Test
+	void test_UserDiscipline_FightingStance_ExperienceLevel_mapping() {
+		assertNotNull(userDiscipline);
+		assertEquals("Orthodox", userDiscipline.getFightingStance().getStance());
+		assertEquals("Advanced", userDiscipline.getExperienceLevel().getName());
+
+	}
 }

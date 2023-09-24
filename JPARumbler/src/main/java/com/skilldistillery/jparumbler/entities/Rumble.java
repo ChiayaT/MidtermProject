@@ -17,7 +17,10 @@ import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
+//!!!!!!!!!!!!!!!!!!!!!!!Complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//!!!!!!!!!!!!!!!!!!!!!!!Complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//!!!!!!!!!!!!!!!!!!!!!!!Complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//!!!!!!!!!!!!!!!!!!!!!!!Complete!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 @Entity
 public class Rumble {
 
@@ -33,13 +36,13 @@ public class Rumble {
 	private String hostRatingComment;
 	
 	@Column(name="host_rating_scale")
-	private String hostRatingScale;
+	private int hostRatingScale;
 	
 	@Column(name="guest_rating_comment")
 	private String guestRatingComment;
 	
 	@Column(name="guest_rating_scale")
-	private String guestRatingScale;
+	private int guestRatingScale;
 	
 	@Column(name="rumble_date")
 	private LocalDate rumbleDate;
@@ -118,12 +121,21 @@ public class Rumble {
 		this.hostRatingComment = hostRatingComment;
 	}
 
-	public String getHostRatingScale() {
+
+	public int getHostRatingScale() {
 		return hostRatingScale;
 	}
 
-	public void setHostRatingScale(String hostRatingScale) {
+	public void setHostRatingScale(int hostRatingScale) {
 		this.hostRatingScale = hostRatingScale;
+	}
+
+	public int getGuestRatingScale() {
+		return guestRatingScale;
+	}
+
+	public void setGuestRatingScale(int guestRatingScale) {
+		this.guestRatingScale = guestRatingScale;
 	}
 
 	public String getGuestRatingComment() {
@@ -134,13 +146,6 @@ public class Rumble {
 		this.guestRatingComment = guestRatingComment;
 	}
 
-	public String getGuestRatingScale() {
-		return guestRatingScale;
-	}
-
-	public void setGuestRatingScale(String guestRatingScale) {
-		this.guestRatingScale = guestRatingScale;
-	}
 
 	public LocalDate getRumbleDate() {
 		return rumbleDate;
