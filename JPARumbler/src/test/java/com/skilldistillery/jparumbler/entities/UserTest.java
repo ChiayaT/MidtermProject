@@ -108,5 +108,13 @@ class UserTest {
 		assertTrue(rumbleMessages.size() > 0);
 	}
 	
+	@Test
+	void test_User_has_friend_join_table_mapping() {
+		List<User> friends = user.getFriends();
+		assertNotNull(friends);
+		assertTrue(friends.size() > 0);
+		assertEquals("Mike", friends.get(0).getFirstName());
+	}
+	
 
 }

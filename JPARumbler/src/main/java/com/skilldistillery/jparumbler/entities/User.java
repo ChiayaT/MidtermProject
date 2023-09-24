@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -57,8 +59,9 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	private List<RumbleMessage> rumbleMessages;
 	
-	
-	
+	@ManyToMany
+	@JoinTable(name = "user_has_friend", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "friend_id"))
+	private List<User> friends;
 	
 	@Column(name = "first_name")
 	private String firstName;
@@ -145,6 +148,20 @@ public class User {
 	}
 
 
+	public List<User> getFriends() {
+		return friends;
+	}
+
+
+
+
+	public void setFriends(List<User> friends) {
+		this.friends = friends;
+	}
+
+
+
+
 	public int getId() {
 		return id;
 	}
@@ -208,6 +225,11 @@ public class User {
 	public void setBlogPosts(List<BlogPost> blogPosts) {
 		this.blogPosts = blogPosts;
 	}
+
+
+
+
+
 
 	public String getFirstName() {
 		return firstName;
