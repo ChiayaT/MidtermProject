@@ -34,7 +34,7 @@
 
 
 					<c:if test="${not empty sessionScope.loggedInUser }">
-					<li class="nav-item"><a class="nav-link nav-text" href="account.do">Account</a>
+					<li class="nav-item"><a class="nav-link nav-text" href="accountPage.do">Account</a>
 						</li>
 						<li class="nav-item"><a class="nav-link nav-text" href="logout.do">Logout</a>
 						</li>

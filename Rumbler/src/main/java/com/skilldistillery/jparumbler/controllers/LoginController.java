@@ -37,11 +37,11 @@ public class LoginController {
 		// login fails -> return login
 		return "login";
 	}
-//
-//	@RequestMapping(path = "logout.do")
-//	public String logout(HttpSession session) {
-//		// remove user from session
-//		session.removeAttribute("loggedInUser");
-//		return "index";
-//	}
+
+	@RequestMapping(path = "logout.do")
+	public String logout(HttpSession session) {
+		// remove user from session
+		session.removeAttribute("loggedInUser");
+		return "home";
+	}
 }
