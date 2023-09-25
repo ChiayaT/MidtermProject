@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,24 +10,34 @@
 </head>
 <body>
 	<jsp:include page="navbar.jsp" />
-		<div class="container">
-		<h1>Rumble Details</h1>
+	<div class="container">
 		<c:choose>
 			<c:when test="${not empty sessionScope.Rumble }">
+				<div class="row align-items-center">
+					<div class="col text-center">
+						<h3 class="display-6">${Rumble.title }</h3>
+						<p class="lead">Rumblers: ${Rumble.host.firstName }
+							${Rumble.host.lastName } VS ${Rumble.guest.firstName }
+							${Rumble.guest.lastName }</p>
+					</div>
+				</div>
+				<div class="row align-items-center">
+					<div class="col">
+						<img src="${Rumble.host.profileImageURL }" class="img-thumbnail"
+							alt="host picture"> VS <img
+							src="${Rumble.guest.profileImageURL }" class="img-thumbnail"
+							alt="guest picture">
+					</div>
+					<div class="col">
+						<strong>Description: </strong> ${Rumble.description }<br> <strong>Date:
+						</strong>${Rumble.rumbleDate }<br> <strong>Time: </strong>${Rumble.startTime }<br>
+						<strong>Discipline: </strong>${Rumble.discipline.name }<br> <strong>Location:
+						</strong>${Rumble.location.name }<br> <strong>Address: </strong>${Rumble.location.address.street }<br>
+					</div>
+				</div>
 
-			Title: ${Rumble.title }<br>
-			
-			Rumblers: ${Rumble.host } VS ${Rumble.guest }<br>
-			<img src="${Rumble.host.profileImageURL }"
-						alt="host picture"> VS <img src="${Rumble.guest.profileImageURL }"
-						alt="guest picture"><br>
-			Description ${Rumble.description }<br>
-			Date: ${Rumble.rumbleDate }<br>
-			Time: ${Rumble.startTime }<br>
-			Discipline: ${Rumble.discipline }<br>
-			Location: ${Rumble.location.name }<br>
-			Address: ${Rumble.location.address.street }<br>
-			
+
+
 
 
 			</c:when>

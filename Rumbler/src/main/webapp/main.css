@@ -17,3 +17,7 @@ a.nav-link:hover {
 	background-color: #FAA916 !important;
 	color: #FBFBFB;
 }
+
+.img-thumbnail {
+	height: 300px !important;
+}
