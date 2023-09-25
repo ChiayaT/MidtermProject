@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Rumbler</title>
+<jsp:include page="bootstrapHead.jsp" />
 </head>
 <body>
 	<%@ include file="navbar.jsp"%>
@@ -19,5 +20,6 @@
 		<input type="submit" value="Log In">
 	</form>
 
+	<jsp:include page="bootstrapScript.jsp" />
 </body>
 </html>

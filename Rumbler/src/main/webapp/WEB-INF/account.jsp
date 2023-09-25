@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Rumbler</title>
+<jsp:include page="bootstrapHead.jsp" />
 </head>
 <body>
 	<%@ include file="navbar.jsp"%>
@@ -31,6 +32,6 @@
 		</c:otherwise>
 
 	</c:choose>
-
+	<jsp:include page="bootstrapScript.jsp" />
 </body>
 </html>
