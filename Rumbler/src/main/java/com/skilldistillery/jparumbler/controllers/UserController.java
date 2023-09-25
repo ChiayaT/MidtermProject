@@ -47,6 +47,22 @@ public class UserController {
 	@RequestMapping(path = "accountCreation.do") 
 		private String createAccountForm(HttpSession session) {
 			return "CreateUser";
-		
+	}
+	@RequestMapping(path = "accountPage.do") 
+	private String accountPage(HttpSession session) {
+		return "account";
+	}
+	
+	@RequestMapping(path= "deletePage.do")
+	private String deletePage(HttpSession session) {
+		return "deleteAccount";
+	}
+	@RequestMapping(path= "deleteUser.do")
+	private String deleteAccount(User user, HttpSession session) {
+		userDao.deleteUser(user.getId());
+		boolean deleted = userDao.deleteUser(user.getId());
+		session.setAttribute("deleted", deleted);
+		session.removeAttribute("loggedInUser");
+		return "home";
 	}
 }

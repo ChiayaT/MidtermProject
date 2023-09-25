@@ -33,7 +33,7 @@
 						</ul>
 
 						<a href="update.do" class="btn btn-primary">Update Account</a> <a
-							href="delete.do" class="btn btn-danger">Delete Account</a>
+							href="deletePage.do" class="btn btn-danger">Delete Account</a>
 					</div>
 				</div>
 
