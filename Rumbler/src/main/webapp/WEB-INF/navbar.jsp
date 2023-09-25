@@ -23,18 +23,19 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="#">Home</a></li>
+						aria-current="page" href="home.do">Home</a></li>
 
 					<c:if test="${empty sessionScope.loggedInUser }">
-						<li class="nav-item"><a class="nav-link" href="login.do">Login</a>
+						<li class="nav-item"><a class="nav-link nav-text" href="login.do">Login</a>
 						</li>
 					</c:if>
 
 
 
 					<c:if test="${not empty sessionScope.loggedInUser }">
-						<li><a href="account.do">Account</a></li>
-						<li class="nav-item"><a class="nav-link" href="logout.do">Logout</a>
+					<li class="nav-item"><a class="nav-link nav-text" href="account.do">Account</a>
+						</li>
+						<li class="nav-item"><a class="nav-link nav-text" href="logout.do">Logout</a>
 						</li>
 					</c:if>
 
@@ -42,30 +43,26 @@
 
 
 					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#" role="button"
+						class="nav-link dropdown-toggle nav-text" href="#" role="button"
 						data-bs-toggle="dropdown" aria-expanded="false"> Drop Down We
 							Might Want </a>
-						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="#">Link to Something</a></li>
-							<li><a class="dropdown-item" href="#">Link to Something
+						<ul class="dropdown-menu" id="navbarFormat">
+							<li><a class="dropdown-item nav-text" href="#">Link to Something</a></li>
+							<li><a class="dropdown-item nav-text" href="#">Link to Something
 									Else</a></li>
 							<li><hr class="dropdown-divider"></li>
-							<li><a class="dropdown-item" href="#">Another Thing</a></li>
+							<li><a class="dropdown-item nav-text" href="#">Another Thing</a></li>
 						</ul></li>
 				</ul>
 				<form class="d-flex" role="search">
-					<input class="form-control me-2" type="search" placeholder="Search"
+					<input class="form-control me-2" type="search" placeholder="IGNORE ME"
 						aria-label="Search">
 					<button class="btn btn-outline-success" type="submit">IGNORE
-						THIS</button>
+						ME</button>
 				</form>
 			</div>
 		</div>
 	</nav>
-
-
-	<a href="index.do">Home</a>
-	<a href="login.do">Login</a>
 
 </body>
 </html>
