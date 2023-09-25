@@ -10,11 +10,27 @@
 </head>
 <body>
 	<%@ include file="navbar.jsp"%>
-	<h1>Rumbler</h1>
-	<p>Let's get ready to Rumbleeeeeeee!</p>
+
+	<div class="box-area">
+
+		<div class="banner-area">
+			<h2 class="text-center">Get Ready to Rumble!</h2>
+		</div>
+
+		<div class="content-area">
+			<div class="wrapper">
+
+				<p>Add a lil description about the app here.</p>
+
+			</div>
+		</div>
+	</div>
+
+	<c:if test="${deleted == true}">
+		<h1>${userName} has been deleted</h1>
+	</c:if>
+
+
 	<jsp:include page="bootstrapScript.jsp" />
-<c:if test="${deleted == true}"> 
-		<H1> ${userName} has been deleted </H1>
-	 	</c:if> 
 </body>
 </html>

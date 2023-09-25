@@ -10,7 +10,7 @@
 </head>
 <body>
 
-	<nav class="navbar navbar-expand-lg" id="navbarFormat">
+	<nav class="navbar navbar-expand-lg fixed-top" id="navbarFormat">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="home.do" id="navbarFormat">
 			<img src="images/logoWhite.png" alt="logo" height="30"/></a>
