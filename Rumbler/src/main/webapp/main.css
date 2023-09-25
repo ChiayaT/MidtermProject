@@ -11,5 +11,9 @@
 
 a.nav-link:hover {
 	color: #FAA916;
+}
 
+.btn-update {
+	background-color: #FAA916 !important;
+	color: #FBFBFB;
 }

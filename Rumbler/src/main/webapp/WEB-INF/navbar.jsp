@@ -22,12 +22,13 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-					<li class="nav-item"><a class="nav-link nav-text"
-						aria-current="page" href="home.do">Home</a></li>
+					
 
 					<c:if test="${empty sessionScope.loggedInUser }">
 						<li class="nav-item"><a class="nav-link nav-text" href="login.do">Login</a>
 						</li>
+						<li class="nav-item"><a class="nav-link nav-text"
+						aria-current="page" href="accountCreation.do">Create an Account</a></li>
 					</c:if>
 
 
