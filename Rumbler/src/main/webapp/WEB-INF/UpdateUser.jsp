@@ -22,8 +22,6 @@
 		<input type="text" value="${loggedInUser.firstName}" name="firstName"><br>
 		Last name:
 		<input type="text" value="${loggedInUser.lastName}" name="lastName"><br>
-		<%-- Date of Birth:
-		<input type="date" value="${loggedInUser.dateOfBirth}" name="dateOfBirth"><br> --%>
 		Height In Inches:
 		<input type="number" value="${loggedInUser.heightInInches}" name="heightInInches"><br>
 		Weight In Pounds:

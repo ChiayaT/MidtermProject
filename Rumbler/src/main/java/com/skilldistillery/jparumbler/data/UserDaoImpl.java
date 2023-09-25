@@ -37,6 +37,7 @@ public class UserDaoImpl implements UserDAO {
 
 	@Override
 	public User createUser(User user) {
+		em.persist(user.getAddress());
 		em.persist(user);
 		return user;
 	}
