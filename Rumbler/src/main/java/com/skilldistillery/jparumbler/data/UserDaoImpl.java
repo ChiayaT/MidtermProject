@@ -6,6 +6,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.jparumbler.entities.Address;
 import com.skilldistillery.jparumbler.entities.User;
 
 @Service
@@ -42,17 +43,24 @@ public class UserDaoImpl implements UserDAO {
 
 	@Override
 	public User updateUser(User user) {
-		User newUser = findUserById(user.getId());
-		newUser.setFirstName(user.getFirstName());
-		newUser.setLastName(user.getLastName());
-		newUser.setPassword(user.getPassword());
-		newUser.setProfileImageURL(user.getProfileImageURL());
-		newUser.setHeightInInches(user.getHeightInInches());
-		newUser.setWeightInPounds(user.getWeightInPounds());
-		newUser.setDateOfBirth(user.getDateOfBirth());
-		newUser.setDescription(user.getDescription());
-		newUser.setAddress(user.getAddress());
-		return newUser;
+		User managedUser = findUserById(user.getId());
+		managedUser.setFirstName(user.getFirstName());
+		managedUser.setLastName(user.getLastName());
+		managedUser.setProfileImageURL(user.getProfileImageURL());
+		managedUser.setHeightInInches(user.getHeightInInches());
+		managedUser.setWeightInPounds(user.getWeightInPounds());
+		managedUser.setDateOfBirth(user.getDateOfBirth());
+		managedUser.setDescription(user.getDescription());
+		Address address = user.getAddress();
+		Address managedAddress = managedUser.getAddress();
+		managedAddress.setState(address.getState());
+		managedAddress.setStreet(address.getStreet());
+		managedAddress.setStreet2(address.getStreet2());
+		managedAddress.setCity(address.getCity());
+		managedAddress.setPhone(address.getPhone());
+		managedAddress.setZipCode(address.getZipCode());
+		em.flush();
+		return managedUser;
 	}
 
 	@Override

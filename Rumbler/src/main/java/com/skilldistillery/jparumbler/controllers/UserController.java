@@ -27,12 +27,14 @@ public class UserController {
 	@RequestMapping(path = {"update.do"}, method=RequestMethod.GET)
 	private String getUpdateAccount(User user, HttpSession session) {
 		session.getAttribute("loggedInUser");
-		return "updateUser";
+		return "UpdateUser";
 	}
 	
-	@RequestMapping(path = {"update.do"}, method=RequestMethod.POST)
+	@RequestMapping(path = {"updateAccount.do"}, method=RequestMethod.POST)
 	private String postUpdateAccount(User user, HttpSession session) {
-		session.setAttribute("logginInUser", userDao.updateUser(user));
+		User updatedUser = userDao.updateUser(user);
+		session.setAttribute("loggedInUser", updatedUser);
+		
 		return "account";
 		
 	}
