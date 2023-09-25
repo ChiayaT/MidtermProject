@@ -8,8 +8,10 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.jparumbler.entities.Address;
+import com.skilldistillery.jparumbler.entities.Location;
 import com.skilldistillery.jparumbler.entities.Rumble;
-import com.skilldistillery.jparumbler.entities.User;
+import com.skilldistillery.jparumbler.entities.RumbleMessage;
 
 @Service
 @Transactional
@@ -52,6 +54,20 @@ public class RumbleDaoImpl implements RumbleDAO {
 		newRumble.setOpenToPublic(rumble.getOpenToPublic());
 		newRumble.setDiscipline(rumble.getDiscipline());
 		newRumble.setRumbleMessages(rumble.getRumbleMessages());
+		Location location = rumble.getLocation();
+		Location newLocation = newRumble.getLocation();
+		newLocation.setName(location.getName());
+		newLocation.setDescription(location.getDescription());
+		newLocation.setImage_url(location.getImage_url());
+		newLocation.setLocationType(newLocation.getLocationType());
+		Address address = location.getAddress();
+		Address managedAddress = newLocation.getAddress();
+		managedAddress.setState(address.getState());
+		managedAddress.setStreet(address.getStreet());
+		managedAddress.setStreet2(address.getStreet2());
+		managedAddress.setCity(address.getCity());
+		managedAddress.setPhone(address.getPhone());
+		managedAddress.setZipCode(address.getZipCode());
 		return newRumble;
 	}
 
@@ -62,6 +78,39 @@ public class RumbleDaoImpl implements RumbleDAO {
 			deletedRumble.setEnabled(false);
 			return true;
 		}
+		return false;
+	}
+
+	@Override
+	public List<RumbleMessage> getAllRumbleMessagesPerRumble(int rumbleId) {
+		// TODO Auto-generated method stub
+		String spql = "SELECT R FROM RubleMessage R WHERE R.rumbleMessage.id = :rumid";
+		
+		return em.createQuery(spql, RumbleMessage.class)
+				.setParameter("rumid", findRumbleById(rumbleId)).getResultList();
+	}
+
+	@Override
+	public RumbleMessage findRumbleMessageById(int id) {
+		return em.find(RumbleMessage.class, id);
+	}
+
+	@Override
+	public RumbleMessage createRumbleMessage(RumbleMessage rumbleMessage) {
+		em.persist(rumbleMessage);
+		return rumbleMessage;
+	}
+
+	@Override
+	public RumbleMessage updateRumbleMessage(RumbleMessage rumbleMessage) {
+		RumbleMessage newRM = findRumbleMessageById(rumbleMessage.getId());
+		newRM.setContent(rumbleMessage.getContent());
+		//newRM.setMessageDate(rumbleMessage.getMessageDate());
+		return newRM;
+	}
+
+	@Override
+	public boolean deleteRumbleMessage(int id) {
 		return false;
 	}
 
