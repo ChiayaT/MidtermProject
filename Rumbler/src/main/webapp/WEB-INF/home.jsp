@@ -11,10 +11,7 @@
 <body>
 	<%@ include file="navbar.jsp"%>
 	<h1>Rumbler</h1>
-	<form action="login.do" method="post">
-		<input type="text" name="userName"> <input type="password"
-			name="password" /> <input type="submit" value="Log In">
-	</form>
+	<p>Let's get ready to Rumbleeeeeeee!</p>
 	<jsp:include page="bootstrapScript.jsp" />
 
 </body>
