@@ -1,7 +1,8 @@
 @charset "UTF-8";
 
 body {
-	padding-top: 70px;
+	padding-top: 64px;
+	background: #FBFBFB;
 }
 
 #navbarFormat {
@@ -18,6 +19,11 @@ a.nav-link:hover {
 }
 
 .btn-update {
+	background-color: #FAA916 !important;
+	color: #96031A;
+}
+
+.btn-update:hover {
 	background-color: #FAA916 !important;
 	color: #FBFBFB;
 }
@@ -37,7 +43,7 @@ a.nav-link:hover {
 	background-image: url(https://images.pexels.com/photos/1575381/pexels-photo-1575381.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2);
 	background-size: cover;
 	background-position: center center;
-	top: 70px;
+	top: 54px;
 	height: 70vh;
 	width: 100%;
 	position: fixed;
@@ -57,7 +63,7 @@ a.nav-link:hover {
 	z-index: -1;
 }
 
-.banner-area h2 {
+.banner-area h1 {
 
 	padding-top: 10%;
 	font-size: 60px;
@@ -86,4 +92,15 @@ a.nav-link:hover {
 	padding: 2% 0;
 	line-height: 60px;
 	text-align: center;
+}
+
+.dropdown-menu {
+	width: 400px;
+	background-color: #FAA916 !important;
+	padding: 10%
+}
+
+.btn-danger {
+	background-color: #96031A !important;
+	border-color: #96031A !important;
 }

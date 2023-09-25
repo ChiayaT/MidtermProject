@@ -13,8 +13,9 @@
 
 	<div class="box-area">
 
-		<div class="banner-area">
-			<h2 class="text-center">Get Ready to Rumble!</h2>
+		<div class="banner-area text-center">
+			<h1 class="display-1 ">Get Ready to Rumble!</h1><br>
+			<a href="accountCreation.do" class="btn btn-update">Create Account</a>
 		</div>
 
 		<div class="content-area">
