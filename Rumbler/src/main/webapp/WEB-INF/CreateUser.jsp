@@ -13,6 +13,7 @@
 <form action="createAccount.do" method="post">
 		<h3>Create an Account</h3>
 		<br>
+		<input type="hidden" value=1 name="enabled">
 		User name:
 		<input type="text" name="username"><br>
 		Password:

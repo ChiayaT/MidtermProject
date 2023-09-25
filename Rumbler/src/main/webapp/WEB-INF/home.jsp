@@ -13,6 +13,8 @@
 	<h1>Rumbler</h1>
 	<p>Let's get ready to Rumbleeeeeeee!</p>
 	<jsp:include page="bootstrapScript.jsp" />
-
+<c:if test="${deleted == true}"> 
+		<H1> ${userName} has been deleted </H1>
+	 	</c:if> 
 </body>
 </html>

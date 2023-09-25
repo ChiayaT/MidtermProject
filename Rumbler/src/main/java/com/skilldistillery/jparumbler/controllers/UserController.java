@@ -16,53 +16,57 @@ public class UserController {
 
 	@Autowired
 	private UserDAO userDao;
-	
-	@RequestMapping(path = {"/", "home.do"}	)
+
+	@RequestMapping(path = { "/", "home.do" })
 	private String goHome(Model model) {
-	
+
 		return "home";
 	}
-	
-	
-	@RequestMapping(path = {"update.do"}, method=RequestMethod.GET)
+
+	@RequestMapping(path = { "update.do" }, method = RequestMethod.GET)
 	private String getUpdateAccount(User user, HttpSession session) {
 		session.getAttribute("loggedInUser");
 		return "UpdateUser";
 	}
-	
-	@RequestMapping(path = {"updateAccount.do"}, method=RequestMethod.POST)
+
+	@RequestMapping(path = { "updateAccount.do" }, method = RequestMethod.POST)
 	private String postUpdateAccount(User user, HttpSession session) {
 		User updatedUser = userDao.updateUser(user);
 		session.setAttribute("loggedInUser", updatedUser);
 		return "account";
 	}
-	
-	@RequestMapping(path = {"createAccount.do"}, method=RequestMethod.POST)
+
+	@RequestMapping(path = { "createAccount.do" }, method = RequestMethod.POST)
 	private String createUser(User user, HttpSession session) {
 		User newUser = userDao.createUser(user);
 		session.setAttribute("loggedInUser", newUser);
 		return "account";
 	}
-	
-	@RequestMapping(path = "accountCreation.do") 
-		private String createAccountForm(HttpSession session) {
-			return "CreateUser";
+
+	@RequestMapping(path = "accountCreation.do")
+	private String createAccountForm(HttpSession session) {
+		return "CreateUser";
 	}
-	@RequestMapping(path = "accountPage.do") 
+
+	@RequestMapping(path = "accountPage.do")
 	private String accountPage(HttpSession session) {
 		return "account";
 	}
-	
-	@RequestMapping(path= "deletePage.do")
+
+	@RequestMapping(path = "deletePage.do")
 	private String deletePage(HttpSession session) {
 		return "deleteAccount";
 	}
-	@RequestMapping(path= "deleteUser.do")
-	private String deleteAccount(User user, HttpSession session) {
-		userDao.deleteUser(user.getId());
+
+	@RequestMapping(path = "deleteUser.do")
+	private String deleteAccount(HttpSession session) {
+		User user = (User) session.getAttribute("loggedInUser");
 		boolean deleted = userDao.deleteUser(user.getId());
 		session.setAttribute("deleted", deleted);
+		session.setAttribute("userName", user.getUsername());
 		session.removeAttribute("loggedInUser");
+		System.out.println(deleted);
 		return "home";
+
 	}
 }
