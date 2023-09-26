@@ -64,9 +64,17 @@ public class RumbleController {
 		session.setAttribute("Rumble", rumble);
 		return "Rumble";
 	}
+	
+	@RequestMapping(path = "updateRumble.do" ,method = RequestMethod.POST)
+	private String gotoupdateRumble(HttpSession session, Rumble rumble) {
+		Rumble updatedRumble = rumDao.updateRumble(rumble);
+		session.setAttribute("Rumble", updatedRumble);
+		return "updateRumble";
+	}
 
-	@RequestMapping(path = "updateRumble.do")
-	private String updateRumble(HttpSession session, Rumble rumble) {
+	@RequestMapping(path = "updateRumble.do" ,method = RequestMethod.POST)
+	private String updateRumble(HttpSession session, Rumble rumble, Integer locationId, Integer disciplineId,
+			Location location, Integer locationTypeId ) {
 		Rumble updatedRumble = rumDao.updateRumble(rumble);
 		session.setAttribute("Rumble", updatedRumble);
 		return "Rumble";
