@@ -87,7 +87,7 @@ public class UserDaoImpl implements UserDAO {
 	@Override
 	public List<User> findUsersByZip(int zip) {
 		List<User> users = null;
-		String spql = "select u from User u where zip = :zip";
+		String spql = "select u from User u where zip_code = :zip";
 		users = em.createQuery(spql, User.class).setParameter("zip", zip).getResultList();
 		return users;
 	}
