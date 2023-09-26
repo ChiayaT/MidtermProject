@@ -80,14 +80,15 @@ public class UserDaoImpl implements UserDAO {
 		List<User> users = null;
 		String spql = "select u from User u where u.username = :name or "
 				+ "u.firstName = :name or u.lastName = :name";
-		
 		users =  em.createQuery(spql, User.class).setParameter("name", name).getResultList();
 		return users;
 	}
 	@Override
 	public List<User> findUsersByZip(int zip) {
-		// TODO Auto-generated method stub
-		return null;
+		List<User> users = null;
+		String spql = "select u from User u where zip = :zip";
+		users = em.createQuery(spql, User.class).setParameter("zip", zip).getResultList();
+		return users;
 	}
 	@Override
 	public List<User> findUsersDiscipline(int zip) {
