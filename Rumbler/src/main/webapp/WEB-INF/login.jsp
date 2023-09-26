@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html>
@@ -10,15 +10,26 @@
 </head>
 <body>
 	<%@ include file="navbar.jsp"%>
-<h1>Rumbler</h1>
+	<div class="container">
+		<h1>Log In</h1>
 
-	<h2>Log In</h2>
-	
-	<form action="login.do" method="post">
-		<input type="text" name="username"> 
-		<input type="password" name="password" /> 
-		<input type="submit" value="Log In">
-	</form>
+		<form action="login.do" method="post">
+
+			<div class="col-md-4">
+				<label for="username" class="form-label">Username</label> <input
+					type="text" class="form-control" name="username">
+			</div>
+			<div class="col-md-4">
+				<label for="password" class="form-label">Password</label> <input
+					type="password" class="form-control" name="password">
+			</div>
+			<br>
+			<div class="col-12">
+				<button type="submit" class="btn btn-update">Login</button>
+			</div>
+		</form>
+	</div>
+
 
 	<jsp:include page="bootstrapScript.jsp" />
 </body>
