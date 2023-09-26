@@ -58,8 +58,10 @@ public class UserController {
 	@RequestMapping(path = "accountPage.do")
 	private String accountPage(HttpSession session) {
 		User user = (User) session.getAttribute("loggedInUser");
+		if (user != null) {
 		user = userDao.findUserById(user.getId());
 		session.setAttribute("loggedInUser", user);
+		}
 		List<Rumble> allUserRumbles = rumDao.getAllRumblesForSpecificUser(user.getId());
 		session.setAttribute("allUserRumbles", allUserRumbles);
 		return "account";

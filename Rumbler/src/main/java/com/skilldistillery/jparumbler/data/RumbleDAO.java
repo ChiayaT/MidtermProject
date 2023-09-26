@@ -24,6 +24,10 @@ public interface RumbleDAO {
 	Discipline findDisciplineById(int id);
 	Location findlocationById(int id);
 	
+	LocationType findLocoTypeById(int id);
+	
+	Location createLocation(Location location);
+	
 	List<RumbleMessage> getAllRumbleMessagesPerRumble(int rumbleId);
 	RumbleMessage findRumbleMessageById(int id);
 	RumbleMessage createRumbleMessage(RumbleMessage rumbleMessage);

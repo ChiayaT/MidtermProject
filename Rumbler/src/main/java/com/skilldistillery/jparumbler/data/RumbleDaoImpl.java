@@ -22,6 +22,9 @@ public class RumbleDaoImpl implements RumbleDAO {
 	@PersistenceContext
 	private EntityManager em;
 	
+	public LocationType findLocoTypeById(int id) {
+		return em.find(LocationType.class, id);
+	}
 	
 	public Discipline findDisciplineById(int id) {
 		return em.find(Discipline.class, id);
@@ -143,6 +146,12 @@ public class RumbleDaoImpl implements RumbleDAO {
 	}
 
 	@Override
+	public Location createLocation(Location location) {
+		em.persist(location.getAddress());
+		em.persist(location);
+		return location;
+  }
+  @Override
 	public List<Rumble> getAllRumblesForSpecificUser(int id) {
 		List <Rumble> allUserRumblesHostOrGuest = null;
 		String jpql = "select r from Rumble r where host_id = :id or guest_id = :id";
