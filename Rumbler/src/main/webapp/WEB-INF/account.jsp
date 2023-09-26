@@ -37,7 +37,7 @@
 										pounds</li>
 								</ul>
 
-								<a href="update.do" class="btn btn-primary">Update Account</a> <a
+								<a href="update.do" class="btn btn-update">Update Account</a> <a
 									href="deletePage.do" class="btn btn-danger">Delete Account</a>
 							</div>
 						</div>
