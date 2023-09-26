@@ -9,6 +9,8 @@ import com.skilldistillery.jparumbler.entities.Rumble;
 import com.skilldistillery.jparumbler.entities.RumbleMessage;
 
 public interface RumbleDAO {
+	
+	List<Rumble> getAllRumblesForSpecificUser(int id);
 
 	List<Rumble> getAllRumbles();
 	Rumble findRumbleById(int Id);

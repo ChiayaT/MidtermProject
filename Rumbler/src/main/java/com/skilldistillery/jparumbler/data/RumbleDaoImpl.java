@@ -142,6 +142,14 @@ public class RumbleDaoImpl implements RumbleDAO {
 		return false;
 	}
 
+	@Override
+	public List<Rumble> getAllRumblesForSpecificUser(int id) {
+		List <Rumble> allUserRumblesHostOrGuest = null;
+		String jpql = "select r from Rumble r where host_id = :id or guest_id = :id";
+		allUserRumblesHostOrGuest = em.createQuery(jpql, Rumble.class).setParameter("id", id).getResultList();
+		return allUserRumblesHostOrGuest;
+	}
+
 
 
 

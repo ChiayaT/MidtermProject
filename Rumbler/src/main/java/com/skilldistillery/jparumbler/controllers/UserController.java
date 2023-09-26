@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.skilldistillery.jparumbler.data.RumbleDAO;
 import com.skilldistillery.jparumbler.data.UserDAO;
+import com.skilldistillery.jparumbler.entities.Rumble;
 import com.skilldistillery.jparumbler.entities.User;
 
 @Controller
@@ -19,6 +21,9 @@ public class UserController {
 
 	@Autowired
 	private UserDAO userDao;
+	
+	@Autowired
+	private RumbleDAO rumDao;
 
 	@RequestMapping(path = { "/", "home.do" })
 	private String goHome(Model model) {
@@ -55,6 +60,8 @@ public class UserController {
 		User user = (User) session.getAttribute("loggedInUser");
 		user = userDao.findUserById(user.getId());
 		session.setAttribute("loggedInUser", user);
+		List<Rumble> allUserRumbles = rumDao.getAllRumblesForSpecificUser(user.getId());
+		session.setAttribute("allUserRumbles", allUserRumbles);
 		return "account";
 	}
 
