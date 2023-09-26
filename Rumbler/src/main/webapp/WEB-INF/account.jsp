@@ -17,7 +17,7 @@
 			<c:when test="${not empty sessionScope.loggedInUser }">
 				<div class="row">
 					<div class="col">
-						<div class="card" style="width: 18rem;">
+						<div class="card" style="width: 20rem;">
 							<img src="${loggedInUser.profileImageURL }" class="card-img-top"
 								alt="profile picture">
 							<div class="card-body">
@@ -36,7 +36,7 @@
 									<li class="list-group-item"><strong>Weight: </strong>${loggedInUser.weightInPounds}
 										pounds</li>
 								</ul>
-
+								<br>
 								<a href="update.do" class="btn btn-update">Update Account</a> <a
 									href="deletePage.do" class="btn btn-danger">Delete Account</a>
 							</div>
@@ -69,8 +69,6 @@
 								<p class="lead">No upcoming Rumbles scheduled.</p>
 							</c:otherwise>
 						</c:choose>
-
-						<a href="makeRumble.do"> Create New Rumble</a>
 						
 						
 						<h2 class="display-6">Disciplines:</h2>
@@ -95,6 +93,7 @@
 										</c:forEach>
 									</tbody>
 								</table>
+									<a href="#" class="btn btn-update">Update Disciplines</a>
 							</c:when>
 							<c:otherwise>
 								<p class="lead">No disciplines added.</p>
