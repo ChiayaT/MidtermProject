@@ -53,8 +53,10 @@ public class UserController {
 	@RequestMapping(path = "accountPage.do")
 	private String accountPage(HttpSession session) {
 		User user = (User) session.getAttribute("loggedInUser");
+		if (user != null) {
 		user = userDao.findUserById(user.getId());
 		session.setAttribute("loggedInUser", user);
+		}
 		return "account";
 	}
 
