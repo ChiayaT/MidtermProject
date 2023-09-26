@@ -11,11 +11,20 @@
 <body>
     <jsp:include page="navbar.jsp" />
     <h1>Fellow Rumblers</h1>
-    
-    ${users}
-
-
-
+   <table>
+	<thead>
+	<tr>
+	</tr>
+	</thead>
+		<tbody>
+			<c:forEach var="user" items="${users}">
+				<tr>
+					<td>${user.username}</td>
+					<td><br><img width="150" src="${user.profileImageURL}"></td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
     <jsp:include page="bootstrapScript.jsp" />
 </body>
 </html>

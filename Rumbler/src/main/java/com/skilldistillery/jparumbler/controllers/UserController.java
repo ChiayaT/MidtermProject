@@ -79,10 +79,10 @@ public class UserController {
 		session.setAttribute("users", users);
 		return "ViewOtherUsers";
 	}
-//	@RequestMapping(path = "findUsersByZip.do", params = "name")
-//	private String findUsersByName(@RequestParam String name, HttpSession session) {
-//		List<User> users = userDao.findUsersByName(name);
-//		session.setAttribute("users", users);
-//		return "ViewOtherUsers";
-//	}
+	@RequestMapping(path = "findUsersByZip.do", params = "zip")
+	private String findUsersByZip(@RequestParam String zip, HttpSession session) {
+		List<User> users = userDao.findUsersByName(zip);
+		session.setAttribute("users", users);
+		return "ViewOtherUsers";
+	}
 }
