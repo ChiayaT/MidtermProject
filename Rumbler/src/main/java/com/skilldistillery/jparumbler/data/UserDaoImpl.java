@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.jparumbler.entities.Address;
+import com.skilldistillery.jparumbler.entities.Rumble;
 import com.skilldistillery.jparumbler.entities.User;
 
 @Service
@@ -93,9 +94,6 @@ public class UserDaoImpl implements UserDAO {
 	public List<User> findUsersDiscipline(int zip) {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-
-	
+	}	
 
 }
