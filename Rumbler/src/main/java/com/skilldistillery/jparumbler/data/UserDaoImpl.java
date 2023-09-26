@@ -9,7 +9,6 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.jparumbler.entities.Address;
-import com.skilldistillery.jparumbler.entities.Rumble;
 import com.skilldistillery.jparumbler.entities.User;
 import com.skilldistillery.jparumbler.entities.UserDiscipline;
 
@@ -102,8 +101,10 @@ public class UserDaoImpl implements UserDAO {
 
 	@Override
 	public List<UserDiscipline> findAllDisciplinesForUser(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		List<UserDiscipline> userDisciplines = null;
+		String jpql = "select ud from UserDiscipline ud where user_id = :id";
+		userDisciplines = em.createQuery(jpql, UserDiscipline.class).setParameter("id", id).getResultList();
+		return userDisciplines;
 	}	
 
 }

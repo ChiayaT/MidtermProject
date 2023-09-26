@@ -15,6 +15,7 @@ import com.skilldistillery.jparumbler.data.RumbleDAO;
 import com.skilldistillery.jparumbler.data.UserDAO;
 import com.skilldistillery.jparumbler.entities.Rumble;
 import com.skilldistillery.jparumbler.entities.User;
+import com.skilldistillery.jparumbler.entities.UserDiscipline;
 
 @Controller
 public class UserController {
@@ -56,12 +57,14 @@ public class UserController {
 	}
 
 	@RequestMapping(path = "accountPage.do")
-	private String accountPage(HttpSession session) {
+	private String accountPage(HttpSession session, Model model) {
 		User user = (User) session.getAttribute("loggedInUser");
 		user = userDao.findUserById(user.getId());
 		session.setAttribute("loggedInUser", user);
 		List<Rumble> allUserRumbles = rumDao.getAllRumblesForSpecificUser(user.getId());
-		session.setAttribute("allUserRumbles", allUserRumbles);
+		model.addAttribute("allUserRumbles", allUserRumbles);
+		List<UserDiscipline> userDisciplines = userDao.findAllDisciplinesForUser(user.getId());
+		model.addAttribute("userDisciplines", userDisciplines);
 		return "account";
 	}
 
