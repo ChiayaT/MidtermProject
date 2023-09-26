@@ -48,7 +48,7 @@ public class RumbleController {
 			else {
 				location.setLocationType(rumDao.findLocoTypeById(locationTypeId));
 				rumDao.createLocation(location);
-				rumble.setLocation(location);
+				rumble.setLocation(location); 
 			}
 			Rumble newRumble = rumDao.createRumble(rumble);
 			session.setAttribute("Rumble", newRumble);
