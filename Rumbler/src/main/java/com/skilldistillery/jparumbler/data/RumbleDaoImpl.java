@@ -9,7 +9,9 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.jparumbler.entities.Address;
+import com.skilldistillery.jparumbler.entities.Discipline;
 import com.skilldistillery.jparumbler.entities.Location;
+import com.skilldistillery.jparumbler.entities.LocationType;
 import com.skilldistillery.jparumbler.entities.Rumble;
 import com.skilldistillery.jparumbler.entities.RumbleMessage;
 
@@ -21,10 +23,33 @@ public class RumbleDaoImpl implements RumbleDAO {
 	private EntityManager em;
 	
 	
+	public Discipline findDisciplineById(int id) {
+		return em.find(Discipline.class, id);
+	}
+	
+	public Location findlocationById(int id) {
+		return em.find(Location.class, id);
+	}
+	
 	@Override
 	public List<Rumble> getAllRumbles() {
-		String spql = "SELECT R FROM Ruble R";
+		String spql = "SELECT R FROM Rumble R";
 		return em.createQuery(spql, Rumble.class).getResultList();
+	}
+	
+	public List<Location> getAllLocations(){
+		String spql = "SELECT R FROM Location R";
+		return em.createQuery(spql, Location.class).getResultList();
+	}
+	
+	public List<LocationType> getAllLocationTypes(){
+		String spql = "SELECT lt FROM LocationType lt";
+		return em.createQuery(spql, LocationType.class).getResultList();
+	}
+	
+	public List<Discipline> getAllDisciplines(){
+		String spql = "SELECT D FROM Discipline D";
+		return em.createQuery(spql, Discipline.class).getResultList();
 	}
 
 	@Override
@@ -34,7 +59,9 @@ public class RumbleDaoImpl implements RumbleDAO {
 
 	@Override
 	public Rumble createRumble(Rumble rumble) {
-		rumble.setGuestRatingScale(1);
+		
+		
+		rumble.setEnabled(true);
 		em.persist(rumble);
 		return rumble;
 	}
@@ -114,5 +141,9 @@ public class RumbleDaoImpl implements RumbleDAO {
 	public boolean deleteRumbleMessage(int id) {
 		return false;
 	}
+
+
+
+
 
 }

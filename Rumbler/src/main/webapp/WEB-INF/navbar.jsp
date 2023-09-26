@@ -13,7 +13,7 @@
 	<nav class="navbar navbar-expand-lg fixed-top" id="navbarFormat">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="home.do" id="navbarFormat"> <img
-				src="images/logoWhite.png" alt="logo" height="30" /></a>
+				src="images/logoWhite.png" alt="logo" class="logo" height="30" /></a>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false"

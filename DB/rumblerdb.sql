@@ -28,6 +28,7 @@ CREATE TABLE IF NOT EXISTS `address` (
   `state` VARCHAR(45) NOT NULL,
   `zip_code` VARCHAR(45) NOT NULL,
   `phone` VARCHAR(45) NULL,
+  `enabled` TINYINT NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -305,6 +306,7 @@ CREATE TABLE IF NOT EXISTS `rumble_message` (
   `create_date` DATETIME NULL,
   `user_id` INT NOT NULL,
   `rumble_id` INT NOT NULL,
+  `enabled` TINYINT NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   INDEX `fk_rumble_message_user1_idx` (`user_id` ASC),
   INDEX `fk_rumble_message_rumble1_idx` (`rumble_id` ASC),
@@ -385,10 +387,14 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rumblerdb`;
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip_code`, `phone`) VALUES (1, '123 Fake St', NULL, 'Denver', 'Colorado', '80114', NULL);
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip_code`, `phone`) VALUES (2, '360 High Kick Dr', NULL, 'Los Angeles', 'California', '90210', NULL);
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip_code`, `phone`) VALUES (3, '4444 Boxing Blvd', NULL, 'Austin', 'Texas', '78704', NULL);
-INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip_code`, `phone`) VALUES (4, '1800 Ocean Front Walk', NULL, 'Venice', 'California', '90291', NULL);
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip_code`, `phone`, `enabled`) VALUES (1, '123 Fake St', NULL, 'Austin', 'Texas', '78704', NULL, 1);
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip_code`, `phone`, `enabled`) VALUES (2, '360 High Kick Dr', NULL, 'Los Angeles', 'California', '90210', NULL, 1);
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip_code`, `phone`, `enabled`) VALUES (3, '4444 Boxing Blvd', NULL, 'Austin', 'Texas', '78704', NULL, 1);
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip_code`, `phone`, `enabled`) VALUES (4, '1800 Ocean Front Walk', NULL, 'Venice', 'California', '90291', NULL, 1);
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip_code`, `phone`, `enabled`) VALUES (5, '700 WrestleMania Rd', NULL, 'Beverly Hills', 'California', '90210', NULL, 1);
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip_code`, `phone`, `enabled`) VALUES (6, '246 Openwight Circle', NULL, 'Austin', 'Texas', '78704', NULL, 1);
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip_code`, `phone`, `enabled`) VALUES (7, '2401 Thornton Rd', 'A1', 'Austin', 'Texas', '78704', '5128400177', 1);
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip_code`, `phone`, `enabled`) VALUES (8, '9663 Santa Monica Blvd', '440', 'Beverly Hills', 'California', '90210', '4243247444', 1);
 
 COMMIT;
 
@@ -400,7 +406,9 @@ START TRANSACTION;
 USE `rumblerdb`;
 INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `profile_image_url`, `height_in_inches`, `weight_in_pounds`, `address_id`, `enabled`, `date_of_birth`, `role`, `create_date`, `last_update`, `description`) VALUES (1, 'admin', 'admin', 'admin', 'admin', NULL, NULL, NULL, 1, 1, NULL, 'admin', NULL, NULL, NULL);
 INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `profile_image_url`, `height_in_inches`, `weight_in_pounds`, `address_id`, `enabled`, `date_of_birth`, `role`, `create_date`, `last_update`, `description`) VALUES (2, 'Jackie', 'Chan', 'jchan', 'jchan', 'https://hips.hearstapps.com/hmg-prod/images/jackie-chan-news-photo-83389121-1567001252.jpg?crop=0.784xw:1.00xh;0.0255xw,0&resize=1200:*', 67, 143, 2, 1, '1953-04-07', 'user', '2023-09-22', '2023-09-22', 'hi-ya!');
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `profile_image_url`, `height_in_inches`, `weight_in_pounds`, `address_id`, `enabled`, `date_of_birth`, `role`, `create_date`, `last_update`, `description`) VALUES (3, 'Mike', 'Tyson', 'mtyson', 'mtyson', 'https://cdn.europosters.eu/image/750/art-photo/mike-tyson-i135277.jpg', 70, 220, 3, 1, '1966-06-30', 'user', '2023-09-22', '2023-09-22', 'check out my tattoo!');
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `profile_image_url`, `height_in_inches`, `weight_in_pounds`, `address_id`, `enabled`, `date_of_birth`, `role`, `create_date`, `last_update`, `description`) VALUES (3, 'Mike', 'Tyson', 'mtyson', 'mtyson', 'https://cdn.europosters.eu/image/750/art-photo/mike-tyson-i135277.jpg', 70, 220, 3, 1, '1966-06-30', 'user', '2023-09-22', '2023-09-22', 'check out my tattoo');
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `profile_image_url`, `height_in_inches`, `weight_in_pounds`, `address_id`, `enabled`, `date_of_birth`, `role`, `create_date`, `last_update`, `description`) VALUES (4, 'Ronda', 'Rousey', 'rrousey', 'rrousey', 'https://media-cldnry.s-nbcnews.com/image/upload/t_fit-1500w,f_auto,q_auto:best/newscms/2018_05/2308511/180129-ronda-rousey-mc-8452.JPG', 66, 135, 5, 1, '1987-02-01', 'user', '2023-09-26', '2023-09-26', 'first female fighter signed to UFC');
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `profile_image_url`, `height_in_inches`, `weight_in_pounds`, `address_id`, `enabled`, `date_of_birth`, `role`, `create_date`, `last_update`, `description`) VALUES (5, 'Royce', 'Gracie', 'rgracie', 'rgracie', 'https://cdn.shopify.com/s/files/1/0030/3742/9849/files/Royce_Gracie_s_Details.jpg?v=1676565294', 73, 176, 6, 1, '1966-12-01', 'user', '2023-09-26', '2023-09-26', 'mixed martial arts and Brazilian jiu-jitsu master');
 
 COMMIT;
 
@@ -422,8 +430,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rumblerdb`;
-INSERT INTO `location` (`id`, `name`, `address_id`, `description`, `image_url`, `create_date`, `last_update`, `location_type_id`, `enabled`) VALUES (1, 'Fight Town', 1, 'A town to fight!', NULL, '2023-09-22', '2023-09-22', 1, 1);
-INSERT INTO `location` (`id`, `name`, `address_id`, `description`, `image_url`, `create_date`, `last_update`, `location_type_id`, `enabled`) VALUES (2, 'Venice Beach', 4, 'Muscle Beach outdoor gym', NULL, '2023-09-22', '2023-09-22', 3, 1);
+INSERT INTO `location` (`id`, `name`, `address_id`, `description`, `image_url`, `create_date`, `last_update`, `location_type_id`, `enabled`) VALUES (1, 'Fight Town', 1, 'A town to fight!', 'https://images.pexels.com/photos/8736743/pexels-photo-8736743.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2', '2023-09-22', '2023-09-26', 1, 1);
+INSERT INTO `location` (`id`, `name`, `address_id`, `description`, `image_url`, `create_date`, `last_update`, `location_type_id`, `enabled`) VALUES (2, 'Venice Beach', 4, 'Muscle Beach outdoor gym', 'https://images.pexels.com/photos/1412235/pexels-photo-1412235.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2', '2023-09-22', '2023-09-22', 3, 1);
+INSERT INTO `location` (`id`, `name`, `address_id`, `description`, `image_url`, `create_date`, `last_update`, `location_type_id`, `enabled`) VALUES (3, 'Easley Boxing & Fitness', 7, 'Best boxing gym in Austin, Texas', 'https://lh3.googleusercontent.com/p/AF1QipOa4fZviycKbbrBB-7wtZFHfb6aOA6I7Vh5ANlv=s1360-w1360-h1020', '2023-09-26', '2023-09-26', 1, 1);
+INSERT INTO `location` (`id`, `name`, `address_id`, `description`, `image_url`, `create_date`, `last_update`, `location_type_id`, `enabled`) VALUES (4, 'Body Soul Elite', 8, 'Great trainers with motivational talent!', 'https://images.squarespace-cdn.com/content/v1/593f7499e6f2e150bcfe1490/1562705324871-SKT3I3BTS1IDTETRR4P5/IMG_0762.jpg?format=2500w', '2023-09-26', '2023-09-26', 1, 1);
 
 COMMIT;
 
@@ -511,8 +521,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rumblerdb`;
-INSERT INTO `rumble_message` (`id`, `message_date`, `content`, `create_date`, `user_id`, `rumble_id`) VALUES (1, '2023-09-22', 'This is the first Rumble message.', '2023-09-22', 2, 1);
-INSERT INTO `rumble_message` (`id`, `message_date`, `content`, `create_date`, `user_id`, `rumble_id`) VALUES (2, '2023-09-22', 'This is the second Rumble message.', '2023-09-22', 3, 1);
+INSERT INTO `rumble_message` (`id`, `message_date`, `content`, `create_date`, `user_id`, `rumble_id`, `enabled`) VALUES (1, '2023-09-22', 'This is the first Rumble message.', '2023-09-22', 2, 1, 1);
+INSERT INTO `rumble_message` (`id`, `message_date`, `content`, `create_date`, `user_id`, `rumble_id`, `enabled`) VALUES (2, '2023-09-22', 'This is the second Rumble message.', '2023-09-22', 3, 1, 1);
 
 COMMIT;
 
