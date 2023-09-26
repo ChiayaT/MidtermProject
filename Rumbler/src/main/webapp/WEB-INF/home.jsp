@@ -15,7 +15,9 @@
 
 		<div class="banner-area text-center">
 			<h1 class="display-1 ">Get Ready to Rumble!</h1><br>
+			<c:if test= "${loggedInUser == null}">
 			<a href="accountCreation.do" class="btn btn-update">Create Account</a>
+			</c:if>
 		</div>
 
 		<div class="content-area">
