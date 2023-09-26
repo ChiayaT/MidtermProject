@@ -81,15 +81,22 @@ public class UserController {
 		return "home";
 	}
 	@RequestMapping(path = "findUsersByName.do", params = "name")
-	private String findUsersByName(@RequestParam String name, HttpSession session) {
+	private String findUsersByName(@RequestParam String name, Model model) {
 		List<User> users = userDao.findUsersByName(name);
-		session.setAttribute("users", users);
+		model.addAttribute("users", users);
 		return "ViewOtherUsers";
 	}
 	@RequestMapping(path = "findUsersByZip.do", params = "zip")
-	private String findUsersByZip(@RequestParam String zip, HttpSession session) {
-		List<User> users = userDao.findUsersByName(zip);
-		session.setAttribute("users", users);
+	private String findUsersByZip(@RequestParam String zip, Model model) {
+		List<User> users = userDao.findUsersByZip(zip);
+		model.addAttribute("users", users);
 		return "ViewOtherUsers";
+	}
+	@RequestMapping(path = "findUsersByDisciplines.do", params = "discipline")
+	private String findUsersByDiscipline(@RequestParam String discipline, Model model) {
+		List<User> users = userDao.findUsersDiscipline(discipline);
+		model.addAttribute("users", users);
+		return "ViewOtherUsers";
+		
 	}
 }

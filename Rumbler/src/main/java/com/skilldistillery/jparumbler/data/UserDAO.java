@@ -12,8 +12,8 @@ public interface UserDAO {
 	@Autowired
 	User authenticateUser(User user);
 	List<User> findUsersByName (String name);
-	List<User> findUsersByZip (int zip);
-	List<User> findUsersDiscipline (int zip);
+	List<User> findUsersByZip (String zip);
+	List<User> findUsersDiscipline (String disciplineName);
 	User findUserById(int id);
 	User createUser(User user);
 	User updateUser(User user);
