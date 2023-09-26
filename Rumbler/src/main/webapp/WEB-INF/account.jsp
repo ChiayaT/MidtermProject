@@ -50,7 +50,7 @@
 								<table class="table table-striped">
 									<thead class="table-dark">
 										<tr>
-											<th>ID</th>
+											<th>ID </th>
 											<th>RUMBLE</th>
 										</tr>
 									</thead>
