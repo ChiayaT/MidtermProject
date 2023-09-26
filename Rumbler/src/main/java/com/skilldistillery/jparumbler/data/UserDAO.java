@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.skilldistillery.jparumbler.entities.Rumble;
 import com.skilldistillery.jparumbler.entities.User;
+import com.skilldistillery.jparumbler.entities.UserDiscipline;
 
 public interface UserDAO {
 	
@@ -18,6 +18,7 @@ public interface UserDAO {
 	User createUser(User user);
 	User updateUser(User user);
 	boolean deleteUser (int id);
+	List<UserDiscipline> findAllDisciplinesForUser(int id);
 	
 
 }
