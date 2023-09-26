@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.skilldistillery.jparumbler.entities.Address;
 import com.skilldistillery.jparumbler.entities.Discipline;
 import com.skilldistillery.jparumbler.entities.Location;
+import com.skilldistillery.jparumbler.entities.LocationRating;
 import com.skilldistillery.jparumbler.entities.LocationType;
 import com.skilldistillery.jparumbler.entities.Rumble;
 import com.skilldistillery.jparumbler.entities.RumbleMessage;
@@ -32,6 +33,13 @@ public class RumbleDaoImpl implements RumbleDAO {
 	
 	public Location findlocationById(int id) {
 		return em.find(Location.class, id);
+	}
+	@Override
+	public List<LocationRating> getLocationRatings(int locationId) {
+		List<LocationRating> locationRatings = null;
+		String spql = "select lr from LocationRating lr where Location.id = :locationId";
+		locationRatings = em.createQuery(spql, LocationRating.class).setParameter("disciplines", locationId).getResultList();
+		return locationRatings;
 	}
 	
 	@Override
@@ -158,6 +166,7 @@ public class RumbleDaoImpl implements RumbleDAO {
 		allUserRumblesHostOrGuest = em.createQuery(jpql, Rumble.class).setParameter("id", id).getResultList();
 		return allUserRumblesHostOrGuest;
 	}
+
 
 
 

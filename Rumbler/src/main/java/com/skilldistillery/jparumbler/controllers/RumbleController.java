@@ -1,10 +1,13 @@
 package com.skilldistillery.jparumbler.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.apache.catalina.Host;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -57,7 +60,7 @@ public class RumbleController {
 		}
 		return "CreateRumble";
 	}
-
+	
 	@RequestMapping(path = "Rumble.do")
 	private String goToRumble(HttpSession session, Rumble rumble) {
 		rumble = rumDao.findRumbleById(1);
@@ -78,5 +81,19 @@ public class RumbleController {
 		session.setAttribute("Rumble", null);
 		return "Account";
 	}
+	
+	 @RequestMapping(path = "getLocationsList.do")
+	 private String getLocationsList(Model model) {
+		 List<Location> locations = rumDao.getAllLocations();
+		 model.addAttribute("locations", locations);
+		return "LocationsList";
+		 
+	 }
+	 
+//	 @RequestMapping(path = "getLocationRatings.do")
+//	 private String getLocationRatings(Model model, int locationId) {
+//		return ;
+//		 
+//	 }
 
 }
