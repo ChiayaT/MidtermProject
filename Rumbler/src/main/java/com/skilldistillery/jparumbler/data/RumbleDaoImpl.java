@@ -87,18 +87,6 @@ public class RumbleDaoImpl implements RumbleDAO {
 		newRumble.setRumbleMessages(rumble.getRumbleMessages());
 		Location location = rumble.getLocation();
 		Location newLocation = newRumble.getLocation();
-		newLocation.setName(location.getName());
-		newLocation.setDescription(location.getDescription());
-		newLocation.setImage_url(location.getImage_url());
-		newLocation.setLocationType(newLocation.getLocationType());
-		Address address = location.getAddress();
-		Address managedAddress = newLocation.getAddress();
-		managedAddress.setState(address.getState());
-		managedAddress.setStreet(address.getStreet());
-		managedAddress.setStreet2(address.getStreet2());
-		managedAddress.setCity(address.getCity());
-		managedAddress.setPhone(address.getPhone());
-		managedAddress.setZipCode(address.getZipCode());
 		return newRumble;
 	}
 
