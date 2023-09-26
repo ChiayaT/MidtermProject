@@ -79,22 +79,24 @@ public class UserDaoImpl implements UserDAO {
 	@Override
 	public List<User> findUsersByName(String name) {
 		List<User> users = null;
-		String spql = "select u from User u where u.username = :name or "
-				+ "u.firstName = :name or u.lastName = :name";
-		users =  em.createQuery(spql, User.class).setParameter("name", name).getResultList();
+		String spql = "select u from User u where u.username like :name or "
+				+ "u.firstName like :name or u.lastName like :name";
+		users =  em.createQuery(spql, User.class).setParameter("name", "%" + name + "%").getResultList();
 		return users;
 	}
 	@Override
-	public List<User> findUsersByZip(int zip) {
+	public List<User> findUsersByZip(String zip) {
 		List<User> users = null;
-		String spql = "select u from User u where zip_code = :zip";
-		users = em.createQuery(spql, User.class).setParameter("zip", zip).getResultList();
+		String spql = "select u from User u where u.address.zipCode = :zip";
+		users = em.createQuery(spql, User.class).setParameter("zip",zip).getResultList();
 		return users;
 	}
 	@Override
-	public List<User> findUsersDiscipline(int zip) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<User> findUsersDiscipline(String disciplineName) {
+		List<User> users = null;
+		String spql = "select u from User u join fetch u.userDisciplines ud where ud.discipline.name like :disciplineName";
+		users = em.createQuery(spql, User.class).setParameter("disciplineName", "%" + disciplineName + "%" ).getResultList();
+		return users;
 	}	
 
 }
