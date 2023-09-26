@@ -1,5 +1,7 @@
 package com.skilldistillery.jparumbler.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.skilldistillery.jparumbler.data.UserDAO;
 import com.skilldistillery.jparumbler.entities.User;
@@ -19,7 +22,6 @@ public class UserController {
 
 	@RequestMapping(path = { "/", "home.do" })
 	private String goHome(Model model) {
-
 		return "home";
 	}
 
@@ -67,6 +69,12 @@ public class UserController {
 		session.removeAttribute("loggedInUser");
 		System.out.println(deleted);
 		return "home";
-
+	}
+	@RequestMapping(path = "findUsersByName.do", params = "name")
+	private String findUsersByName(@RequestParam String name, HttpSession session) {
+		List<User> users = userDao.findUsersByName(name);
+		session.setAttribute("users", users);
+		return "ViewOtherUsers";
+		
 	}
 }

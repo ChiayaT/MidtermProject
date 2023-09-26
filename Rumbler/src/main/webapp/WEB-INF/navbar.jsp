@@ -44,8 +44,9 @@
 								Rumbler </a>
 							<ul class="dropdown-menu" id="navbarFormat">
 								<li>
-									<form class="d-flex" role="search" action="#">
+									<form class="d-flex" role="search" action="findUsersByName.do">
 										<input class="form-control me-2" type="search"
+										name = "name"
 											placeholder="Search by Name or Username" aria-label="Search">
 										<button class="btn btn-danger" type="submit">Search</button>
 									</form>

@@ -34,6 +34,7 @@ public class RumbleDaoImpl implements RumbleDAO {
 
 	@Override
 	public Rumble createRumble(Rumble rumble) {
+		rumble.setGuestRatingScale(1);
 		em.persist(rumble);
 		return rumble;
 	}
