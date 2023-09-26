@@ -44,6 +44,8 @@ public class RumbleMessage {
 	private Rumble rumble;
 	
 	
+	private boolean enabled;
+	
 
 	public RumbleMessage() {
 		super();
@@ -121,6 +123,16 @@ public class RumbleMessage {
 		return "RumbleMessage [id=" + id + ", messageDate=" + messageDate + ", content=" + content + ", createDate="
 				+ createDate + "]";
 	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+	
+	
 	
 	
 	

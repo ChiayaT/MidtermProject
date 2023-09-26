@@ -22,6 +22,9 @@ public class RumbleDaoImpl implements RumbleDAO {
 	@PersistenceContext
 	private EntityManager em;
 	
+	public LocationType findLocoTypeById(int id) {
+		return em.find(LocationType.class, id);
+	}
 	
 	public Discipline findDisciplineById(int id) {
 		return em.find(Discipline.class, id);
@@ -140,6 +143,13 @@ public class RumbleDaoImpl implements RumbleDAO {
 	@Override
 	public boolean deleteRumbleMessage(int id) {
 		return false;
+	}
+
+	@Override
+	public Location createLocation(Location location) {
+		em.persist(location.getAddress());
+		em.persist(location);
+		return location;
 	}
 
 

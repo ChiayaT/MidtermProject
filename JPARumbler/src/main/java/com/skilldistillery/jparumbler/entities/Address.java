@@ -24,6 +24,7 @@ public class Address {
 	@Column(name = "zip_code")
 	private String zipCode;
 	private String phone;
+	private boolean enabled;
 	
 	@OneToOne(mappedBy = "address")
 	private Location location;
@@ -119,6 +120,15 @@ public class Address {
 		Address other = (Address) obj;
 		return id == other.id;
 	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+	
 	
 	
 }
