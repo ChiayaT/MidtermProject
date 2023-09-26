@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.skilldistillery.jparumbler.data.RumbleDAO;
 import com.skilldistillery.jparumbler.data.UserDAO;
+import com.skilldistillery.jparumbler.entities.Rumble;
 import com.skilldistillery.jparumbler.entities.User;
 
 @Controller
@@ -19,6 +21,9 @@ public class UserController {
 
 	@Autowired
 	private UserDAO userDao;
+	
+	@Autowired
+	private RumbleDAO rumDao;
 
 	@RequestMapping(path = { "/", "home.do" })
 	private String goHome(Model model) {
@@ -57,6 +62,8 @@ public class UserController {
 		user = userDao.findUserById(user.getId());
 		session.setAttribute("loggedInUser", user);
 		}
+		List<Rumble> allUserRumbles = rumDao.getAllRumblesForSpecificUser(user.getId());
+		session.setAttribute("allUserRumbles", allUserRumbles);
 		return "account";
 	}
 
@@ -76,9 +83,21 @@ public class UserController {
 		return "home";
 	}
 	@RequestMapping(path = "findUsersByName.do", params = "name")
-	private String findUsersByName(@RequestParam String name, HttpSession session) {
+	private String findUsersByName(@RequestParam String name, Model model) {
 		List<User> users = userDao.findUsersByName(name);
-		session.setAttribute("users", users);
+		model.addAttribute("users", users);
+		return "ViewOtherUsers";
+	}
+	@RequestMapping(path = "findUsersByZip.do", params = "zip")
+	private String findUsersByZip(@RequestParam String zip, Model model) {
+		List<User> users = userDao.findUsersByZip(zip);
+		model.addAttribute("users", users);
+		return "ViewOtherUsers";
+	}
+	@RequestMapping(path = "findUsersByDisciplines.do", params = "discipline")
+	private String findUsersByDiscipline(@RequestParam String discipline, Model model) {
+		List<User> users = userDao.findUsersDiscipline(discipline);
+		model.addAttribute("users", users);
 		return "ViewOtherUsers";
 		
 	}

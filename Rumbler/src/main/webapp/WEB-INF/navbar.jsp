@@ -45,24 +45,23 @@
 							<ul class="dropdown-menu" id="navbarFormat">
 								<li>
 									<form class="d-flex" role="search" action="findUsersByName.do">
-										<input class="form-control me-2" type="search"
-										name = "name"
+										<input class="form-control me-2" type="search" name = "name"
 											placeholder="Search by Name or Username" aria-label="Search">
 										<button class="btn btn-danger" type="submit">Search</button>
 									</form>
 								</li>
 								<li><hr class="dropdown-divider"></li>
 								<li>
-									<form class="d-flex" role="search" action="#">
-										<input class="form-control me-2" type="search"
+									<form class="d-flex" role="search" action="findUsersByZip.do">
+										<input class="form-control me-2" type="search" name = "zip"
 											placeholder="Search by Zip Code" aria-label="Search">
 										<button class="btn btn-danger" type="submit">Search</button>
 									</form>
 								</li>
 								<li><hr class="dropdown-divider"></li>
 								<li>
-									<form class="d-flex" role="search" action="#">
-										<input class="form-control me-2" type="search"
+									<form class="d-flex" role="search" action="findUsersByDisciplines.do">
+										<input class="form-control me-2" type="search" name="discipline"
 											placeholder="Search by Discipline" aria-label="Search">
 										<button class="btn btn-danger" type="submit">Search</button>
 									</form>

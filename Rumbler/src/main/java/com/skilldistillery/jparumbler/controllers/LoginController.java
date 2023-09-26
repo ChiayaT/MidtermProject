@@ -1,5 +1,7 @@
 package com.skilldistillery.jparumbler.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.skilldistillery.jparumbler.data.RumbleDAO;
 import com.skilldistillery.jparumbler.data.UserDAO;
+import com.skilldistillery.jparumbler.entities.Rumble;
 import com.skilldistillery.jparumbler.entities.User;
 
 @Controller
@@ -16,7 +20,9 @@ public class LoginController {
 	@Autowired
 	private UserDAO userDao;
 	
-//FIXME - need to write DAO methods first
+	@Autowired
+	private RumbleDAO rumDao;
+	
 	@RequestMapping(path = "login.do", method = RequestMethod.GET)
 	public String displayLogin(HttpSession session) {
 		if (session.getAttribute("loggedInUser") != null) {
@@ -32,6 +38,8 @@ public class LoginController {
 		if (loggedInUser != null) {
 			// add user to session
 			session.setAttribute("loggedInUser", loggedInUser);
+			List<Rumble> allUserRumbles = rumDao.getAllRumblesForSpecificUser(loggedInUser.getId());
+			session.setAttribute("allUserRumbles", allUserRumbles);
 			return "account";
 		}
 		// login fails -> return login
