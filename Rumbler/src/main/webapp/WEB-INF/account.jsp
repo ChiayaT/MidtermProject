@@ -70,21 +70,6 @@
 							</c:otherwise>
 						</c:choose>
 
-
-
-
-
-						<c:forEach var="rumble" items="${loggedInUser.guestRumbles}">
-							<tr>
-								<td>${rumble.id}</td>
-								<td><a href="Rumble.do?id=${rumble.id}">
-										${rumble.title} VS ${rumble.host.firstName}
-										${rumble.host.lastName}</a></td>
-							</tr>
-						</c:forEach>
-
-						</tbody>
-						</table>
 						<a href="makeRumble.do"> Create New Rumble</a>
 					</div>
 				</div>
