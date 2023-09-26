@@ -10,7 +10,6 @@ import com.skilldistillery.jparumbler.entities.RumbleMessage;
 
 public interface RumbleDAO {
 
-	Discipline testdis();
 	List<Rumble> getAllRumbles();
 	Rumble findRumbleById(int Id);
 	Rumble createRumble(Rumble rumble);

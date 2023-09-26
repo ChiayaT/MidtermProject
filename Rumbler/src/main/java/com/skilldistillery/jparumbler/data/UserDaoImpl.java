@@ -1,5 +1,7 @@
 package com.skilldistillery.jparumbler.data;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
@@ -73,5 +75,27 @@ public class UserDaoImpl implements UserDAO {
 		}
 		return false;
 	}
+	@Override
+	public List<User> findUsersByName(String name) {
+		List<User> users = null;
+		String spql = "select u from User u where u.username = :name or "
+				+ "u.firstName = :name or u.lastName = :name";
+		
+		users =  em.createQuery(spql, User.class).setParameter("name", name).getResultList();
+		return users;
+	}
+	@Override
+	public List<User> findUsersByZip(int zip) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public List<User> findUsersDiscipline(int zip) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	
 
 }

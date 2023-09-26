@@ -142,10 +142,8 @@ public class RumbleDaoImpl implements RumbleDAO {
 		return false;
 	}
 
-	@Override
-	public Discipline testdis() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
+
+
 
 }
