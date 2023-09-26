@@ -9,8 +9,8 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.jparumbler.entities.Address;
-import com.skilldistillery.jparumbler.entities.Rumble;
 import com.skilldistillery.jparumbler.entities.User;
+import com.skilldistillery.jparumbler.entities.UserDiscipline;
 
 @Service
 @Transactional
@@ -97,6 +97,14 @@ public class UserDaoImpl implements UserDAO {
 		String spql = "select u from User u join fetch u.userDisciplines ud where ud.discipline.name like :disciplineName";
 		users = em.createQuery(spql, User.class).setParameter("disciplineName", "%" + disciplineName + "%" ).getResultList();
 		return users;
+	}
+
+	@Override
+	public List<UserDiscipline> findAllDisciplinesForUser(int id) {
+		List<UserDiscipline> userDisciplines = null;
+		String jpql = "select ud from UserDiscipline ud where user_id = :id";
+		userDisciplines = em.createQuery(jpql, UserDiscipline.class).setParameter("id", id).getResultList();
+		return userDisciplines;
 	}	
 
 }
