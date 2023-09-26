@@ -17,7 +17,7 @@
 			<c:when test="${not empty sessionScope.loggedInUser }">
 				<div class="row">
 					<div class="col">
-						<div class="card" style="width: 20rem;">
+						<div class="card" style="width: 18rem;">
 							<img src="${loggedInUser.profileImageURL }" class="card-img-top"
 								alt="profile picture">
 							<div class="card-body">
