@@ -85,6 +85,11 @@ public class UserController {
 		List<User> users = userDao.findUsersByName(name);
 		session.setAttribute("users", users);
 		return "ViewOtherUsers";
-		
 	}
+//	@RequestMapping(path = "findUsersByZip.do", params = "name")
+//	private String findUsersByName(@RequestParam String name, HttpSession session) {
+//		List<User> users = userDao.findUsersByName(name);
+//		session.setAttribute("users", users);
+//		return "ViewOtherUsers";
+//	}
 }
