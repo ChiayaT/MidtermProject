@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -13,6 +14,7 @@ import com.skilldistillery.jparumbler.data.RumbleDAO;
 import com.skilldistillery.jparumbler.data.UserDAO;
 import com.skilldistillery.jparumbler.entities.Rumble;
 import com.skilldistillery.jparumbler.entities.User;
+import com.skilldistillery.jparumbler.entities.UserDiscipline;
 
 @Controller
 public class LoginController {
@@ -32,7 +34,7 @@ public class LoginController {
 	}
 
 	@RequestMapping(path = "login.do", method = RequestMethod.POST)
-	public String login(User user, HttpSession session) {
+	public String login(User user, HttpSession session, Model model) {
 	User loggedInUser = userDao.authenticateUser(user);
 	// username and pword match -> return account
 		if (loggedInUser != null) {
@@ -40,6 +42,8 @@ public class LoginController {
 			session.setAttribute("loggedInUser", loggedInUser);
 			List<Rumble> allUserRumbles = rumDao.getAllRumblesForSpecificUser(loggedInUser.getId());
 			session.setAttribute("allUserRumbles", allUserRumbles);
+			List<UserDiscipline> userDisciplines = userDao.findAllDisciplinesForUser(loggedInUser.getId());
+			model.addAttribute("userDisciplines", userDisciplines);
 			return "account";
 		}
 		// login fails -> return login

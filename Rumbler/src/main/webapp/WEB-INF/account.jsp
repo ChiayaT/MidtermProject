@@ -71,6 +71,36 @@
 						</c:choose>
 
 						<a href="makeRumble.do"> Create New Rumble</a>
+						
+						
+						<h2 class="display-6">Disciplines:</h2>
+
+						<c:choose>
+							<c:when test="${not empty userDisciplines }">
+								<table class="table table-striped">
+									<thead class="table-dark">
+										<tr>
+											<th>DISCIPLINE </th>
+											<th>EXPERIENCE LEVEL</th>
+											<th>FIGHTING STANCE</th>
+										</tr>
+									</thead>
+									<tbody>
+										<c:forEach var="userDiscipline" items="${userDisciplines}">
+											<tr>
+												<td>${userDiscipline.discipline.name}</td>
+												<td>${userDiscipline.experienceLevel.name}</td>
+												<td>${userDiscipline.fightingStance.stance}</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</c:when>
+							<c:otherwise>
+								<p class="lead">No disciplines added.</p>
+							</c:otherwise>
+						</c:choose>
+						
 					</div>
 				</div>
 
