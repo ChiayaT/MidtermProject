@@ -29,7 +29,7 @@
 				<c:forEach var="user" items="${users}">
 					<c:if test="${user.id != loggedInUser.id }">
 						<tr>
-							<td class="align-middle"><img src="${user.profileImageURL}" class="rounded"></td>
+							<td class="align-middle text-center"><img src="${user.profileImageURL}" class="rounded"></td>
 							<td class="align-middle">${user.firstName}</td>
 							<td class="align-middle">${user.lastName}</td>
 							<td class="align-middle">${user.username}</td>
