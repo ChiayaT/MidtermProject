@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.skilldistillery.jparumbler.data.DisciplineDAO;
 import com.skilldistillery.jparumbler.data.UserDAO;
+import com.skilldistillery.jparumbler.entities.Discipline;
 import com.skilldistillery.jparumbler.entities.ExperienceLevel;
 import com.skilldistillery.jparumbler.entities.FightingStance;
 import com.skilldistillery.jparumbler.entities.User;
 import com.skilldistillery.jparumbler.entities.UserDiscipline;
-import com.skilldistillery.jparumbler.entities.UserDisciplineId;
 
 @Controller
 public class DisciplineController {
@@ -36,9 +36,12 @@ public class DisciplineController {
 		model.addAttribute("allStances", allStances);
 		List<ExperienceLevel> allLevels = disDao.getAllExperienceLevels();
 		model.addAttribute("allLevels", allLevels);
+		List<Discipline> allDisciplines = disDao.getAllDisciplines();
+		model.addAttribute("allDisciplines", allDisciplines);
 		if(updated != null && updated.length() > 0) {
 			model.addAttribute("updatedDiscipline", updated);
 		}
+		refreshSessionUser(session);
 		return "updateDisciplines";
 	}
 
@@ -46,6 +49,22 @@ public class DisciplineController {
 	public String updateSpecificDiscipline(int userId, int disciplineId, UserDiscipline userDiscipline, HttpSession session) {
 	UserDiscipline updatedDiscipline = disDao.updateDiscipline(userDiscipline, userId, disciplineId);
 		return "redirect:updateDisciplines.do?updated=" + updatedDiscipline.getDiscipline().getName().replaceAll(" ", "+"); 
+	}
+	
+	@RequestMapping(path = "addNewDiscipline.do", method = RequestMethod.POST)
+	public String addNewDiscipline(int disciplineId, UserDiscipline userDiscipline, Model model, HttpSession session) {
+		User user = (User) session.getAttribute("loggedInUser");
+		UserDiscipline newDiscipline = disDao.addNewDiscipline(userDiscipline, user.getId(), disciplineId);
+		refreshSessionUser(session);
+		return "redirect:updateDisciplines.do"; 
+	}
+	
+	public void refreshSessionUser(HttpSession session) {
+		User user = (User) session.getAttribute("loggedInUser");
+		if (user != null) {
+			session.setAttribute("loggedInUser", userDao.findUserById(user.getId()));
+		}
+		
 	}
 
 }

@@ -161,6 +161,7 @@ CREATE TABLE IF NOT EXISTS `user_discipline` (
   `description` TEXT NULL,
   `create_date` DATETIME NULL,
   `last_update` DATETIME NULL,
+  `enabled` TINYINT NOT NULL DEFAULT 1,
   PRIMARY KEY (`user_id`, `discipline_id`),
   INDEX `fk_user_has_discipline_discipline1_idx` (`discipline_id` ASC),
   INDEX `fk_user_has_discipline_user_idx` (`user_id` ASC),
@@ -481,14 +482,14 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rumblerdb`;
-INSERT INTO `user_discipline` (`user_id`, `discipline_id`, `experience_level_id`, `fighting_stance_id`, `description`, `create_date`, `last_update`) VALUES (2, 2, 3, 1, 'I\'m really good at karate.', NULL, NULL);
-INSERT INTO `user_discipline` (`user_id`, `discipline_id`, `experience_level_id`, `fighting_stance_id`, `description`, `create_date`, `last_update`) VALUES (3, 1, 3, 2, 'I\'m really good at boxing.', NULL, NULL);
-INSERT INTO `user_discipline` (`user_id`, `discipline_id`, `experience_level_id`, `fighting_stance_id`, `description`, `create_date`, `last_update`) VALUES (5, 3, 3, 3, 'I\'m really good at jiu jitsu.', NULL, NULL);
-INSERT INTO `user_discipline` (`user_id`, `discipline_id`, `experience_level_id`, `fighting_stance_id`, `description`, `create_date`, `last_update`) VALUES (5, 1, 2, 3, 'Working on my boxing!', NULL, NULL);
-INSERT INTO `user_discipline` (`user_id`, `discipline_id`, `experience_level_id`, `fighting_stance_id`, `description`, `create_date`, `last_update`) VALUES (4, 2, 1, 2, 'Just started karate, looking to get better!', NULL, NULL);
-INSERT INTO `user_discipline` (`user_id`, `discipline_id`, `experience_level_id`, `fighting_stance_id`, `description`, `create_date`, `last_update`) VALUES (4, 4, 3, 3, 'I\'m really good at wrestling.', NULL, NULL);
-INSERT INTO `user_discipline` (`user_id`, `discipline_id`, `experience_level_id`, `fighting_stance_id`, `description`, `create_date`, `last_update`) VALUES (2, 4, 1, 1, 'Just started wrestling, looking to get better!', NULL, NULL);
-INSERT INTO `user_discipline` (`user_id`, `discipline_id`, `experience_level_id`, `fighting_stance_id`, `description`, `create_date`, `last_update`) VALUES (3, 3, 2, 3, 'Working on my jiu jitsu skills!', NULL, NULL);
+INSERT INTO `user_discipline` (`user_id`, `discipline_id`, `experience_level_id`, `fighting_stance_id`, `description`, `create_date`, `last_update`, `enabled`) VALUES (2, 2, 3, 1, 'I\'m really good at karate.', NULL, NULL, 1);
+INSERT INTO `user_discipline` (`user_id`, `discipline_id`, `experience_level_id`, `fighting_stance_id`, `description`, `create_date`, `last_update`, `enabled`) VALUES (3, 1, 3, 2, 'I\'m really good at boxing.', NULL, NULL, 1);
+INSERT INTO `user_discipline` (`user_id`, `discipline_id`, `experience_level_id`, `fighting_stance_id`, `description`, `create_date`, `last_update`, `enabled`) VALUES (5, 3, 3, 3, 'I\'m really good at jiu jitsu.', NULL, NULL, 1);
+INSERT INTO `user_discipline` (`user_id`, `discipline_id`, `experience_level_id`, `fighting_stance_id`, `description`, `create_date`, `last_update`, `enabled`) VALUES (5, 1, 2, 3, 'Working on my boxing!', NULL, NULL, 1);
+INSERT INTO `user_discipline` (`user_id`, `discipline_id`, `experience_level_id`, `fighting_stance_id`, `description`, `create_date`, `last_update`, `enabled`) VALUES (4, 2, 1, 2, 'Just started karate, looking to get better!', NULL, NULL, 1);
+INSERT INTO `user_discipline` (`user_id`, `discipline_id`, `experience_level_id`, `fighting_stance_id`, `description`, `create_date`, `last_update`, `enabled`) VALUES (4, 4, 3, 3, 'I\'m really good at wrestling.', NULL, NULL, 1);
+INSERT INTO `user_discipline` (`user_id`, `discipline_id`, `experience_level_id`, `fighting_stance_id`, `description`, `create_date`, `last_update`, `enabled`) VALUES (2, 4, 1, 1, 'Just started wrestling, looking to get better!', NULL, NULL, 1);
+INSERT INTO `user_discipline` (`user_id`, `discipline_id`, `experience_level_id`, `fighting_stance_id`, `description`, `create_date`, `last_update`, `enabled`) VALUES (3, 3, 2, 3, 'Working on my jiu jitsu skills!', NULL, NULL, 1);
 
 COMMIT;
 

@@ -92,8 +92,8 @@ public class User {
 	private Address address;
 
 	private String description;
-	
-	@Column(name="date_of_birth")
+
+	@Column(name = "date_of_birth")
 	private LocalDate dateOfBirth;
 
 	public User() {
@@ -441,6 +441,27 @@ public class User {
 		this.dateOfBirth = dateOfBirth;
 	}
 
+	public boolean hasDiscipline(int disciplineId) {
+		boolean hasDiscipline = false;
+		for (UserDiscipline ud : userDisciplines) {
+			if (ud.getDiscipline().getId() == disciplineId) {
+				hasDiscipline = true;
+				break;
+			}
+		}
+		return hasDiscipline;
+	}
+
+	public boolean hasRatedLocation(int userId) {
+		boolean hasRated = false;
+		for(LocationRating lr : locationRatings) {
+			if (lr.getUser().getId() == userId) {
+				hasRated = true;
+				break;
+			}
+		}
+		return hasRated;
+	}
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
