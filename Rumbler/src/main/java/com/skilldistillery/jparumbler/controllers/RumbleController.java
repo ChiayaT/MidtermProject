@@ -99,10 +99,8 @@ public class RumbleController {
 	 
 	 @RequestMapping(path = "giveLocationRating.do", method = RequestMethod.GET)
 	 private String giveLocationRatingGet(HttpSession session, Model model, int locationId) {
-		 LocationRating locationRating = new LocationRating();
 		 Location location = rumDao.findlocationById(locationId);
 	 session.setAttribute("location",location);
-//		 session.setAttribute("locationRating",locationRating);
 		return"CreateLocationReview";
 	 }
 		 

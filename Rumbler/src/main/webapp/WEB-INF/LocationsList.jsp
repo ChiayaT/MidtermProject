@@ -16,9 +16,6 @@
 	${location.description}<br>
 	<a href="getLocation.do?locationId=${location.id}"> <img width="150" src="${location.image_url}"></td></a><br>
 	<!--${location.address}-->
-	
-
-
 	</c:forEach>
 
 
