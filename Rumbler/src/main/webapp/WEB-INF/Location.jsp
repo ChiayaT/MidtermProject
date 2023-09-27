@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -9,19 +9,31 @@
 <jsp:include page="bootstrapHead.jsp" />
 </head>
 <body>
-    <jsp:include page="navbar.jsp" />
-    <h1>Rumble Ring</h1>
-	${location.name}<br>
-	${location.description}<br>
-	<img width="150" src="${location.image_url}">
-	${location.name}<br>
-	<a href="getLocationsList.do">Rate This Rumble Ring</a>
+	<jsp:include page="navbar.jsp" />
+	<h1>Rumble Ring</h1>
+	${location.name}
+	<br> ${location.description}
+	<br>
+	<img width="150" src="${location.image_url}"> ${location.name}
+	<br>
+	<c:set var="contains" value="false" />
+	<c:forEach var="rating" items="${locationRatings}">
+		<c:if test="${rating.userId == loggedInUser.id}">
+			<c:set var="contains" value="true" />
+		</c:if>
+	</c:forEach>
+	<c:if test="${contains == false}">
+		<a href="giveLocationRating.do?locationId=${location.id}" method="get">Rate
+			This Rumble Ring</a>
+	</c:if>
+
 	<h2>Rumbler Ring Ratings and Reviews</h2>
 	<c:forEach var="rating" items="${location.locationRatings}">
 	${rating.user.username} gives a ${rating.ratingScale} out of 5 <br>
-	<img width="150" src="${rating.user.profileImageURL}">
+		<img width="150" src="${rating.user.profileImageURL}">
+		<br>
 	${rating.ratingComment}<br>
 	</c:forEach>
-    <jsp:include page="bootstrapScript.jsp" />
+	<jsp:include page="bootstrapScript.jsp" />
 </body>
 </html>

@@ -17,6 +17,7 @@ import com.skilldistillery.jparumbler.data.RumbleDAO;
 import com.skilldistillery.jparumbler.data.UserDAO;
 import com.skilldistillery.jparumbler.entities.Discipline;
 import com.skilldistillery.jparumbler.entities.Location;
+import com.skilldistillery.jparumbler.entities.LocationRating;
 import com.skilldistillery.jparumbler.entities.Rumble;
 import com.skilldistillery.jparumbler.entities.User;
 
@@ -136,5 +137,26 @@ public class RumbleController {
 		 model.addAttribute("location", location);
 		return "Location";
 	 }
+	 
+	 @RequestMapping(path = "giveLocationRating.do", method = RequestMethod.GET)
+	 private String giveLocationRatingGet(HttpSession session, Model model, int locationId) {
+		 Location location = rumDao.findlocationById(locationId);
+	 session.setAttribute("location",location);
+		return"CreateLocationReview";
+	 }
+		 
+	 @RequestMapping(path ="giveLocationRating", method = RequestMethod.POST )
+	 private String giveLocationRatingPost(HttpSession session, Model model, Integer locationId, LocationRating locationRating, Integer userId) {
+		 rumDao.addRatingToRatingList(locationId, userId, locationRating.getRatingScale(), locationRating.getRatingComment());
+		locationRating = (LocationRating) session.getAttribute("locationRating");
+		Location location = rumDao.findlocationById(locationId);
+		System.out.println(location.getLocationRatings());
+		 session.setAttribute("locationRatings", location.getLocationRatings());
+		 session.setAttribute("location", location);
+		 
+		return"Location" ;
+		 
+	 }
+
 
 }
