@@ -16,16 +16,17 @@
 	<br>
 	<img width="150" src="${location.image_url}"> ${location.name}
 	<br>
-	<c:set var="contains" value="false" />
-	<c:forEach var="rating" items="${locationRatings}">
-		<c:if test="${rating.userId == loggedInUser.id}">
-			<c:set var="contains" value="true" />
-		</c:if>
-	</c:forEach>
-	<c:if test="${contains == false}">
-		<a href="giveLocationRating.do?locationId=${location.id}" method="get">Rate
-			This Rumble Ring</a>
-	</c:if>
+		<c:choose>
+		<c:when test="${!loggedInUser.hasRatedLocation(location.id)}">
+		<a href="giveLocationRating.do?locationId=${location.id}">
+		Rate This Rumble Ring</a>
+		</c:when>
+		<c:otherwise>
+		<!--<a href="updateLocationPage.do?locationId=${location.id}">-->
+		<!-- Update This Rumble Ring</a> -->
+		</c:otherwise>
+		</c:choose>
+		<br><a href="updateLocationPage.do?locationId=${location.id}">Update This Rumble Ring</a>
 
 	<h2>Rumbler Ring Ratings and Reviews</h2>
 	<c:forEach var="rating" items="${location.locationRatings}">

@@ -8,6 +8,7 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -37,7 +38,8 @@ public class User {
 	private boolean enabled;
 	private String role;
 
-	@OneToMany(mappedBy = "user")
+	
+	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
 	private List<LocationRating> locationRatings;
 
 	@OneToMany(mappedBy = "user")
@@ -451,11 +453,11 @@ public class User {
 		}
 		return hasDiscipline;
 	}
-
-	public boolean hasRatedLocation(int userId) {
+	
+	public boolean hasRatedLocation(int locationId) {
 		boolean hasRated = false;
 		for(LocationRating lr : locationRatings) {
-			if (lr.getUser().getId() == userId) {
+			if (lr.getLocation().getId() == locationId) {
 				hasRated = true;
 				break;
 			}

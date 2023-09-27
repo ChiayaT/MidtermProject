@@ -80,6 +80,16 @@ public class RumbleDaoImpl implements RumbleDAO {
 	}
 
 	@Override
+	public Location updateLocation(Location location) {
+		Location updatedLocation = findlocationById(location.getId());
+		updatedLocation.setName(location.getName());
+		updatedLocation.setImage_url(location.getImage_url());
+		updatedLocation.setAddress(location.getAddress());
+		updatedLocation.setDescription(location.getDescription());
+		updatedLocation.setAddress(location.getAddress());
+		return updatedLocation;
+	}
+	@Override
 	public Rumble updateRumble(Rumble rumble) {
 		Rumble newRumble = findRumbleById(rumble.getId());
 		newRumble.setTitle(rumble.getTitle());
@@ -126,7 +136,6 @@ public class RumbleDaoImpl implements RumbleDAO {
 
 	@Override
 	public List<RumbleMessage> getAllRumbleMessagesPerRumble(int rumbleId) {
-		// TODO Auto-generated method stub
 		String spql = "SELECT R FROM RubleMessage R WHERE R.rumbleMessage.id = :rumid";
 		
 		return em.createQuery(spql, RumbleMessage.class)
@@ -195,6 +204,8 @@ public boolean addRatingToRatingList(int locationId, int userId, int ratingScale
 	}
 	return rated;
 }
+
+
 
 
 
