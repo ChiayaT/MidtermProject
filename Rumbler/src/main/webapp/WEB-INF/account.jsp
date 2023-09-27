@@ -36,8 +36,8 @@
 									<li class="list-group-item"><strong>Weight: </strong>${loggedInUser.weightInPounds}
 										pounds</li>
 								</ul>
-
-								<a href="update.do" class="btn btn-primary">Update Account</a> <a
+								<br>
+								<a href="update.do" class="btn btn-update">Update Account</a> <a
 									href="deletePage.do" class="btn btn-danger">Delete Account</a>
 							</div>
 						</div>
@@ -45,32 +45,61 @@
 					<div class="col">
 						<h2 class="display-6">Upcoming Rumbles:</h2>
 
-						<table class="table table-striped">
-							<thead class="table-dark">
-								<tr>
-									<th>ID</th>
-									<th>RUMBLE</th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach var="rumble" items="${loggedInUser.hostRumbles}">
-									<tr>
-										<td>${rumble.id}</td>
-										<td><a href="Rumble.do?id=${rumble.id}">
-												${rumble.title} VS ${rumble.guest.firstName} ${rumble.guest.lastName}</a></td>
-									</tr>
-								</c:forEach>
-								<c:forEach var="rumble" items="${loggedInUser.guestRumbles}">
-									<tr>
-										<td>${rumble.id}</td>
-										<td><a href="Rumble.do?id=${rumble.id}">
-												${rumble.title} VS ${rumble.host.firstName} ${rumble.host.lastName}</a></td>
-									</tr>
-								</c:forEach>
-								
-							</tbody>
-						</table>
-						<a href="makeRumble.do"> Create New Rumble</a>
+						<c:choose>
+							<c:when test="${not empty allUserRumbles }">
+								<table class="table table-striped">
+									<thead class="table-dark">
+										<tr>
+											<th>ID </th>
+											<th>RUMBLE</th>
+										</tr>
+									</thead>
+									<tbody>
+										<c:forEach var="rumble" items="${allUserRumbles}">
+											<tr>
+												<td>${rumble.id}</td>
+												<td><a href="Rumble.do?id=${rumble.id}">
+														${rumble.title} @ ${rumble.location.name}</a></td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</c:when>
+							<c:otherwise>
+								<p class="lead">No upcoming Rumbles scheduled.</p>
+							</c:otherwise>
+						</c:choose>
+						
+						
+						<h2 class="display-6">Disciplines:</h2>
+
+						<c:choose>
+							<c:when test="${not empty userDisciplines}">
+								<table class="table table-striped">
+									<thead class="table-dark">
+										<tr>
+											<th>DISCIPLINE </th>
+											<th>EXPERIENCE LEVEL</th>
+											<th>FIGHTING STANCE</th>
+										</tr>
+									</thead>
+									<tbody>
+										<c:forEach var="userDiscipline" items="${userDisciplines}">
+											<tr>
+												<td>${userDiscipline.discipline.name}</td>
+												<td>${userDiscipline.experienceLevel.name}</td>
+												<td>${userDiscipline.fightingStance.stance}</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</c:when>
+							<c:otherwise>
+								<p class="lead">No disciplines added.</p>
+							</c:otherwise>
+						</c:choose>
+						<a href="updateDisciplines.do" class="btn btn-update">Update Disciplines</a>
+
 					</div>
 				</div>
 

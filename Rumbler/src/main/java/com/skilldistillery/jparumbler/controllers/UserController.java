@@ -11,14 +11,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.skilldistillery.jparumbler.data.RumbleDAO;
 import com.skilldistillery.jparumbler.data.UserDAO;
+import com.skilldistillery.jparumbler.entities.Rumble;
 import com.skilldistillery.jparumbler.entities.User;
+import com.skilldistillery.jparumbler.entities.UserDiscipline;
 
 @Controller
 public class UserController {
 
 	@Autowired
 	private UserDAO userDao;
+	
+	@Autowired
+	private RumbleDAO rumDao;
 
 	@RequestMapping(path = { "/", "home.do" })
 	private String goHome(Model model) {
@@ -32,9 +38,11 @@ public class UserController {
 	}
 
 	@RequestMapping(path = { "updateAccount.do" }, method = RequestMethod.POST)
-	private String postUpdateAccount(User user, HttpSession session) {
+	private String postUpdateAccount(User user, HttpSession session, Model model) {
 		User updatedUser = userDao.updateUser(user);
 		session.setAttribute("loggedInUser", updatedUser);
+		List<UserDiscipline> userDisciplines = userDao.findAllDisciplinesForUser(user.getId());
+		model.addAttribute("userDisciplines", userDisciplines);
 		return "account";
 	}
 
@@ -51,10 +59,16 @@ public class UserController {
 	}
 
 	@RequestMapping(path = "accountPage.do")
-	private String accountPage(HttpSession session) {
+	private String accountPage(HttpSession session, Model model) {
 		User user = (User) session.getAttribute("loggedInUser");
+		if (user != null) {
 		user = userDao.findUserById(user.getId());
 		session.setAttribute("loggedInUser", user);
+		}
+		List<Rumble> allUserRumbles = rumDao.getAllRumblesForSpecificUser(user.getId());
+		model.addAttribute("allUserRumbles", allUserRumbles);
+		List<UserDiscipline> userDisciplines = userDao.findAllDisciplinesForUser(user.getId());
+		model.addAttribute("userDisciplines", userDisciplines);
 		return "account";
 	}
 

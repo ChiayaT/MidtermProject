@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.skilldistillery.jparumbler.entities.Address;
 import com.skilldistillery.jparumbler.entities.Discipline;
 import com.skilldistillery.jparumbler.entities.Location;
+import com.skilldistillery.jparumbler.entities.LocationRating;
 import com.skilldistillery.jparumbler.entities.LocationType;
 import com.skilldistillery.jparumbler.entities.Rumble;
 import com.skilldistillery.jparumbler.entities.RumbleMessage;
@@ -22,6 +23,9 @@ public class RumbleDaoImpl implements RumbleDAO {
 	@PersistenceContext
 	private EntityManager em;
 	
+	public LocationType findLocoTypeById(int id) {
+		return em.find(LocationType.class, id);
+	}
 	
 	public Discipline findDisciplineById(int id) {
 		return em.find(Discipline.class, id);
@@ -29,6 +33,13 @@ public class RumbleDaoImpl implements RumbleDAO {
 	
 	public Location findlocationById(int id) {
 		return em.find(Location.class, id);
+	}
+	@Override
+	public List<LocationRating> getLocationRatings(int locationId) {
+		List<LocationRating> locationRatings = null;
+		String spql = "select lr from LocationRating lr where Location.id = :locationId";
+		locationRatings = em.createQuery(spql, LocationRating.class).setParameter("disciplines", locationId).getResultList();
+		return locationRatings;
 	}
 	
 	@Override
@@ -80,7 +91,6 @@ public class RumbleDaoImpl implements RumbleDAO {
 		newRumble.setRumbleDate(rumble.getRumbleDate());
 		newRumble.setEndTime(rumble.getEndTime());
 		newRumble.setOpenToPublic(rumble.getOpenToPublic());
-		newRumble.setDiscipline(rumble.getDiscipline());
 		newRumble.setRumbleMessages(rumble.getRumbleMessages());
 		Location location = rumble.getLocation();
 		Location newLocation = newRumble.getLocation();
@@ -96,6 +106,9 @@ public class RumbleDaoImpl implements RumbleDAO {
 		managedAddress.setCity(address.getCity());
 		managedAddress.setPhone(address.getPhone());
 		managedAddress.setZipCode(address.getZipCode());
+		System.out.println(rumble.getDiscipline());
+		newRumble.setDiscipline(rumble.getDiscipline());
+		
 		return newRumble;
 	}
 
@@ -141,6 +154,21 @@ public class RumbleDaoImpl implements RumbleDAO {
 	public boolean deleteRumbleMessage(int id) {
 		return false;
 	}
+
+	@Override
+	public Location createLocation(Location location) {
+		em.persist(location.getAddress());
+		em.persist(location);
+		return location;
+  }
+  @Override
+	public List<Rumble> getAllRumblesForSpecificUser(int id) {
+		List <Rumble> allUserRumblesHostOrGuest = null;
+		String jpql = "select r from Rumble r where host_id = :id or guest_id = :id";
+		allUserRumblesHostOrGuest = em.createQuery(jpql, Rumble.class).setParameter("id", id).getResultList();
+		return allUserRumblesHostOrGuest;
+	}
+
 
 
 

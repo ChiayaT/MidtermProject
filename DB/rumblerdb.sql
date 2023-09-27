@@ -395,6 +395,7 @@ INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip_code`, `
 INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip_code`, `phone`, `enabled`) VALUES (6, '246 Openwight Circle', NULL, 'Austin', 'Texas', '78704', NULL, 1);
 INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip_code`, `phone`, `enabled`) VALUES (7, '2401 Thornton Rd', 'A1', 'Austin', 'Texas', '78704', '5128400177', 1);
 INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip_code`, `phone`, `enabled`) VALUES (8, '9663 Santa Monica Blvd', '440', 'Beverly Hills', 'California', '90210', '4243247444', 1);
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip_code`, `phone`, `enabled`) VALUES (9, 'admin', NULL, 'admin', 'admin', 'admin', NULL, 0);
 
 COMMIT;
 
@@ -404,7 +405,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rumblerdb`;
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `profile_image_url`, `height_in_inches`, `weight_in_pounds`, `address_id`, `enabled`, `date_of_birth`, `role`, `create_date`, `last_update`, `description`) VALUES (1, 'admin', 'admin', 'admin', 'admin', NULL, NULL, NULL, 1, 1, NULL, 'admin', NULL, NULL, NULL);
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `profile_image_url`, `height_in_inches`, `weight_in_pounds`, `address_id`, `enabled`, `date_of_birth`, `role`, `create_date`, `last_update`, `description`) VALUES (1, 'admin', 'admin', 'admin', 'admin', NULL, 1, 1, 9, 1, NULL, 'admin', NULL, NULL, NULL);
 INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `profile_image_url`, `height_in_inches`, `weight_in_pounds`, `address_id`, `enabled`, `date_of_birth`, `role`, `create_date`, `last_update`, `description`) VALUES (2, 'Jackie', 'Chan', 'jchan', 'jchan', 'https://hips.hearstapps.com/hmg-prod/images/jackie-chan-news-photo-83389121-1567001252.jpg?crop=0.784xw:1.00xh;0.0255xw,0&resize=1200:*', 67, 143, 2, 1, '1953-04-07', 'user', '2023-09-22', '2023-09-22', 'hi-ya!');
 INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `profile_image_url`, `height_in_inches`, `weight_in_pounds`, `address_id`, `enabled`, `date_of_birth`, `role`, `create_date`, `last_update`, `description`) VALUES (3, 'Mike', 'Tyson', 'mtyson', 'mtyson', 'https://cdn.europosters.eu/image/750/art-photo/mike-tyson-i135277.jpg', 70, 220, 3, 1, '1966-06-30', 'user', '2023-09-22', '2023-09-22', 'check out my tattoo');
 INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `profile_image_url`, `height_in_inches`, `weight_in_pounds`, `address_id`, `enabled`, `date_of_birth`, `role`, `create_date`, `last_update`, `description`) VALUES (4, 'Ronda', 'Rousey', 'rrousey', 'rrousey', 'https://media-cldnry.s-nbcnews.com/image/upload/t_fit-1500w,f_auto,q_auto:best/newscms/2018_05/2308511/180129-ronda-rousey-mc-8452.JPG', 66, 135, 5, 1, '1987-02-01', 'user', '2023-09-26', '2023-09-26', 'first female fighter signed to UFC');
@@ -446,6 +447,7 @@ USE `rumblerdb`;
 INSERT INTO `discipline` (`id`, `name`, `description`, `image_url`) VALUES (1, 'Boxing', 'Fighting with fists and padded gloves', NULL);
 INSERT INTO `discipline` (`id`, `name`, `description`, `image_url`) VALUES (2, 'Karate', 'Unarmed combat using the hands and feet to deliver and block blows', NULL);
 INSERT INTO `discipline` (`id`, `name`, `description`, `image_url`) VALUES (3, 'Jiu Jitsu', 'A Japanese system of unarmed combat and physical training', NULL);
+INSERT INTO `discipline` (`id`, `name`, `description`, `image_url`) VALUES (4, 'Wrestling', 'A martial art and combat sport that involves grappling with an opponent and striving to obtain a position of advantage through different throws or techniques, within a given ruleset.', NULL);
 
 COMMIT;
 
@@ -481,6 +483,12 @@ START TRANSACTION;
 USE `rumblerdb`;
 INSERT INTO `user_discipline` (`user_id`, `discipline_id`, `experience_level_id`, `fighting_stance_id`, `description`, `create_date`, `last_update`) VALUES (2, 2, 3, 1, 'I\'m really good at karate.', NULL, NULL);
 INSERT INTO `user_discipline` (`user_id`, `discipline_id`, `experience_level_id`, `fighting_stance_id`, `description`, `create_date`, `last_update`) VALUES (3, 1, 3, 2, 'I\'m really good at boxing.', NULL, NULL);
+INSERT INTO `user_discipline` (`user_id`, `discipline_id`, `experience_level_id`, `fighting_stance_id`, `description`, `create_date`, `last_update`) VALUES (5, 3, 3, 3, 'I\'m really good at jiu jitsu.', NULL, NULL);
+INSERT INTO `user_discipline` (`user_id`, `discipline_id`, `experience_level_id`, `fighting_stance_id`, `description`, `create_date`, `last_update`) VALUES (5, 1, 2, 3, 'Working on my boxing!', NULL, NULL);
+INSERT INTO `user_discipline` (`user_id`, `discipline_id`, `experience_level_id`, `fighting_stance_id`, `description`, `create_date`, `last_update`) VALUES (4, 2, 1, 2, 'Just started karate, looking to get better!', NULL, NULL);
+INSERT INTO `user_discipline` (`user_id`, `discipline_id`, `experience_level_id`, `fighting_stance_id`, `description`, `create_date`, `last_update`) VALUES (4, 4, 3, 3, 'I\'m really good at wrestling.', NULL, NULL);
+INSERT INTO `user_discipline` (`user_id`, `discipline_id`, `experience_level_id`, `fighting_stance_id`, `description`, `create_date`, `last_update`) VALUES (2, 4, 1, 1, 'Just started wrestling, looking to get better!', NULL, NULL);
+INSERT INTO `user_discipline` (`user_id`, `discipline_id`, `experience_level_id`, `fighting_stance_id`, `description`, `create_date`, `last_update`) VALUES (3, 3, 2, 3, 'Working on my jiu jitsu skills!', NULL, NULL);
 
 COMMIT;
 

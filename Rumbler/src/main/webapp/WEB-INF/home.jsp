@@ -18,11 +18,11 @@
 			<c:if test= "${loggedInUser == null}">
 			<a href="accountCreation.do" class="btn btn-update">Create Account</a>
 			</c:if>
+			<a href="getLocationsList.do" class="btn btn-update">See All Rumble Rings</a>
 		</div>
 
 		<div class="content-area">
 			<div class="wrapper">
-
 				<p>Add a lil description about the app here.</p>
 
 			</div>

@@ -92,8 +92,8 @@ public class User {
 	private Address address;
 
 	private String description;
-	
-	@Column(name="date_of_birth")
+
+	@Column(name = "date_of_birth")
 	private LocalDate dateOfBirth;
 
 	public User() {
@@ -439,6 +439,17 @@ public class User {
 
 	public void setDateOfBirth(LocalDate dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
+	}
+
+	public boolean hasDiscipline(int disciplineId) {
+		boolean hasDiscipline = false;
+		for (UserDiscipline ud : userDisciplines) {
+			if (ud.getDiscipline().getId() == disciplineId) {
+				hasDiscipline = true;
+				break;
+			}
+		}
+		return hasDiscipline;
 	}
 
 	@Override

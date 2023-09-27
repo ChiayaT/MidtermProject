@@ -30,13 +30,39 @@
 		Start Time:
 		<input type="time"  name="startTime"><br> 
 		Approximate End Time:
-		<input type="time"  name="End"><br>
+		<input type="time"  name="endTime"><br>
 		<select name="locationId">
 		Location:
+			<option value="" >Create a location</option>
 		<c:forEach var="location" items="${locations}">
 			<option value="${location.id }">${location.name }</option>
 		</c:forEach>			
 		</select><br>
+		(If you chose a location, skip creating a location)<br>
+		Create A Location:<br>
+		Location Name:
+		<input type="text" value="null" name="name" required><br>
+		Location Description:
+		<input type="text" name="description"><br>
+		Location Image Url:
+		<input type="url" name="imageUrl"><br>
+		Location Type:
+		<select name="locationTypeId">
+		<c:forEach var="locationType" items="${locationTypes}">
+			<option value="${locationType.id}">${locationType.name }</option>
+			<br>
+		</c:forEach>
+		</select><br>
+		<h5>Address For Location</h5>
+		<input type="hidden" name="address.enabled" value="true">
+		Street<input type="text"  name="address.street" required><br>
+		Street<input type="text"  name="address.street2" ><br>
+		City<input type="text"  name="address.city" required><br>
+		State<input type="text"  name="address.state" required><br>
+		Zip Code<input type="text"  name="address.zipCode" required><br>
+		Phone Number<input type="text"  name="address.phone"><br>
+		
+		
 		
 		<!--  Location:<br>
 		Name:<input type="text" name="location.name" required><br>
