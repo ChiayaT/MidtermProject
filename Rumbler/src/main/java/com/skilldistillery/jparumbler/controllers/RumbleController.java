@@ -1,6 +1,8 @@
 package com.skilldistillery.jparumbler.controllers;
 
+
 import java.time.LocalTime;
+
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -28,18 +30,21 @@ public class RumbleController {
 	private UserDAO dao;
 
 	@RequestMapping(path = "makeRumble.do", method = RequestMethod.GET)
+
 	private String goToCreateRumble(HttpSession session, Integer guestId) {
+
 		
 		session.setAttribute("disciplines", rumDao.getAllDisciplines());
 		session.setAttribute("locations", rumDao.getAllLocations());
 		session.setAttribute("locationTypes", rumDao.getAllLocationTypes());
+
 		session.setAttribute("guest", dao.findUserById(guestId));
-		// Change guest later on
 		return "CreateRumble";
 	}
 
 	@RequestMapping(path = "makeRumble.do", method = RequestMethod.POST)
 	private String CreateRumble(HttpSession session, Rumble rumble, Integer locationId, Integer disciplineId,
+
 			Location location, Integer locationTypeId) {
 		rumble.setHost((User) session.getAttribute("loggedInUser"));
 		rumble.setGuest((User) session.getAttribute("guest"));
@@ -67,6 +72,7 @@ public class RumbleController {
 		session.setAttribute("Rumble", rumble);
 		return "Rumble";
 	}
+
 	
 	@RequestMapping(path = "updateRumble.do" ,method = RequestMethod.GET)
 	private String gotoupdateRumble(HttpSession session, Rumble rumble, Model model) {
@@ -104,11 +110,11 @@ public class RumbleController {
 			rumble.setDiscipline(discipline);
 		}
 		
+
 		Rumble updatedRumble = rumDao.updateRumble(rumble);
 		session.setAttribute("Rumble", updatedRumble);
 		return "Rumble";
 	}
-	
 
 	@RequestMapping(path = "deleteRumble.do")
 	private String deleteRumble(HttpSession session, Rumble rumble) {
@@ -130,12 +136,5 @@ public class RumbleController {
 		 model.addAttribute("location", location);
 		return "Location";
 	 }
-	 
-	 
-//	 @RequestMapping(path = "getLocationRatings.do")
-//	 private String getLocationRatings(Model model, int locationId) {
-//		return ;
-//		 
-//	 }
 
 }
