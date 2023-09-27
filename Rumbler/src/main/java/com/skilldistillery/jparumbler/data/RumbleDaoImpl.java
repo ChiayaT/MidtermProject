@@ -91,7 +91,6 @@ public class RumbleDaoImpl implements RumbleDAO {
 		newRumble.setRumbleDate(rumble.getRumbleDate());
 		newRumble.setEndTime(rumble.getEndTime());
 		newRumble.setOpenToPublic(rumble.getOpenToPublic());
-		newRumble.setDiscipline(rumble.getDiscipline());
 		newRumble.setRumbleMessages(rumble.getRumbleMessages());
 		Location location = rumble.getLocation();
 		Location newLocation = newRumble.getLocation();
@@ -107,6 +106,9 @@ public class RumbleDaoImpl implements RumbleDAO {
 		managedAddress.setCity(address.getCity());
 		managedAddress.setPhone(address.getPhone());
 		managedAddress.setZipCode(address.getZipCode());
+		System.out.println(rumble.getDiscipline());
+		newRumble.setDiscipline(rumble.getDiscipline());
+		
 		return newRumble;
 	}
 
