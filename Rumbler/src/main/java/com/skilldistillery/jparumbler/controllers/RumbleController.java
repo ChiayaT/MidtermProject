@@ -41,7 +41,7 @@ public class RumbleController {
 		rumble.setHost((User) session.getAttribute("loggedInUser"));
 		rumble.setGuest((User) session.getAttribute("guest"));
 		rumble.setDiscipline(rumDao.findDisciplineById(disciplineId));
-		if ((locationId != null & disciplineId != null) || location.getName() != null) {
+		if ((locationId != null & disciplineId != null) || ! location.getName().equals("null")) {
 			if (locationId != null & disciplineId != null) {
 				rumble.setLocation(rumDao.findlocationById(locationId));
 			}
@@ -68,28 +68,44 @@ public class RumbleController {
 	@RequestMapping(path = "updateRumble.do" ,method = RequestMethod.GET)
 	private String gotoupdateRumble(HttpSession session, Rumble rumble, Model model) {
 		model.addAttribute("location", rumble.getLocation());
+		model.addAttribute("locations", rumDao.getAllLocations());
+		model.addAttribute("locationTypes", rumDao.getAllLocationTypes());
+		model.addAttribute("disciplines", rumDao.getAllDisciplines());
+		
 		return "updateRumble";
 	}
 
 	@RequestMapping(path = "updateRumble.do" ,method = RequestMethod.POST)
 	private String updateRumble(HttpSession session, Rumble rumble, Integer locationId, Integer disciplineId,
-			Location location, Integer locationTypeId ) {
-		System.out.println(rumble);
-		System.out.println(location);
-		System.out.println(locationId);
-		System.out.println(locationTypeId);
-		System.out.println(disciplineId);
-		if (rumble.getLocation() != location) {
-			rumble.setLocation(location);
+			Location location, Integer locationTypeId, String descriptionLoco, String descriptionRum) {
+		Rumble managedRumble = (Rumble) session.getAttribute("Rumble");
+		rumble.setDescription(descriptionRum);
+		location.setDescription(descriptionLoco);
+		rumble.setHost(managedRumble.getHost());
+		rumble.setGuest(managedRumble.getGuest());
+		if ((locationId != null & disciplineId != null) || ! location.getName().equals("Only Change If Creating")) {
+			if (locationId != null & disciplineId != null) {
+				System.out.println(location.getId());
+				rumble.setLocation(rumDao.findlocationById(locationId));
+			}
+			else {
+				location.setLocationType(rumDao.findLocoTypeById(locationTypeId));
+				rumDao.createLocation(location);
+				rumble.setLocation(location); 
+			}
 		}
+		System.out.println(rumble.getGuest());
+		System.out.println(rumble.getHost());
 		Discipline discipline = rumDao.findDisciplineById(disciplineId);
 		if(rumble.getDiscipline() != discipline) {
 			rumble.setDiscipline(discipline);
 		}
+		
 		Rumble updatedRumble = rumDao.updateRumble(rumble);
 		session.setAttribute("Rumble", updatedRumble);
 		return "Rumble";
 	}
+	
 
 	@RequestMapping(path = "deleteRumble.do")
 	private String deleteRumble(HttpSession session, Rumble rumble) {
