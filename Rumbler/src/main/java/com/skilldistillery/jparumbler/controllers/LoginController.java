@@ -41,7 +41,7 @@ public class LoginController {
 			// add user to session
 			session.setAttribute("loggedInUser", loggedInUser);
 			List<Rumble> allUserRumbles = rumDao.getAllRumblesForSpecificUser(loggedInUser.getId());
-			session.setAttribute("allUserRumbles", allUserRumbles);
+			model.addAttribute("allUserRumbles", allUserRumbles);
 			List<UserDiscipline> userDisciplines = userDao.findAllDisciplinesForUser(loggedInUser.getId());
 			model.addAttribute("userDisciplines", userDisciplines);
 			return "account";

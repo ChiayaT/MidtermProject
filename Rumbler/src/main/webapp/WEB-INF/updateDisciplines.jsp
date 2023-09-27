@@ -83,16 +83,19 @@
 
 		<hr>
 		<h2 class="display-6">Add New Discipline:</h2>
-		<form action="#" method="POST" class="row g-3 bg-light">
-
+		<form action="addNewDiscipline.do" method="POST"
+			class="row g-3 bg-light">
+			<input type="hidden" name="userId" value="${loggedInUser.id}">
 
 
 			<div class="col-md-2">
 				<label for="discipline.id" class="form-label">Discipline</label> <select
-					name="discipline.id" class="form-select">
-
+					name="disciplineId" class="form-select">
 					<c:forEach var="discipline" items="${allDisciplines}">
-						<option value="${discipline.id}">${discipline.name}</option>
+						<c:if test="${!loggedInUser.hasDiscipline(discipline.id)}">
+							<option value="${discipline.id}">${discipline.name}</option>
+						</c:if>
+
 					</c:forEach>
 				</select>
 			</div>

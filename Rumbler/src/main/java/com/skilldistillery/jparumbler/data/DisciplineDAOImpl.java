@@ -29,18 +29,18 @@ public class DisciplineDAOImpl implements DisciplineDAO {
 	}
 
 	@Override
-	public UserDiscipline addNewDiscipline(UserDiscipline ud, int userId, int disciplineId) {
-		UserDiscipline newDiscipline = null;
+	public UserDiscipline addNewDiscipline(UserDiscipline newDiscipline, int userId, int disciplineId) {
 		User user = em.find(User.class, userId);
 		Discipline discipline = em.find(Discipline.class, disciplineId);
 		if (user != null && discipline != null) {
 			UserDisciplineId id = new UserDisciplineId(userId, disciplineId);
-			newDiscipline = new UserDiscipline();
-			newDiscipline.setExperienceLevel(ud.getExperienceLevel());
-			newDiscipline.setFightingStance(ud.getFightingStance());
-			newDiscipline.setDescription(ud.getDescription());
+			newDiscipline.setId(id);
+			newDiscipline.setUser(user);
+			newDiscipline.setDiscipline(discipline);
+			em.persist(newDiscipline);
+			return newDiscipline;
 		}
-		return newDiscipline;
+		return null;
 	}
 
 	@Override
