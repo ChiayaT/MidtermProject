@@ -38,9 +38,11 @@ public class UserController {
 	}
 
 	@RequestMapping(path = { "updateAccount.do" }, method = RequestMethod.POST)
-	private String postUpdateAccount(User user, HttpSession session) {
+	private String postUpdateAccount(User user, HttpSession session, Model model) {
 		User updatedUser = userDao.updateUser(user);
 		session.setAttribute("loggedInUser", updatedUser);
+		List<UserDiscipline> userDisciplines = userDao.findAllDisciplinesForUser(user.getId());
+		model.addAttribute("userDisciplines", userDisciplines);
 		return "account";
 	}
 
