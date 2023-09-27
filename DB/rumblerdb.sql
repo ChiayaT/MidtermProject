@@ -395,6 +395,7 @@ INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip_code`, `
 INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip_code`, `phone`, `enabled`) VALUES (6, '246 Openwight Circle', NULL, 'Austin', 'Texas', '78704', NULL, 1);
 INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip_code`, `phone`, `enabled`) VALUES (7, '2401 Thornton Rd', 'A1', 'Austin', 'Texas', '78704', '5128400177', 1);
 INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip_code`, `phone`, `enabled`) VALUES (8, '9663 Santa Monica Blvd', '440', 'Beverly Hills', 'California', '90210', '4243247444', 1);
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip_code`, `phone`, `enabled`) VALUES (9, 'admin', NULL, 'admin', 'admin', 'admin', NULL, 0);
 
 COMMIT;
 
@@ -404,7 +405,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rumblerdb`;
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `profile_image_url`, `height_in_inches`, `weight_in_pounds`, `address_id`, `enabled`, `date_of_birth`, `role`, `create_date`, `last_update`, `description`) VALUES (1, 'admin', 'admin', 'admin', 'admin', NULL, 1, 1, 1, 1, NULL, 'admin', NULL, NULL, NULL);
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `profile_image_url`, `height_in_inches`, `weight_in_pounds`, `address_id`, `enabled`, `date_of_birth`, `role`, `create_date`, `last_update`, `description`) VALUES (1, 'admin', 'admin', 'admin', 'admin', NULL, 1, 1, 9, 1, NULL, 'admin', NULL, NULL, NULL);
 INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `profile_image_url`, `height_in_inches`, `weight_in_pounds`, `address_id`, `enabled`, `date_of_birth`, `role`, `create_date`, `last_update`, `description`) VALUES (2, 'Jackie', 'Chan', 'jchan', 'jchan', 'https://hips.hearstapps.com/hmg-prod/images/jackie-chan-news-photo-83389121-1567001252.jpg?crop=0.784xw:1.00xh;0.0255xw,0&resize=1200:*', 67, 143, 2, 1, '1953-04-07', 'user', '2023-09-22', '2023-09-22', 'hi-ya!');
 INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `profile_image_url`, `height_in_inches`, `weight_in_pounds`, `address_id`, `enabled`, `date_of_birth`, `role`, `create_date`, `last_update`, `description`) VALUES (3, 'Mike', 'Tyson', 'mtyson', 'mtyson', 'https://cdn.europosters.eu/image/750/art-photo/mike-tyson-i135277.jpg', 70, 220, 3, 1, '1966-06-30', 'user', '2023-09-22', '2023-09-22', 'check out my tattoo');
 INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `profile_image_url`, `height_in_inches`, `weight_in_pounds`, `address_id`, `enabled`, `date_of_birth`, `role`, `create_date`, `last_update`, `description`) VALUES (4, 'Ronda', 'Rousey', 'rrousey', 'rrousey', 'https://media-cldnry.s-nbcnews.com/image/upload/t_fit-1500w,f_auto,q_auto:best/newscms/2018_05/2308511/180129-ronda-rousey-mc-8452.JPG', 66, 135, 5, 1, '1987-02-01', 'user', '2023-09-26', '2023-09-26', 'first female fighter signed to UFC');

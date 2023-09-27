@@ -10,24 +10,48 @@
 </head>
 <body>
 	<jsp:include page="navbar.jsp" />
-	<h1>Fellow Rumblers</h1>
-	<table>
-		<thead>
-			<tr>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach var="user" items="${users}">
-				<tr>
+	<div class="container">
+		<h1>Fellow Rumblers</h1>
+
+			<table class="table table-striped">
+				<thead class="table-dark">
+					<tr>
+						<th></th>
+						<th>FIRST NAME</th>
+						<th>LAST NAME</th>
+						<th>USERNAME</th>
+						<th>HEIGHT</th>
+						<th>WEIGHT</th>
+
+					</tr>
+				</thead>
+				<tbody>
+				<c:forEach var="user" items="${users}">
 					<c:if test="${user.id != loggedInUser.id }">
-					<td>${user.username}</td>
-						<td><br>
-						<img width="150" src="${user.profileImageURL}"></td>
+						<tr>
+							<td class="align-middle text-center"><img src="${user.profileImageURL}" class="rounded"></td>
+							<td class="align-middle">${user.firstName}</td>
+							<td class="align-middle">${user.lastName}</td>
+							<td class="align-middle">${user.username}</td>
+							<td class="align-middle">${user.heightInInches} inches</td>
+							<td class="align-middle">${user.weightInPounds} pounds</td>
+							<c:forEach var="userDiscipline" items="${user.userDisciplines}">
+							<td class="align-middle"><strong>Discipline:</strong> ${userDiscipline.discipline.name}<br>
+							<strong>Experience Level:</strong> ${userDiscipline.experienceLevel.name}<br>
+							<strong>Fighting Stance:</strong> ${userDiscipline.fightingStance.stance}<br>
+							</td>
+							</c:forEach>
+							
+							
+							
+							<td class="align-middle"><a href="makeRumble.do" class="btn btn-update">Create Rumble</a></td>
+						</tr>
 					</c:if>
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
+				</c:forEach>
+			</tbody>
+			</table>
+
+	</div>
 	<jsp:include page="bootstrapScript.jsp" />
 </body>
 </html>
