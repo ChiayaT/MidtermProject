@@ -41,6 +41,7 @@ public class LoginController {
 			// add user to session
 			session.setAttribute("loggedInUser", loggedInUser);
 			List<Rumble> allUserRumbles = rumDao.getAllRumblesForSpecificUser(loggedInUser.getId());
+			System.out.println(allUserRumbles); 
 			session.setAttribute("allUserRumbles", allUserRumbles);
 			List<UserDiscipline> userDisciplines = userDao.findAllDisciplinesForUser(loggedInUser.getId());
 			model.addAttribute("userDisciplines", userDisciplines);
@@ -53,6 +54,7 @@ public class LoginController {
 	@RequestMapping(path = "logout.do")
 	public String logout(HttpSession session) {
 		// remove user from session
+		session.removeAttribute("allUserRumbles");
 		session.removeAttribute("loggedInUser");
 		return "home";
 	}

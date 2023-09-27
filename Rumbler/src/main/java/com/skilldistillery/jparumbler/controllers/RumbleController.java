@@ -17,6 +17,7 @@ import com.skilldistillery.jparumbler.entities.Discipline;
 import com.skilldistillery.jparumbler.entities.Location;
 import com.skilldistillery.jparumbler.entities.Rumble;
 import com.skilldistillery.jparumbler.entities.User;
+import com.skilldistillery.jparumbler.entities.UserDiscipline;
 
 @Controller
 public class RumbleController {
@@ -109,12 +110,22 @@ public class RumbleController {
 		return "Rumble";
 	}
 	
-
+	@RequestMapping(path = "goToDeleteRumble.do")
+	private String gotodeleteRumble(HttpSession session, Integer rumbleId, Model model) {
+		model.addAttribute("Rumble", rumDao.findRumbleById(rumbleId));
+		return "deleteRumble";
+	}
+	
 	@RequestMapping(path = "deleteRumble.do")
-	private String deleteRumble(HttpSession session, Rumble rumble) {
-		Rumble updatedRumble = rumDao.updateRumble(rumble);
-		session.setAttribute("Rumble", null);
-		return "Account";
+	private String deleteRumble(HttpSession session, Integer rumbleId, Model model) {
+		User user =((User) session.getAttribute("loggedInUser"));
+		rumDao.deleteRumble(rumbleId);
+		session.removeAttribute("Rumble");
+		List<Rumble> allUserRumbles = rumDao.getAllRumblesForSpecificUser(user.getId());
+		model.addAttribute("allUserRumbles", allUserRumbles);
+		List<UserDiscipline> userDisciplines = dao.findAllDisciplinesForUser(user.getId());
+		model.addAttribute("userDisciplines", userDisciplines);
+		return "account";
 	}
 	
 	 @RequestMapping(path = "getLocationsList.do")

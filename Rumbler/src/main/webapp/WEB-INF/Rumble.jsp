@@ -35,7 +35,7 @@
 						</strong>${Rumble.location.name }<br> <strong>Address: </strong>${Rumble.location.address.street }<br>
 					</div>
 				</div>
-
+				<a href="goToDeleteRumble.do?rumbleId=${Rumble.id }" class="btn btn-danger">Delete Rumble</a>
 
 
 
