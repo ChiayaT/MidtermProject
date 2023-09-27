@@ -93,13 +93,13 @@
 										</c:forEach>
 									</tbody>
 								</table>
-									<a href="#" class="btn btn-update">Update Disciplines</a>
 							</c:when>
 							<c:otherwise>
 								<p class="lead">No disciplines added.</p>
 							</c:otherwise>
 						</c:choose>
-						
+						<a href="#" class="btn btn-update">Update Disciplines</a>
+
 					</div>
 				</div>
 
