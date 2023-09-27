@@ -43,8 +43,9 @@
 				</div>
 				<div class="col-md-2">
 					<br>
-					<button type="submit" class="btn btn-update">Update
-						Discipline</button>
+					<!-- FIX ME -->
+					<!-- <button type="submit" class="btn btn-update">Update Discipline</button>-->
+					<br> <a href="#" class="btn btn-update">Update Discipline</a>
 				</div>
 				<div class="col-md-2">
 					<br> <a href="#" class="btn btn-danger">Delete Discipline</a>
