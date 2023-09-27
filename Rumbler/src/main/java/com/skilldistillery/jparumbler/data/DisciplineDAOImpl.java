@@ -29,23 +29,31 @@ public class DisciplineDAOImpl implements DisciplineDAO {
 	}
 
 	@Override
+	public UserDiscipline addNewDiscipline(UserDiscipline newDiscipline, int userId, int disciplineId) {
+		User user = em.find(User.class, userId);
+		Discipline discipline = em.find(Discipline.class, disciplineId);
+		if (user != null && discipline != null) {
+			UserDisciplineId id = new UserDisciplineId(userId, disciplineId);
+			newDiscipline.setId(id);
+			newDiscipline.setUser(user);
+			newDiscipline.setDiscipline(discipline);
+			em.persist(newDiscipline);
+			return newDiscipline;
+		}
+		return null;
+	}
+
+	@Override
 	public UserDiscipline updateDiscipline(UserDiscipline userDiscipline, int userId, int disciplineId) {
 		UserDiscipline managedUD = null;
 		User user = em.find(User.class, userId);
 		Discipline discipline = em.find(Discipline.class, disciplineId);
 		if (user != null && discipline != null) {
 			UserDisciplineId id = new UserDisciplineId(userId, disciplineId);
-		//	userDiscipline.setId(id);
 			managedUD = findDisciplineById(id);
-			// i think this method is going to break but trying to avoid the get/set for all
-			// the joined relationships in this table by seeing if we can do it this way
-			// first
-		//	managedUD.setUser(userDiscipline.getUser());
-		//	managedUD.setDiscipline(userDiscipline.getDiscipline());
 			managedUD.setExperienceLevel(userDiscipline.getExperienceLevel());
 			managedUD.setFightingStance(userDiscipline.getFightingStance());
 			managedUD.setDescription(userDiscipline.getDescription());
-		//	managedUD.setLastUpdate(LocalDateTime.now());
 			em.flush();
 		}
 		return managedUD;
@@ -54,6 +62,14 @@ public class DisciplineDAOImpl implements DisciplineDAO {
 	@Override
 	public boolean deleteDiscipline(UserDisciplineId id) {
 		return false;
+	}
+
+	@Override
+	public List<Discipline> getAllDisciplines() {
+		List<Discipline> allUserDisciplines = null;
+		String jpql = "select d from Discipline d";
+		allUserDisciplines = em.createQuery(jpql, Discipline.class).getResultList();
+		return allUserDisciplines;
 	}
 
 	@Override
@@ -71,5 +87,6 @@ public class DisciplineDAOImpl implements DisciplineDAO {
 		allLevels = em.createQuery(jpql, ExperienceLevel.class).getResultList();
 		return allLevels;
 	}
+
 
 }
