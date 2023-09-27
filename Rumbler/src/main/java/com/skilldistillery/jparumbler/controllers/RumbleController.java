@@ -1,5 +1,6 @@
 package com.skilldistillery.jparumbler.controllers;
 
+import java.time.LocalTime;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -27,19 +28,19 @@ public class RumbleController {
 	private UserDAO dao;
 
 	@RequestMapping(path = "makeRumble.do", method = RequestMethod.GET)
-	private String goToCreateRumble(HttpSession session) {
+	private String goToCreateRumble(HttpSession session, Integer guestId) {
 		
 		session.setAttribute("disciplines", rumDao.getAllDisciplines());
 		session.setAttribute("locations", rumDao.getAllLocations());
 		session.setAttribute("locationTypes", rumDao.getAllLocationTypes());
-		session.setAttribute("guest", dao.findUserById(3));
+		session.setAttribute("guest", dao.findUserById(guestId));
 		// Change guest later on
 		return "CreateRumble";
 	}
 
 	@RequestMapping(path = "makeRumble.do", method = RequestMethod.POST)
 	private String CreateRumble(HttpSession session, Rumble rumble, Integer locationId, Integer disciplineId,
-			Location location, Integer locationTypeId ) {
+			Location location, Integer locationTypeId) {
 		rumble.setHost((User) session.getAttribute("loggedInUser"));
 		rumble.setGuest((User) session.getAttribute("guest"));
 		rumble.setDiscipline(rumDao.findDisciplineById(disciplineId));
