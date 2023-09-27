@@ -29,13 +29,13 @@
 				<c:forEach var="user" items="${users}">
 					<c:if test="${user.id != loggedInUser.id }">
 						<tr>
-							<td><img src="${user.profileImageURL}" class="rounded"></td>
-							<td>${user.firstName}</td>
-							<td>${user.lastName}</td>
-							<td>${user.username}</td>
-							<td>${user.heightInInches} inches</td>
-							<td>${user.weightInPounds} pounds</td>
-							<td><a href="makeRumble.do" class="btn btn-update">Create Rumble</a></td>
+							<td class="align-middle"><img src="${user.profileImageURL}" class="rounded"></td>
+							<td class="align-middle">${user.firstName}</td>
+							<td class="align-middle">${user.lastName}</td>
+							<td class="align-middle">${user.username}</td>
+							<td class="align-middle">${user.heightInInches} inches</td>
+							<td class="align-middle">${user.weightInPounds} pounds</td>
+							<td class="align-middle"><a href="makeRumble.do" class="btn btn-update">Create Rumble</a></td>
 						</tr>
 					</c:if>
 				</c:forEach>

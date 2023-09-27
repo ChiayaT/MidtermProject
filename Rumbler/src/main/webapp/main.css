@@ -34,7 +34,7 @@ a.navbar-brand:hover .logo {
 
 .rounded {
 	height: 100px !important;
-	border-radius: 0 50% 50% 50% !important;
+	border-radius: 50% !important;
 }
 
 .img-thumbnail {
