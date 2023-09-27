@@ -37,8 +37,8 @@
 							<td class="align-middle">${user.weightInPounds} pounds</td>
 							<c:forEach var="userDiscipline" items="${user.userDisciplines}">
 							<td class="align-middle"><strong>Discipline:</strong> ${userDiscipline.discipline.name}<br>
-							<strong>Experience Level:</strong>${userDiscipline.experienceLevel.name}<br>
-							<strong>Fighting Stance:</strong>${userDiscipline.fightingStance.stance}<br>
+							<strong>Experience Level:</strong> ${userDiscipline.experienceLevel.name}<br>
+							<strong>Fighting Stance:</strong> ${userDiscipline.fightingStance.stance}<br>
 							</td>
 							</c:forEach>
 							
