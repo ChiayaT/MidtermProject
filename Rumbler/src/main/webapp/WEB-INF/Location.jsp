@@ -15,6 +15,7 @@
 	${location.description}<br>
 	<img width="150" src="${location.image_url}">
 	${location.name}<br>
+	<a href="getLocationsList.do">Rate This Rumble Ring</a>
 	<h2>Rumbler Ring Ratings and Reviews</h2>
 	<c:forEach var="rating" items="${location.locationRatings}">
 	${rating.user.username} gives a ${rating.ratingScale} out of 5 <br>
