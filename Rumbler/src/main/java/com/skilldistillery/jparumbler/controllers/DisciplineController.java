@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.skilldistillery.jparumbler.data.DisciplineDAO;
 import com.skilldistillery.jparumbler.data.UserDAO;
+import com.skilldistillery.jparumbler.entities.Discipline;
 import com.skilldistillery.jparumbler.entities.ExperienceLevel;
 import com.skilldistillery.jparumbler.entities.FightingStance;
 import com.skilldistillery.jparumbler.entities.User;
 import com.skilldistillery.jparumbler.entities.UserDiscipline;
-import com.skilldistillery.jparumbler.entities.UserDisciplineId;
 
 @Controller
 public class DisciplineController {
@@ -36,6 +36,8 @@ public class DisciplineController {
 		model.addAttribute("allStances", allStances);
 		List<ExperienceLevel> allLevels = disDao.getAllExperienceLevels();
 		model.addAttribute("allLevels", allLevels);
+		List<Discipline> allUserDisciplines = disDao.getAllDisciplines();
+		model.addAttribute("allDisciplines", allUserDisciplines);
 		if(updated != null && updated.length() > 0) {
 			model.addAttribute("updatedDiscipline", updated);
 		}
