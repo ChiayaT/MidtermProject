@@ -61,12 +61,12 @@
 					</select>
 				</div>
 				<div class="col-md-2">
-					<!-- FIX ME -->
 					<br>
 					<button type="submit" class="btn btn-update">Update
 						Discipline</button>
 				</div>
 				<div class="col-md-2">
+					<!-- FIX ME -->
 					<br> <a href="#" class="btn btn-danger">Delete Discipline</a>
 				</div>
 
@@ -116,9 +116,10 @@
 				</select>
 			</div>
 
-
-			<br>
-			<button type="submit" class="btn btn-update">Add Discipline</button>
+			<div class="col-md-2">
+				<br>
+				<button type="submit" class="btn btn-update">Add Discipline</button>
+			</div>
 
 
 		</form>
