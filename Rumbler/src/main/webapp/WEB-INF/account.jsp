@@ -74,7 +74,7 @@
 						<h2 class="display-6">Disciplines:</h2>
 
 						<c:choose>
-							<c:when test="${not empty userDisciplines }">
+							<c:when test="${not empty userDisciplines}">
 								<table class="table table-striped">
 									<thead class="table-dark">
 										<tr>

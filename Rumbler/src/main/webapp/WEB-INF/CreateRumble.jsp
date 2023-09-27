@@ -30,7 +30,7 @@
 		Start Time:
 		<input type="time"  name="startTime"><br> 
 		Approximate End Time:
-		<input type="time"  name="End"><br>
+		<input type="time"  name="endTime"><br>
 		<select name="locationId">
 		Location:
 			<option value="" >Create a location</option>

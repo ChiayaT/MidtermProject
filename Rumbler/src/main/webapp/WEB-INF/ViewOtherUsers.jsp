@@ -44,7 +44,7 @@
 							
 							
 							
-							<td class="align-middle"><a href="makeRumble.do" class="btn btn-update">Create Rumble</a></td>
+							<td class="align-middle"><a href="makeRumble.do?guestId=${user.id }" class="btn btn-update">Create Rumble</a></td>
 						</tr>
 					</c:if>
 				</c:forEach>
