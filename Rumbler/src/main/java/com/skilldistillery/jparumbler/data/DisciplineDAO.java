@@ -13,7 +13,7 @@ public interface DisciplineDAO {
 
 	@Autowired
 	UserDiscipline findDisciplineById(UserDisciplineId id);
-	UserDiscipline updateDiscipline(UserDiscipline userDiscipline);
+	UserDiscipline updateDiscipline(UserDiscipline userDiscipline, int userId, int disciplineId);
 	boolean deleteDiscipline(UserDisciplineId id);
 	
 	List<FightingStance> getAllFightingStances();

@@ -28,7 +28,7 @@ public class DisciplineController {
 	private UserDAO userDao;
 
 	@RequestMapping(path = "updateDisciplines.do", method = RequestMethod.GET)
-	public String goToUpdateDisciplines(HttpSession session, Model model) {
+	public String goToUpdateDisciplines(HttpSession session, Model model, String updated) {
 		User user = (User) session.getAttribute("loggedInUser");
 		List<UserDiscipline> userDisciplines = userDao.findAllDisciplinesForUser(user.getId());
 		model.addAttribute("userDisciplines", userDisciplines);
@@ -36,15 +36,16 @@ public class DisciplineController {
 		model.addAttribute("allStances", allStances);
 		List<ExperienceLevel> allLevels = disDao.getAllExperienceLevels();
 		model.addAttribute("allLevels", allLevels);
+		if(updated != null && updated.length() > 0) {
+			model.addAttribute("updatedDiscipline", updated);
+		}
 		return "updateDisciplines";
 	}
 
 	@RequestMapping(path = "updateSpecificDiscipline.do", method = RequestMethod.POST)
-	public String updateSpecificDiscipline(UserDisciplineId id, UserDiscipline userDiscipline, HttpSession session) {
-		UserDiscipline updatedDiscipline = disDao.updateDiscipline(userDiscipline);
-//		User user = (User) session.getAttribute("loggedInUser");
-//		user.setu
-		return "updateDisciplines"; 
+	public String updateSpecificDiscipline(int userId, int disciplineId, UserDiscipline userDiscipline, HttpSession session) {
+	UserDiscipline updatedDiscipline = disDao.updateDiscipline(userDiscipline, userId, disciplineId);
+		return "redirect:updateDisciplines.do?updated=" + updatedDiscipline.getDiscipline().getName().replaceAll(" ", "+"); 
 	}
 
 }
