@@ -37,6 +37,7 @@ public class DisciplineDAOImpl implements DisciplineDAO {
 			newDiscipline.setId(id);
 			newDiscipline.setUser(user);
 			newDiscipline.setDiscipline(discipline);
+			newDiscipline.setEnabled(true);
 			em.persist(newDiscipline);
 			return newDiscipline;
 		}
@@ -61,6 +62,11 @@ public class DisciplineDAOImpl implements DisciplineDAO {
 
 	@Override
 	public boolean deleteDiscipline(UserDisciplineId id) {
+		UserDiscipline deletedUD = findDisciplineById(id);
+		if (deletedUD != null) {
+			deletedUD.setEnabled(false);
+			return true;
+		}
 		return false;
 	}
 
@@ -87,6 +93,5 @@ public class DisciplineDAOImpl implements DisciplineDAO {
 		allLevels = em.createQuery(jpql, ExperienceLevel.class).getResultList();
 		return allLevels;
 	}
-
 
 }

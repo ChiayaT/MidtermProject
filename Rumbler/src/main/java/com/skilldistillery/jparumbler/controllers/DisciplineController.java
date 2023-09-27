@@ -59,6 +59,13 @@ public class DisciplineController {
 		return "redirect:updateDisciplines.do"; 
 	}
 	
+	@RequestMapping(path = "deleteDiscipline.do")
+	public String deleteDiscipline(UserDiscipline ud, HttpSession session) {
+		User user = (User) session.getAttribute("loggedInUser");
+		disDao.deleteDiscipline(ud.getId());
+		return "redirect:updateDisciplines.do";
+	}
+	
 	public void refreshSessionUser(HttpSession session) {
 		User user = (User) session.getAttribute("loggedInUser");
 		if (user != null) {

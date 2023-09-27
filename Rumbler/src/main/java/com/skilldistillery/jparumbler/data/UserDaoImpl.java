@@ -102,7 +102,7 @@ public class UserDaoImpl implements UserDAO {
 	@Override
 	public List<UserDiscipline> findAllDisciplinesForUser(int id) {
 		List<UserDiscipline> userDisciplines = null;
-		String jpql = "select ud from UserDiscipline ud where user_id = :id";
+		String jpql = "select ud from UserDiscipline ud where user_id = :id and enabled = true";
 		userDisciplines = em.createQuery(jpql, UserDiscipline.class).setParameter("id", id).getResultList();
 		return userDisciplines;
 	}	

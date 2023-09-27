@@ -67,19 +67,12 @@
 				</div>
 				<div class="col-md-2">
 					<!-- FIX ME -->
-					<br> <a href="#" class="btn btn-danger">Delete Discipline</a>
+					<br> <a href="deleteDiscipline.do?id=<c:out value="${userDiscipline.id}"/>"class="btn btn-danger">Delete Discipline</a>
 				</div>
 
 			</form>
 			<br>
 		</c:forEach>
-
-
-
-
-
-
-
 
 		<hr>
 		<h2 class="display-6">Add New Discipline:</h2>
