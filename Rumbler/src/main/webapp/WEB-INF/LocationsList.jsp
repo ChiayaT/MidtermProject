@@ -11,14 +11,11 @@
 <body>
 	<jsp:include page="navbar.jsp" />
 	<h1>Rumble Rings</h1>
-	<!--Might need a little tweekage-->
 	<c:forEach var="location" items="${locations}">
 	${location.name}<br>
 	${location.description}<br>
 	<a href="getLocation.do?locationId=${location.id}"> <img width="150" src="${location.image_url}"></td></a><br>
-	<!--${location.address}<br>-->
-
-
+	<!--${location.address}-->
 	</c:forEach>
 
 

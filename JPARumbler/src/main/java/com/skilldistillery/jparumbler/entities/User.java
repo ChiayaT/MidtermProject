@@ -452,6 +452,16 @@ public class User {
 		return hasDiscipline;
 	}
 
+	public boolean hasRatedLocation(int userId) {
+		boolean hasRated = false;
+		for(LocationRating lr : locationRatings) {
+			if (lr.getUser().getId() == userId) {
+				hasRated = true;
+				break;
+			}
+		}
+		return hasRated;
+	}
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

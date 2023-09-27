@@ -19,12 +19,14 @@ public interface RumbleDAO {
 	Rumble updateRumble(Rumble rumble);
 	boolean deleteRumble(int id);
 	
+	public LocationRating createLocationRating(LocationRating LocationRating);
 	public List<Location> getAllLocations();
 	public List<LocationRating> getLocationRatings(int locationId);
 	public List<LocationType> getAllLocationTypes();
 	public List<Discipline> getAllDisciplines();
 	Discipline findDisciplineById(int id);
 	Location findlocationById(int id);
+	public boolean addRatingToRatingList(int locationId, int userId, int ratingScale, String ratingComment);
 	
 	LocationType findLocoTypeById(int id);
 	
