@@ -89,6 +89,13 @@ public class RumbleController {
 		return "LocationsList";
 		 
 	 }
+	 @RequestMapping(path = "getLocation.do")
+	 private String getLocation(Model model, int locationId) {
+		 Location location = rumDao.findlocationById(locationId);
+		 model.addAttribute("location", location);
+		return "Location";
+	 }
+	 
 	 
 //	 @RequestMapping(path = "getLocationRatings.do")
 //	 private String getLocationRatings(Model model, int locationId) {

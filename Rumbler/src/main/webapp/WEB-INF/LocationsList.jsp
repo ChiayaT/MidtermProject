@@ -15,7 +15,7 @@
 	<c:forEach var="location" items="${locations}">
 	${location.name}<br>
 	${location.description}<br>
-	<img width="150" src="${location.image_url}"></td><br>
+	<a href="getLocation.do?locationId=${location.id}"> <img width="150" src="${location.image_url}"></td></a><br>
 	<!--${location.address}<br>-->
 
 
