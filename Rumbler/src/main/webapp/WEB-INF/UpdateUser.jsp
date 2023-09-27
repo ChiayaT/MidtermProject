@@ -67,7 +67,7 @@
 			<div class="col-md-2">
 				<label for="address.state" class="form-label">State</label> <input
 					type="text" class="form-control" name="address.state"
-					value="${loggedInUser.weightInPounds}">
+					value="${loggedInUser.address.state}">
 			</div>
 
 

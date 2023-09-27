@@ -32,8 +32,9 @@ a.navbar-brand:hover .logo {
 	color: #FBFBFB;
 }
 
-.img-thumbnail {
-	height: 250px !important;
+.rounded {
+	height: 100px !important;
+	border-radius: 0 50% 50% 50% !important;
 }
 
 .wrapper {

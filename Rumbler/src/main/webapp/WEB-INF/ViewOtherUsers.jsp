@@ -10,24 +10,39 @@
 </head>
 <body>
 	<jsp:include page="navbar.jsp" />
-	<h1>Fellow Rumblers</h1>
-	<table>
-		<thead>
-			<tr>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach var="user" items="${users}">
-				<tr>
+	<div class="container">
+		<h1>Fellow Rumblers</h1>
+
+			<table class="table table-striped">
+				<thead class="table-dark">
+					<tr>
+						<th></th>
+						<th>FIRST NAME</th>
+						<th>LAST NAME</th>
+						<th>USERNAME</th>
+						<th>HEIGHT</th>
+						<th>WEIGHT</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+				<c:forEach var="user" items="${users}">
 					<c:if test="${user.id != loggedInUser.id }">
-					<td>${user.username}</td>
-						<td><br>
-						<img width="150" src="${user.profileImageURL}"></td>
+						<tr>
+							<td><img src="${user.profileImageURL}" class="rounded"></td>
+							<td>${user.firstName}</td>
+							<td>${user.lastName}</td>
+							<td>${user.username}</td>
+							<td>${user.heightInInches} inches</td>
+							<td>${user.weightInPounds} pounds</td>
+							<td><a href="makeRumble.do" class="btn btn-update">Create Rumble</a></td>
+						</tr>
 					</c:if>
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
+				</c:forEach>
+			</tbody>
+			</table>
+
+	</div>
 	<jsp:include page="bootstrapScript.jsp" />
 </body>
 </html>
