@@ -37,6 +37,11 @@ a.navbar-brand:hover .logo {
 	border-radius: 0 50% 50% 50% !important;
 }
 
+.img-thumbnail {
+	height: 250px !important;
+	
+}
+
 .wrapper {
 
 	width: 90%;
