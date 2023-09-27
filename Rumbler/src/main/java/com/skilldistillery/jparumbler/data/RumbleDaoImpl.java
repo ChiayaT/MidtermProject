@@ -12,9 +12,11 @@ import com.skilldistillery.jparumbler.entities.Address;
 import com.skilldistillery.jparumbler.entities.Discipline;
 import com.skilldistillery.jparumbler.entities.Location;
 import com.skilldistillery.jparumbler.entities.LocationRating;
+import com.skilldistillery.jparumbler.entities.LocationRatingId;
 import com.skilldistillery.jparumbler.entities.LocationType;
 import com.skilldistillery.jparumbler.entities.Rumble;
 import com.skilldistillery.jparumbler.entities.RumbleMessage;
+import com.skilldistillery.jparumbler.entities.User;
 
 @Service
 @Transactional
@@ -166,6 +168,31 @@ public class RumbleDaoImpl implements RumbleDAO {
 		allUserRumblesHostOrGuest = em.createQuery(jpql, Rumble.class).setParameter("id", id).getResultList();
 		return allUserRumblesHostOrGuest;
 	}
+
+@Override
+public LocationRating createLocationRating(LocationRating locationRating) {
+	em.persist(locationRating);
+	return locationRating;
+}
+
+@Override
+public boolean addRatingToRatingList(int locationId, int userId, int ratingScale, String ratingComment) {
+	boolean rated = false;
+	Location location = em.find(Location.class, locationId);
+	User user = em.find(User.class, userId);
+	if (location != null && user != null) {
+		LocationRatingId id = new LocationRatingId(userId, locationId);
+		LocationRating locationRating = new LocationRating();
+		locationRating.setId(id);
+		locationRating.setLocation(location);
+		locationRating.setUser(user);
+		locationRating.setRatingComment(ratingComment);
+		locationRating.setRatingScale(ratingScale);
+		em.persist(locationRating);
+		rated = true;
+	}
+	return rated;
+}
 
 
 

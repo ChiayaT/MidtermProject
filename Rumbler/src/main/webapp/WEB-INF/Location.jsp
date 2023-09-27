@@ -15,11 +15,12 @@
 	${location.description}<br>
 	<img width="150" src="${location.image_url}">
 	${location.name}<br>
+	<a href="giveLocationRating.do?locationId=${location.id}" method="get">Rate This Rumble Ring</a>
 	<h2>Rumbler Ring Ratings and Reviews</h2>
 	<c:forEach var="rating" items="${location.locationRatings}">
 	${rating.user.username} gives a ${rating.ratingScale} out of 5 <br>
-	<img width="150" src="${rating.user.profileImageURL}">
-	${rating.ratingComment}<br>
+	<img width="150" src="${rating.user.profileImageURL}"><br>
+	${rating.ratingComment}<br> 
 	</c:forEach>
     <jsp:include page="bootstrapScript.jsp" />
 </body>
