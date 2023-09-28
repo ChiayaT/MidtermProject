@@ -60,6 +60,7 @@
 										<tr>
 											<th>ID </th>
 											<th>RUMBLE</th>
+											<th>UPDATE</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -68,6 +69,8 @@
 												<td>${rumble.id}</td>
 												<td><a href="Rumble.do?id=${rumble.id}">
 														${rumble.title} @ ${rumble.location.name}</a></td>
+												<td><a href="updateRumble.do?rumbleId=${rumble.id}" class="btn btn-update">
+														Update Rumble</td>
 											</tr>
 										</c:forEach>
 									</tbody>

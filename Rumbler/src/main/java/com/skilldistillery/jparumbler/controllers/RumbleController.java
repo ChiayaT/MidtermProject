@@ -75,7 +75,9 @@ public class RumbleController {
 
 	
 	@RequestMapping(path = "updateRumble.do" ,method = RequestMethod.GET)
-	private String gotoupdateRumble(HttpSession session, Rumble rumble, Model model) {
+	private String gotoupdateRumble( int rumbleId, Model model, HttpSession session) {
+		Rumble rumble = rumDao.findRumbleById(rumbleId);
+		session.setAttribute("Rumble", rumble);
 		model.addAttribute("location", rumble.getLocation());
 		model.addAttribute("locations", rumDao.getAllLocations());
 		model.addAttribute("locationTypes", rumDao.getAllLocationTypes());
@@ -92,9 +94,10 @@ public class RumbleController {
 		location.setDescription(descriptionLoco);
 		rumble.setHost(managedRumble.getHost());
 		rumble.setGuest(managedRumble.getGuest());
+		rumble.setId(managedRumble.getId());
+		System.out.println(rumble);
 		if ((locationId != null & disciplineId != null) || ! location.getName().equals("Only Change If Creating")) {
 			if (locationId != null & disciplineId != null) {
-				System.out.println(location.getId());
 				rumble.setLocation(rumDao.findlocationById(locationId));
 			}
 			else {
@@ -109,7 +112,7 @@ public class RumbleController {
 		if(rumble.getDiscipline() != discipline) {
 			rumble.setDiscipline(discipline);
 		}
-		
+		rumble.setRumbleMessages(rumDao.getAllRumbleMessagesPerRumble(rumble.getId()));
 
 		Rumble updatedRumble = rumDao.updateRumble(rumble);
 		session.setAttribute("Rumble", updatedRumble);
