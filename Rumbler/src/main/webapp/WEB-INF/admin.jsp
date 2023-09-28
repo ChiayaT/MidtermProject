@@ -12,8 +12,8 @@
 <body>
 	<%@ include file="navbar.jsp"%>
 	<div class="container">
-		<h1>Account Details</h1>
-		admin page
+		<h1>Admin Dashboard</h1>
+		admin stuff
 	</div>
 	<jsp:include page="bootstrapScript.jsp" />
 </body>
