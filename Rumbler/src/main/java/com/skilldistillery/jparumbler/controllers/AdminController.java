@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.skilldistillery.jparumbler.data.RumbleDAO;
 import com.skilldistillery.jparumbler.data.UserDAO;
 import com.skilldistillery.jparumbler.entities.Location;
+import com.skilldistillery.jparumbler.entities.LocationRating;
 import com.skilldistillery.jparumbler.entities.Rumble;
 import com.skilldistillery.jparumbler.entities.User;
 
@@ -23,13 +24,15 @@ public class AdminController {
 	private RumbleDAO rumDao;
 
 	@RequestMapping(path = { "adminPage.do" })
-	private String showAllRumbles(Model model, String disabledRumble, String disabledUser, String disabledLocation) {
+	private String showAllRumbles(Model model, String disabledRumble, String disabledUser, String disabledLocation, String disabledLocationRating) {
 		List<Rumble> allRumblesForAllUsers = rumDao.getAllRumbles();
 		model.addAttribute("allRumbles", allRumblesForAllUsers);
 		List<User> allUsers = userDao.findAllUsers();
 		model.addAttribute("allUsers", allUsers);
 		List<Location> allLocations = rumDao.getAllLocations();
 		model.addAttribute("allLocations", allLocations);
+		List<LocationRating> allLocationRatings = rumDao.getAllLocationRatings();
+		model.addAttribute("allLocationRatings", allLocationRatings);
 		if(disabledRumble != null && disabledRumble.length() > 0) {
 			model.addAttribute("disabledRumble", disabledRumble);
 		}
@@ -38,6 +41,9 @@ public class AdminController {
 		}
 		if(disabledLocation != null && disabledLocation.length() > 0) {
 			model.addAttribute("disabledLocation", disabledLocation);
+		}
+		if(disabledLocationRating != null && disabledLocationRating.length() > 0) {
+			model.addAttribute("disabledLocationRating", disabledLocationRating);
 		}
 		return "admin";
 	}
@@ -61,6 +67,13 @@ public class AdminController {
 		Location locationToDisable = rumDao.findlocationById(id);
 		rumDao.deleteLocation(locationToDisable.getId());
 		return "redirect:adminPage.do?disabledLocation=" + locationToDisable.getName();
+	}
+	
+	@RequestMapping(path = { "disableLocationRating.do" })
+	private String disableLocationRating(Model model, int userId, int locationId) {
+		LocationRating locationRatingToDisable = rumDao.findLocationRatingById(userId, locationId);
+		rumDao.deleteLocationRating(userId, locationId);
+		return "redirect:adminPage.do?disabledLocationRating=" + locationRatingToDisable.getId().getUserId();
 	}
 	
 }

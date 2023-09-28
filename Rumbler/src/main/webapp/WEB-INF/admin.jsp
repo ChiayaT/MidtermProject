@@ -61,6 +61,7 @@
 			<p class="lead text-danger">Disabled Location: ${disabledLocation}</p>
 		</c:if>
 		
+		<h2 class="display-6">All Rumbles</h2>
 		<table class="table table-striped">
 				<thead class="table-dark">
 					<tr>
@@ -96,6 +97,7 @@
 			</tbody>
 			</table>
 			
+			<h2 class="display-6">All Users</h2>
 			<table class="table table-striped">
 				<thead class="table-dark">
 					<tr>
@@ -129,6 +131,7 @@
 			</tbody>
 			</table>
 			
+			<h2 class="display-6">All Locations</h2>
 			<table class="table table-striped">
 				<thead class="table-dark">
 					<tr>
@@ -153,6 +156,36 @@
 							<td class="align-middle">${location.enabled}</td>					
 							<td class="align-middle"><a href="#" class="btn btn-update">Enable Location</a></td>
 							<td class="align-middle"><a href="disableLocation.do?id=${location.id}" class="btn btn-danger">Disable Location</a></td>
+						</tr>
+				</c:forEach>
+			</tbody>
+			</table>
+			
+			<h2 class="display-6">All Location Ratings</h2>
+			<table class="table table-striped">
+				<thead class="table-dark">
+					<tr>
+						<th>USER ID</th>
+						<th>LOCATION ID</th>
+						<th>RATING SCALE</th>
+						<th>RATING COMMENT</th>
+						<th>ENABLED</th>
+						<th></th>
+						<th></th>
+						
+
+					</tr>
+				</thead>
+				<tbody>
+				<c:forEach var="locationRating" items="${allLocationRatings}">
+						<tr>
+							<td class="align-middle">${locationRating.user.id}</td>
+							<td class="align-middle">${locationRating.location.id}</td>
+							<td class="align-middle">${locationRating.ratingScale}</td>
+							<td class="align-middle">${locationRating.ratingComment}</td>
+							<td class="align-middle">${locationRating.enabled}</td>					
+							<td class="align-middle"><a href="#" class="btn btn-update">Enable Location Rating</a></td>
+							<td class="align-middle"><a href="disableLocationRating.do?userId=${locationRating.user.id}&locationId=${locationRating.location.id}" class="btn btn-danger">Disable Location Rating</a></td>
 						</tr>
 				</c:forEach>
 			</tbody>

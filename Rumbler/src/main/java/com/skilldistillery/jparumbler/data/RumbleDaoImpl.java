@@ -231,4 +231,30 @@ public class RumbleDaoImpl implements RumbleDAO {
 
 	}
 
+	@Override
+	public List<LocationRating> getAllLocationRatings() {
+		List<LocationRating> allLocationRatings = null;
+		String jpql = "select lr from LocationRating lr";
+		allLocationRatings = em.createQuery(jpql, LocationRating.class).getResultList();
+		return allLocationRatings;
+	}
+
+	@Override
+	public boolean deleteLocationRating(int userId, int locationId) {
+		LocationRatingId id = new LocationRatingId(userId, locationId);
+		LocationRating deletedLocationRating = em.find(LocationRating.class, id);
+		if (deletedLocationRating != null) {
+			deletedLocationRating.setEnabled(false);
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public LocationRating findLocationRatingById(int userId, int locationId) {
+		LocationRatingId id = new LocationRatingId(userId, locationId);
+		LocationRating locationRating = em.find(LocationRating.class, id);
+		return locationRating;
+	}
+
 }
