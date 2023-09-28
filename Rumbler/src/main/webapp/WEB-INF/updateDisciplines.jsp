@@ -13,7 +13,10 @@
 	<div class="container">
 		<h1>Update Disciplines</h1>
 		<c:if test="${not empty updatedDiscipline }">
-			<p class="lead">Updated: ${updatedDiscipline}</p>
+			<p class="lead text-success">Updated: ${updatedDiscipline}</p>
+		</c:if>
+		<c:if test="${not empty deletedDiscipline }">
+			<p class="lead text-danger">Deleted: ${deletedDiscipline}</p>
 		</c:if>
 
 		<c:forEach var="userDiscipline" items="${userDisciplines}">

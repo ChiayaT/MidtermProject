@@ -17,6 +17,7 @@ import com.skilldistillery.jparumbler.entities.ExperienceLevel;
 import com.skilldistillery.jparumbler.entities.FightingStance;
 import com.skilldistillery.jparumbler.entities.User;
 import com.skilldistillery.jparumbler.entities.UserDiscipline;
+import com.skilldistillery.jparumbler.entities.UserDisciplineId;
 
 @Controller
 public class DisciplineController {
@@ -28,7 +29,7 @@ public class DisciplineController {
 	private UserDAO userDao;
 
 	@RequestMapping(path = "updateDisciplines.do", method = RequestMethod.GET)
-	public String goToUpdateDisciplines(HttpSession session, Model model, String updated) {
+	public String goToUpdateDisciplines(HttpSession session, Model model, String updated, String deleted) {
 		User user = (User) session.getAttribute("loggedInUser");
 		List<UserDiscipline> userDisciplines = userDao.findAllDisciplinesForUser(user.getId());
 		model.addAttribute("userDisciplines", userDisciplines);
@@ -40,6 +41,9 @@ public class DisciplineController {
 		model.addAttribute("allDisciplines", allDisciplines);
 		if(updated != null && updated.length() > 0) {
 			model.addAttribute("updatedDiscipline", updated);
+		}
+		if(deleted != null && deleted.length() > 0) {
+			model.addAttribute("deletedDiscipline", deleted);
 		}
 		refreshSessionUser(session);
 		return "updateDisciplines";
@@ -60,11 +64,13 @@ public class DisciplineController {
 	}
 	
 	@RequestMapping(path = "deleteDiscipline.do")
-	public String deleteDiscipline(int userId, int disciplineId, HttpSession session) {
+	public String deleteDiscipline(int userId, int disciplineId, HttpSession session, Model model) {
 		User user = (User) session.getAttribute("loggedInUser");
+		UserDisciplineId id = new UserDisciplineId(userId, disciplineId);
+		UserDiscipline deletedDiscipline = disDao.findDisciplineById(id);
 		disDao.deleteDiscipline(userId, disciplineId);
 		refreshSessionUser(session);
-		return "redirect:updateDisciplines.do";
+		return "redirect:updateDisciplines.do?deleted=" + deletedDiscipline.getDiscipline().getName().replaceAll(" ", "+");
 	}
 	
 	public void refreshSessionUser(HttpSession session) {
