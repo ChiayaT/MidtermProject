@@ -180,6 +180,7 @@ public class RumbleDaoImpl implements RumbleDAO {
 
 	@Override
 	public Location createLocation(Location location) {
+		em.persist(location.getLocationType());
 		em.persist(location.getAddress());
 		em.persist(location);
 		return location;
