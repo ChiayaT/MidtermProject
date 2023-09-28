@@ -13,7 +13,13 @@
 	<div class="container">
 		<h1>Update Disciplines</h1>
 		<c:if test="${not empty updatedDiscipline }">
-			<p class="lead">Updated: ${updatedDiscipline}</p>
+			<p class="lead text-success">Updated: ${updatedDiscipline}</p>
+		</c:if>
+		<c:if test="${not empty deletedDiscipline }">
+			<p class="lead text-danger">Deleted: ${deletedDiscipline}</p>
+			
+			<a href="undoDelete.do?userId=${userDisciplineId.userId}&disciplineId=${userDisciplineId.disciplineId}" class="btn btn-update">Undo</a>
+			
 		</c:if>
 
 		<c:forEach var="userDiscipline" items="${userDisciplines}">
@@ -67,19 +73,12 @@
 				</div>
 				<div class="col-md-2">
 					<!-- FIX ME -->
-					<br> <a href="#" class="btn btn-danger">Delete Discipline</a>
+					<br> <a href="deleteDiscipline.do?userId=${loggedInUser.id}&disciplineId=${userDiscipline.discipline.id}" class="btn btn-danger">Delete Discipline</a>
 				</div>
 
 			</form>
 			<br>
 		</c:forEach>
-
-
-
-
-
-
-
 
 		<hr>
 		<h2 class="display-6">Add New Discipline:</h2>

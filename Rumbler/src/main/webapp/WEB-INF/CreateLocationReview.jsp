@@ -10,7 +10,7 @@
 </head>
 <body>
     <jsp:include page="navbar.jsp" />
-   <form action="giveLocationRating" method="post">
+   <form action="giveLocationRating.do" method="post">
 		<h3>Rate This Rumble Ring</h3>
 		<br>
 		<input type="hidden" value=${loggedInUser.id} name="userId">

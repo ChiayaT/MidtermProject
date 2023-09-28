@@ -80,6 +80,28 @@ public class RumbleDaoImpl implements RumbleDAO {
 	}
 
 	@Override
+	public Location updateLocation(Location location) {
+		Location updatedLocation = findlocationById(location.getId());
+		updatedLocation.setName(location.getName());
+		updatedLocation.setImage_url(location.getImage_url());
+		updatedLocation.setAddress(location.getAddress());
+		updatedLocation.setDescription(location.getDescription());
+		updatedLocation.setAddress(location.getAddress());
+		updatedLocation.setLocationType(location.getLocationType());
+		Address address = em.find(Address.class, location.getAddress().getId());
+		Address updatedAddress = updatedLocation.getAddress();
+		System.out.println(location.getAddress());
+		System.out.println(updatedAddress);
+		updatedAddress.setState(address.getState());
+		updatedAddress.setStreet(address.getStreet());
+		updatedAddress.setStreet2(address.getStreet2());
+		updatedAddress.setCity(address.getCity());
+		updatedAddress.setPhone(address.getPhone());
+		updatedAddress.setZipCode(address.getZipCode());
+		updatedLocation.setLocationType(location.getLocationType());
+		return updatedLocation;
+	}
+	@Override
 	public Rumble updateRumble(Rumble rumble) {
 		Rumble newRumble = findRumbleById(rumble.getId());
 		newRumble.setTitle(rumble.getTitle());
@@ -126,8 +148,10 @@ public class RumbleDaoImpl implements RumbleDAO {
 
 	@Override
 	public List<RumbleMessage> getAllRumbleMessagesPerRumble(int rumbleId) {
+
 		// TODO Auto-generated method stub
 		String spql = "SELECT R FROM RumbleMessage R WHERE rumble.id = :rumid and enabled = true ORDER BY createDate";
+
 		
 		return em.createQuery(spql, RumbleMessage.class)
 				.setParameter("rumid", rumbleId).getResultList();
@@ -164,6 +188,7 @@ public class RumbleDaoImpl implements RumbleDAO {
 
 	@Override
 	public Location createLocation(Location location) {
+		em.persist(location.getLocationType());
 		em.persist(location.getAddress());
 		em.persist(location);
 		return location;
@@ -200,6 +225,8 @@ public boolean addRatingToRatingList(int locationId, int userId, int ratingScale
 	}
 	return rated;
 }
+
+
 
 
 

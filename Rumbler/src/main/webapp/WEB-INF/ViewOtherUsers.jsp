@@ -12,7 +12,12 @@
 	<jsp:include page="navbar.jsp" />
 	<div class="container">
 		<h1>Fellow Rumblers</h1>
-
+			<c:choose> 
+			<c:when test="${empty users}">
+				<p class="lead">No Rumblers Matched Your Search</p>
+			</c:when>  
+			<c:otherwise>
+			
 			<table class="table table-striped">
 				<thead class="table-dark">
 					<tr>
@@ -29,7 +34,14 @@
 				<c:forEach var="user" items="${users}">
 					<c:if test="${user.id != loggedInUser.id }">
 						<tr>
+						<c:choose>
+						<c:when test="${empty user.profileImageURL}">
+							<td class="align-middle text-center"><img src="/images/defaultProfilePicture.png" class="rounded"></td>
+						</c:when>
+						<c:otherwise>
 							<td class="align-middle text-center"><img src="${user.profileImageURL}" class="rounded"></td>
+						</c:otherwise>
+						</c:choose>
 							<td class="align-middle">${user.firstName}</td>
 							<td class="align-middle">${user.lastName}</td>
 							<td class="align-middle">${user.username}</td>
@@ -50,7 +62,8 @@
 				</c:forEach>
 			</tbody>
 			</table>
-
+		</c:otherwise>       
+			</c:choose>
 	</div>
 	<jsp:include page="bootstrapScript.jsp" />
 </body>

@@ -33,12 +33,9 @@ public class RumbleController {
 	@RequestMapping(path = "makeRumble.do", method = RequestMethod.GET)
 
 	private String goToCreateRumble(HttpSession session, Integer guestId) {
-
-		
 		session.setAttribute("disciplines", rumDao.getAllDisciplines());
 		session.setAttribute("locations", rumDao.getAllLocations());
 		session.setAttribute("locationTypes", rumDao.getAllLocationTypes());
-
 		session.setAttribute("guest", dao.findUserById(guestId));
 		return "CreateRumble";
 	}
@@ -139,9 +136,10 @@ public class RumbleController {
 	}
 	
 	 @RequestMapping(path = "getLocationsList.do")
-	 private String getLocationsList(Model model) {
+	 private String getLocationsList(Model model, HttpSession session) {
 		 List<Location> locations = rumDao.getAllLocations();
 		 model.addAttribute("locations", locations);
+		 session.setAttribute("locationTypes", rumDao.getAllLocationTypes());
 		return "LocationsList";
 		 
 	 }
@@ -149,6 +147,7 @@ public class RumbleController {
 	 private String getLocation(Model model, int locationId) {
 		 Location location = rumDao.findlocationById(locationId);
 		 model.addAttribute("location", location);
+		 model.addAttribute("locationRatings", location.getLocationRatings());
 		return "Location";
 	 }
 	 
@@ -159,17 +158,34 @@ public class RumbleController {
 		return"CreateLocationReview";
 	 }
 		 
-	 @RequestMapping(path ="giveLocationRating", method = RequestMethod.POST )
+	 @RequestMapping(path ="giveLocationRating.do", method = RequestMethod.POST )
 	 private String giveLocationRatingPost(HttpSession session, Model model, Integer locationId, LocationRating locationRating, Integer userId) {
 		 rumDao.addRatingToRatingList(locationId, userId, locationRating.getRatingScale(), locationRating.getRatingComment());
 		locationRating = (LocationRating) session.getAttribute("locationRating");
 		Location location = rumDao.findlocationById(locationId);
 		System.out.println(location.getLocationRatings());
-		 session.setAttribute("locationRatings", location.getLocationRatings());
+		return"redirect:getLocation.do?locationId=" + location.getId();
+	 }
+	 
+	 @RequestMapping(path = "updateLocationPage.do")
+	 private String updateLocationPage(HttpSession session, Model model, int locationId) {
+		 Location location = rumDao.findlocationById(locationId);
+		 model.addAttribute("location",location);
+		 model.addAttribute("locationId",locationId);
+		return "UpdateLocation";
+	 }
+	 @RequestMapping(path = "updateLocation.do", method = RequestMethod.POST)
+	 private String updateLocation(HttpSession session, Model model, Location location) {
+		 rumDao.updateLocation(location);
 		 session.setAttribute("location", location);
-		 
-		return"Location" ;
-		 
+		 session.getAttribute("locationRatings");
+		 return"redirect:getLocation.do?locationId=" + location.getId();
+	 }
+	 @RequestMapping(path="createLocation.do", method = RequestMethod.POST)
+	 private String createLocation(HttpSession session, Model model, Location location, int locationTypeId) {
+		 location.setLocationType(rumDao.findLocoTypeById(locationTypeId));
+		 Location newLocation = rumDao.createLocation(location);
+		 return"redirect:getLocationsList.do";
 	 }
 
 	 @RequestMapping(path = "createMessage.do")
