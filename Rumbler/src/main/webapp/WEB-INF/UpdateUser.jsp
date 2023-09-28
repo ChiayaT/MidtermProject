@@ -16,6 +16,7 @@
 			style="padding: 10px;">
 			<h3>My Profile</h3>
 			<input type="hidden" name="id" value="${loggedInUser.id}">
+			<input type="hidden" name="dateOfBirth" value="${loggedInUser.dateOfBirth}">
 			<div class="col-md-6">
 				<label for="firstName" class="form-label">First Name</label> <input
 					type="text" class="form-control" name="firstName"
