@@ -20,7 +20,7 @@
 						<div class="card" style="width: 20rem;">
 						<c:choose>
 						<c:when test="${empty loggedInUser.profileImageURL}">
-							<img src="/images/defaultProfilePicture.png" class="card-img-top"
+							<img src="images/defaultProfilePicture.png" class="card-img-top"
 								alt="default profile picture">
 						</c:when>
 						<c:otherwise>

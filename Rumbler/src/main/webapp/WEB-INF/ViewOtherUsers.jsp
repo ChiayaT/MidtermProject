@@ -36,7 +36,7 @@
 						<tr>
 						<c:choose>
 						<c:when test="${empty user.profileImageURL}">
-							<td class="align-middle text-center"><img src="/images/defaultProfilePicture.png" class="rounded"></td>
+							<td class="align-middle text-center"><img src="images/defaultProfilePicture.png" class="rounded"></td>
 						</c:when>
 						<c:otherwise>
 							<td class="align-middle text-center"><img src="${user.profileImageURL}" class="rounded"></td>

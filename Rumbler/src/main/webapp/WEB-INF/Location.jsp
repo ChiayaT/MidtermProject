@@ -22,8 +22,7 @@
 		Rate This Rumble Ring</a>
 		</c:when>
 		<c:otherwise>
-		<!--<a href="updateLocationPage.do?locationId=${location.id}">-->
-		<!-- Update This Rumble Ring</a> -->
+		
 		</c:otherwise>
 		</c:choose>
 		<br><a href="updateLocationPage.do?locationId=${location.id}">Update This Rumble Ring</a>
