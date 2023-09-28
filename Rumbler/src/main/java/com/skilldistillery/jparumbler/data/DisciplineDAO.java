@@ -16,7 +16,7 @@ public interface DisciplineDAO {
 	UserDiscipline findDisciplineById(UserDisciplineId id);
 	UserDiscipline addNewDiscipline(UserDiscipline ud, int userId, int disciplineId);
 	UserDiscipline updateDiscipline(UserDiscipline userDiscipline, int userId, int disciplineId);
-	boolean deleteDiscipline(UserDisciplineId id);
+	boolean deleteDiscipline(int userId, int disciplineId);
 	
 	List<Discipline> getAllDisciplines();
 	List<FightingStance> getAllFightingStances();

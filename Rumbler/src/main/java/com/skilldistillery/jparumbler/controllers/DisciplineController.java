@@ -60,9 +60,10 @@ public class DisciplineController {
 	}
 	
 	@RequestMapping(path = "deleteDiscipline.do")
-	public String deleteDiscipline(UserDiscipline ud, HttpSession session) {
+	public String deleteDiscipline(int userId, int disciplineId, HttpSession session) {
 		User user = (User) session.getAttribute("loggedInUser");
-		disDao.deleteDiscipline(ud.getId());
+		disDao.deleteDiscipline(userId, disciplineId);
+		refreshSessionUser(session);
 		return "redirect:updateDisciplines.do";
 	}
 	

@@ -61,11 +61,16 @@ public class DisciplineDAOImpl implements DisciplineDAO {
 	}
 
 	@Override
-	public boolean deleteDiscipline(UserDisciplineId id) {
-		UserDiscipline deletedUD = findDisciplineById(id);
-		if (deletedUD != null) {
-			deletedUD.setEnabled(false);
-			return true;
+	public boolean deleteDiscipline(int userId, int disciplineId) {
+		User user = em.find(User.class, userId);
+		Discipline discipline = em.find(Discipline.class, disciplineId);
+		if (user != null && discipline != null) {
+			UserDisciplineId id = new UserDisciplineId(userId, disciplineId);
+			UserDiscipline deletedUD = findDisciplineById(id);
+			if (deletedUD != null) {
+				deletedUD.setEnabled(false);
+				return true;
+			}
 		}
 		return false;
 	}
