@@ -15,8 +15,12 @@
 		<c:if test="${not empty updatedDiscipline }">
 			<p class="lead text-success">Updated: ${updatedDiscipline}</p>
 		</c:if>
+		ID: ${userDisciplineId}
 		<c:if test="${not empty deletedDiscipline }">
 			<p class="lead text-danger">Deleted: ${deletedDiscipline}</p>
+			
+			<a href="undoDelete.do?userId=${userDisciplineId.userId}&disciplineId=${userDisciplineId.disciplineId}" class="btn btn-update">Undo</a>
+			
 		</c:if>
 
 		<c:forEach var="userDiscipline" items="${userDisciplines}">

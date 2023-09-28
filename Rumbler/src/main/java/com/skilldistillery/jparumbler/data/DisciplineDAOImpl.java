@@ -30,10 +30,14 @@ public class DisciplineDAOImpl implements DisciplineDAO {
 
 	@Override
 	public UserDiscipline addNewDiscipline(UserDiscipline newDiscipline, int userId, int disciplineId) {
-		User user = em.find(User.class, userId);
-		Discipline discipline = em.find(Discipline.class, disciplineId);
-		if (user != null && discipline != null) {
-			UserDisciplineId id = new UserDisciplineId(userId, disciplineId);
+		UserDisciplineId id = new UserDisciplineId(userId, disciplineId);
+		UserDiscipline ud = em.find(UserDiscipline.class, id);
+		if (ud != null) {
+			enableDiscipline(userId, disciplineId);
+		}
+		else {
+			User user = em.find(User.class, userId);
+			Discipline discipline = em.find(Discipline.class, disciplineId);
 			newDiscipline.setId(id);
 			newDiscipline.setUser(user);
 			newDiscipline.setDiscipline(discipline);
@@ -41,7 +45,7 @@ public class DisciplineDAOImpl implements DisciplineDAO {
 			em.persist(newDiscipline);
 			return newDiscipline;
 		}
-		return null;
+		return ud;
 	}
 
 	@Override
@@ -71,6 +75,19 @@ public class DisciplineDAOImpl implements DisciplineDAO {
 				deletedUD.setEnabled(false);
 				return true;
 			}
+		}
+		return false;
+	}
+
+	@Override
+	public boolean enableDiscipline(int userId, int disciplineId) {
+
+		UserDisciplineId id = new UserDisciplineId(userId, disciplineId);
+		UserDiscipline disabledUD = findDisciplineById(id);
+		if (disabledUD != null) {
+			disabledUD.setEnabled(true);
+			return true;
+
 		}
 		return false;
 	}

@@ -69,8 +69,20 @@ public class DisciplineController {
 		UserDisciplineId id = new UserDisciplineId(userId, disciplineId);
 		UserDiscipline deletedDiscipline = disDao.findDisciplineById(id);
 		disDao.deleteDiscipline(userId, disciplineId);
+		session.setAttribute("userDisciplineId", new UserDisciplineId(userId, disciplineId));
 		refreshSessionUser(session);
 		return "redirect:updateDisciplines.do?deleted=" + deletedDiscipline.getDiscipline().getName().replaceAll(" ", "+");
+	}
+	
+	@RequestMapping(path = "undoDelete.do")
+	public String undoDeleteDiscipline(int userId, int disciplineId, HttpSession session, Model model) {
+		User user = (User) session.getAttribute("loggedInUser");
+		UserDisciplineId id = new UserDisciplineId(userId, disciplineId);
+		UserDiscipline undoDeletedDiscipline = disDao.findDisciplineById(id);
+		disDao.enableDiscipline(userId, disciplineId);
+		session.removeAttribute("userDisciplineId");
+		refreshSessionUser(session);
+		return "redirect:updateDisciplines.do?updated=" + undoDeletedDiscipline.getDiscipline().getName().replaceAll(" ", "+");
 	}
 	
 	public void refreshSessionUser(HttpSession session) {
