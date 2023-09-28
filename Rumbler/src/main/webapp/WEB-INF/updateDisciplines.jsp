@@ -15,7 +15,6 @@
 		<c:if test="${not empty updatedDiscipline }">
 			<p class="lead text-success">Updated: ${updatedDiscipline}</p>
 		</c:if>
-		ID: ${userDisciplineId}
 		<c:if test="${not empty deletedDiscipline }">
 			<p class="lead text-danger">Deleted: ${deletedDiscipline}</p>
 			
