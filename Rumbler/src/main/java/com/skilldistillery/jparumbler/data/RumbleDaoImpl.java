@@ -87,6 +87,18 @@ public class RumbleDaoImpl implements RumbleDAO {
 		updatedLocation.setAddress(location.getAddress());
 		updatedLocation.setDescription(location.getDescription());
 		updatedLocation.setAddress(location.getAddress());
+		updatedLocation.setLocationType(location.getLocationType());
+		Address address = em.find(Address.class, location.getAddress().getId());
+		Address updatedAddress = updatedLocation.getAddress();
+		System.out.println(location.getAddress());
+		System.out.println(updatedAddress);
+		updatedAddress.setState(address.getState());
+		updatedAddress.setStreet(address.getStreet());
+		updatedAddress.setStreet2(address.getStreet2());
+		updatedAddress.setCity(address.getCity());
+		updatedAddress.setPhone(address.getPhone());
+		updatedAddress.setZipCode(address.getZipCode());
+		updatedLocation.setLocationType(location.getLocationType());
 		return updatedLocation;
 	}
 	@Override

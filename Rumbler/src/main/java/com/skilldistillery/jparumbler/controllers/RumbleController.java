@@ -160,14 +160,14 @@ public class RumbleController {
 	 private String updateLocationPage(HttpSession session, Model model, int locationId) {
 		 Location location = rumDao.findlocationById(locationId);
 		 model.addAttribute("location",location);
+		 model.addAttribute("locationId",locationId);
 		return "UpdateLocation";
 	 }
-	 @RequestMapping(path = "updateLocation.do")
-	 private String updateLocation(HttpSession session, Model model, int locationId) {
-		 Location location = rumDao.findlocationById(locationId);
+	 @RequestMapping(path = "updateLocation.do", method = RequestMethod.POST)
+	 private String updateLocation(HttpSession session, Model model, Location location) {
 		 rumDao.updateLocation(location);
 		 model.addAttribute("location", location);
-		 return "location";
+		 return "Location";
 	 }
 
 
