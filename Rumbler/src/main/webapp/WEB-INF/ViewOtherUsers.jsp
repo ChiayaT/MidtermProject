@@ -29,7 +29,14 @@
 				<c:forEach var="user" items="${users}">
 					<c:if test="${user.id != loggedInUser.id }">
 						<tr>
+						<c:choose>
+						<c:when test="${empty user.profileImageURL}">
+							<td class="align-middle text-center"><img src="/images/defaultProfilePicture.png" class="rounded"></td>
+						</c:when>
+						<c:otherwise>
 							<td class="align-middle text-center"><img src="${user.profileImageURL}" class="rounded"></td>
+						</c:otherwise>
+						</c:choose>
 							<td class="align-middle">${user.firstName}</td>
 							<td class="align-middle">${user.lastName}</td>
 							<td class="align-middle">${user.username}</td>

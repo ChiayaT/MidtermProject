@@ -447,6 +447,9 @@ public class User {
 		boolean hasDiscipline = false;
 		for (UserDiscipline ud : userDisciplines) {
 			if (ud.getDiscipline().getId() == disciplineId) {
+				if(!ud.isEnabled()) {
+					break;
+				}
 				hasDiscipline = true;
 				break;
 			}

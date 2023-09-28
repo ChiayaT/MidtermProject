@@ -94,7 +94,7 @@ public class UserDaoImpl implements UserDAO {
 	@Override
 	public List<User> findUsersDiscipline(String disciplineName) {
 		List<User> users = null;
-		String spql = "select u from User u join fetch u.userDisciplines ud where ud.discipline.name like :disciplineName";
+		String spql = "select u from User u join fetch u.userDisciplines ud where ud.discipline.name like :disciplineName and ud.enabled = true";
 		users = em.createQuery(spql, User.class).setParameter("disciplineName", "%" + disciplineName + "%" ).getResultList();
 		return users;
 	}
@@ -102,7 +102,7 @@ public class UserDaoImpl implements UserDAO {
 	@Override
 	public List<UserDiscipline> findAllDisciplinesForUser(int id) {
 		List<UserDiscipline> userDisciplines = null;
-		String jpql = "select ud from UserDiscipline ud where user_id = :id";
+		String jpql = "select ud from UserDiscipline ud where user_id = :id and enabled = true";
 		userDisciplines = em.createQuery(jpql, UserDiscipline.class).setParameter("id", id).getResultList();
 		return userDisciplines;
 	}	

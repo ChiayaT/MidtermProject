@@ -52,6 +52,8 @@ public class UserDiscipline {
 	@JoinColumn(name = "fighting_stance_id")
 	private FightingStance fightingStance;
 	
+	private boolean enabled;
+	
 	public UserDiscipline() {
 	}
 
@@ -117,6 +119,14 @@ public class UserDiscipline {
 
 	public void setFightingStance(FightingStance fightingStance) {
 		this.fightingStance = fightingStance;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
 
 	@Override
