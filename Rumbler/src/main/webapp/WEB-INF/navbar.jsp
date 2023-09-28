@@ -33,7 +33,7 @@
 
 
 
-					<c:if test="${not empty sessionScope.loggedInUser }">
+					<c:if test="${not empty sessionScope.loggedInUser}">
 						<li class="nav-item"><a class="nav-link nav-text"
 							href="accountPage.do">Account</a></li>
 						<li class="nav-item"><a class="nav-link nav-text"
