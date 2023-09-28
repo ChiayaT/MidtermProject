@@ -158,7 +158,7 @@ public class RumbleController {
 		return"CreateLocationReview";
 	 }
 		 
-	 @RequestMapping(path ="giveLocationRating", method = RequestMethod.POST )
+	 @RequestMapping(path ="giveLocationRating.do", method = RequestMethod.POST )
 	 private String giveLocationRatingPost(HttpSession session, Model model, Integer locationId, LocationRating locationRating, Integer userId) {
 		 rumDao.addRatingToRatingList(locationId, userId, locationRating.getRatingScale(), locationRating.getRatingComment());
 		locationRating = (LocationRating) session.getAttribute("locationRating");
@@ -166,9 +166,21 @@ public class RumbleController {
 		System.out.println(location.getLocationRatings());
 		 session.setAttribute("locationRatings", location.getLocationRatings());
 		 session.setAttribute("location", location);
-		 
 		return"Location" ;
-		 
+	 }
+	 
+	 @RequestMapping(path = "updateLocationPage.do")
+	 private String updateLocationPage(HttpSession session, Model model, int locationId) {
+		 Location location = rumDao.findlocationById(locationId);
+		 model.addAttribute("location",location);
+		 model.addAttribute("locationId",locationId);
+		return "UpdateLocation";
+	 }
+	 @RequestMapping(path = "updateLocation.do", method = RequestMethod.POST)
+	 private String updateLocation(HttpSession session, Model model, Location location) {
+		 rumDao.updateLocation(location);
+		 model.addAttribute("location", location);
+		 return "Location";
 	 }
 
 

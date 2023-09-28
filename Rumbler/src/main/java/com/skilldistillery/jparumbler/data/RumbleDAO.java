@@ -29,7 +29,7 @@ public interface RumbleDAO {
 	public boolean addRatingToRatingList(int locationId, int userId, int ratingScale, String ratingComment);
 	
 	LocationType findLocoTypeById(int id);
-	
+	Location updateLocation(Location location);
 	Location createLocation(Location location);
 	
 	List<RumbleMessage> getAllRumbleMessagesPerRumble(int rumbleId);
