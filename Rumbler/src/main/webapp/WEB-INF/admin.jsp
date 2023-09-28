@@ -50,7 +50,11 @@
 		
 		
 		<c:if test="${not empty disabledRumble }">
-			<p class="lead text-danger">Disabled: ${disabledRumble}</p>
+			<p class="lead text-danger">Disabled Rumble: ${disabledRumble}</p>
+		</c:if>
+		
+		<c:if test="${not empty disabledUser }">
+			<p class="lead text-danger">Disabled User: ${disabledUser}</p>
 		</c:if>
 		
 		<table class="table table-striped">
@@ -115,7 +119,7 @@
 							<td class="align-middle">${user.enabled}</td>					
 							<td class="align-middle">${user.address.id}</td>					
 							<td class="align-middle"><a href="#" class="btn btn-update">Update User</a></td>
-							<td class="align-middle"><a href="#" class="btn btn-danger">Disable User</a></td>
+							<td class="align-middle"><a href="disableUser.do?id=${user.id}" class="btn btn-danger">Disable User</a></td>
 						</tr>
 				</c:forEach>
 			</tbody>

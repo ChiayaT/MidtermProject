@@ -27,13 +27,16 @@ public class AdminController {
 	private RumbleDAO rumDao;
 
 	@RequestMapping(path = { "adminPage.do" })
-	private String showAllRumbles(Model model, String disabledRumble) {
+	private String showAllRumbles(Model model, String disabledRumble, String disabledUser) {
 		List<Rumble> allRumblesForAllUsers = rumDao.getAllRumbles();
 		model.addAttribute("allRumbles", allRumblesForAllUsers);
 		List<User> allUsers = userDao.findAllUsers();
 		model.addAttribute("allUsers", allUsers);
 		if(disabledRumble != null && disabledRumble.length() > 0) {
 			model.addAttribute("disabledRumble", disabledRumble);
+		}
+		if(disabledUser != null && disabledUser.length() > 0) {
+			model.addAttribute("disabledUser", disabledUser);
 		}
 		return "admin";
 	}
@@ -43,6 +46,13 @@ public class AdminController {
 		Rumble rumbleToDisable = rumDao.findRumbleById(id);
 		rumDao.deleteRumble(rumbleToDisable.getId());
 		return "redirect:adminPage.do?disabledRumble=" + rumbleToDisable.getTitle();
+	}
+	
+	@RequestMapping(path = { "disableUser.do" })
+	private String disableUser(Model model, int id) {
+		User userToDisable = userDao.findUserById(id);
+		userDao.deleteUser(userToDisable.getId());
+		return "redirect:adminPage.do?disabledUser=" + userToDisable.getUsername();
 	}
 	
 }
