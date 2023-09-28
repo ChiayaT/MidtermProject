@@ -40,7 +40,7 @@
 		State<input type="text" name="address.state" required><br>
 		Zip Code<input type="text" name="address.zipCode" required><br>
 		Phone Number<input type="text" name="address.phone"><br>
-		<button>Submit</button>
+		<button class="btn btn-update">Submit</button>
 	</form>
 	<jsp:include page="bootstrapScript.jsp" />
 </body>

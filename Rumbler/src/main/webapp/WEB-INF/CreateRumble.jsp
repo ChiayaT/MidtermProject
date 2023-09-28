@@ -31,9 +31,8 @@
 		<input type="time"  name="startTime"><br> 
 		Approximate End Time:
 		<input type="time"  name="endTime"><br>
+		Choose a Location:
 		<select name="locationId">
-		Location:
-			<option value="" >Create a location</option>
 		<c:forEach var="location" items="${locations}">
 			<option value="${location.id }">${location.name }</option>
 		</c:forEach>			
@@ -79,7 +78,7 @@
 		Phone Number<input type="text"  name="location.address.phone"><br>-->
 		<!-- Open To Public? 
 		<input type="checkbox"  name="openToPublics"><br> -->
-		<br><button>Create Your Rumble</button>
+		<br><button btn btn-update>Create Your Rumble</button>
 	</form>
 
 <jsp:include page="bootstrapScript.jsp" />
