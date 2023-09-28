@@ -1,8 +1,6 @@
 package com.skilldistillery.jparumbler.controllers;
 
 
-import java.time.LocalTime;
-
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -19,6 +17,7 @@ import com.skilldistillery.jparumbler.entities.Discipline;
 import com.skilldistillery.jparumbler.entities.Location;
 import com.skilldistillery.jparumbler.entities.LocationRating;
 import com.skilldistillery.jparumbler.entities.Rumble;
+import com.skilldistillery.jparumbler.entities.RumbleMessage;
 import com.skilldistillery.jparumbler.entities.User;
 import com.skilldistillery.jparumbler.entities.UserDiscipline;
 
@@ -71,6 +70,8 @@ public class RumbleController {
 	@RequestMapping(path = "Rumble.do")
 	private String goToRumble(HttpSession session, Rumble rumble, Integer id) {
 		rumble = rumDao.findRumbleById(id);
+		rumble.setRumbleMessages(rumDao.getAllRumbleMessagesPerRumble(rumble.getId()));
+
 		session.setAttribute("Rumble", rumble);
 		return "Rumble";
 	}
@@ -171,5 +172,62 @@ public class RumbleController {
 		 
 	 }
 
+	 @RequestMapping(path = "createMessage.do")
+		private String createMessage(HttpSession session, Integer userId , Integer rumbleId, Model model) {
+			Rumble rumble = rumDao.findRumbleById(rumbleId);
+			User user = dao.findUserById(userId);
+			model.addAttribute("user", user);
+			rumble.setRumbleMessages(rumDao.getAllRumbleMessagesPerRumble(rumble.getId()));
+			model.addAttribute("rumble", rumble);
+			return "createRumbleMessage";
+		}
+	 @RequestMapping(path = "createdMessage.do")
+		private String createdMessage(HttpSession session, Integer userId , Integer rumbleId, Model model, RumbleMessage message) {
+		 	message.setUser(dao.findUserById(userId));
+		 	message.setRumble(rumDao.findRumbleById(rumbleId));
+			Rumble rumble = rumDao.findRumbleById(message.getRumble().getId());
+			message = rumDao.createRumbleMessage(message);
+			rumble.addRumbleMessage(message);
+			User user = dao.findUserById(userId);
+			model.addAttribute("user", user);
+			rumble.setRumbleMessages(rumDao.getAllRumbleMessagesPerRumble(rumble.getId()));
+			session.setAttribute("Rumble", rumble);
+			return "Rumble";
+		}
+	 
+	 @RequestMapping(path = "updateMessage.do" ,method = RequestMethod.GET)
+		private String gotoupdateMessage(HttpSession session, Integer messageId, Model model) {
+		 	RumbleMessage message = rumDao.findRumbleMessageById(messageId);
+		 	model.addAttribute("message", message);
+			
+			return "updateRumbleMessage";
+		}
+	 
+	 @RequestMapping(path ="updateMessage.do", method = RequestMethod.POST )
+	 private String giveLocationRatingPost(HttpSession session, Model model, RumbleMessage message) {
+		 
+		 message = rumDao.updateRumbleMessage(message);
+		 Rumble rumble = rumDao.findRumbleById(message.getRumble().getId());
+		 rumble.setRumbleMessages(rumDao.getAllRumbleMessagesPerRumble(rumble.getId()));
+		 session.setAttribute("Rumble", rumble);
+		 
+		return"Rumble" ;
+		 
+	 }
+	 
+	 @RequestMapping(path ="deleteMessage.do")
+	 private String deleteMessage(HttpSession session, Model model, int messageId) {
+		 
+		 rumDao.deleteRumbleMessage(messageId);
+		 RumbleMessage message = rumDao.findRumbleMessageById(messageId);
+		 Rumble rumble = rumDao.findRumbleById(message.getRumble().getId());
+		 rumble.setRumbleMessages(rumDao.getAllRumbleMessagesPerRumble(rumble.getId()));
+
+		 session.setAttribute("Rumble", rumble);
+		 
+		return"Rumble" ;
+		 
+	 }
+	 
 
 }

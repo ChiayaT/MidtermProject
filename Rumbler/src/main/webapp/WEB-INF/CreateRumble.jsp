@@ -55,11 +55,11 @@
 		</select><br>
 		<h5>Address For Location</h5>
 		<input type="hidden" name="address.enabled" value="true">
-		Street<input type="text"  name="address.street" required><br>
+		Street<input type="text"  name="address.street" ><br>
 		Street<input type="text"  name="address.street2" ><br>
-		City<input type="text"  name="address.city" required><br>
-		State<input type="text"  name="address.state" required><br>
-		Zip Code<input type="text"  name="address.zipCode" required><br>
+		City<input type="text"  name="address.city" ><br>
+		State<input type="text"  name="address.state" ><br>
+		Zip Code<input type="text"  name="address.zipCode" ><br>
 		Phone Number<input type="text"  name="address.phone"><br>
 		
 		

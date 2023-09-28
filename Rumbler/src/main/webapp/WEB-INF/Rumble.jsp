@@ -36,7 +36,36 @@
 					</div>
 				</div>
 				<a href="goToDeleteRumble.do?rumbleId=${Rumble.id }" class="btn btn-danger">Delete Rumble</a>
-
+				<a href="createMessage.do?rumbleId=${Rumble.id }&userId=${loggedInUser.id}" class="btn btn-danger">Add Rumble Message</a>
+				<div class="">
+					<table>
+					<c:forEach var="message" items="${Rumble.rumbleMessages}" >
+					<c:if test="${message.enabled == true }">
+						<tr>
+						<c:choose>
+							<c:when test="${message.user.id == loggedInUser.id }">
+								<td class="align-middle text-center"><img src="${message.user.profileImageURL}" class="rounded"></td>
+								<td><strong>${message.user.username }</strong></td>
+								<td>${message.content }</td>
+								<td><a href="updateMessage.do?messageId=${message.id }" class="btn btn-danger">Update Message</a></td>
+								<td><a href="deleteMessage.do?messageId=${message.id }" class="btn btn-danger">Delete Message</a></td>
+								<br><br>
+							</c:when>
+							<c:otherwise>
+								<td>${message.content }</td>
+								<td class="align-middle text-center"><img src="${message.user.profileImageURL}" class="rounded"></td>
+								<td><strong>${message.user.username }</strong></td>
+								
+							</c:otherwise>
+							
+						</c:choose>
+						</tr>
+						</c:if>
+						<br>
+					</c:forEach>	
+					</table>
+				
+				</div>
 
 
 
