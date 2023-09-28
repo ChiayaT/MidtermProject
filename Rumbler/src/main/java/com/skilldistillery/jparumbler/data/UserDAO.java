@@ -20,5 +20,7 @@ public interface UserDAO {
 	boolean deleteUser (int id);
 	List<UserDiscipline> findAllDisciplinesForUser(int id);
 	
+	List<User> findAllUsers();
+	
 
 }

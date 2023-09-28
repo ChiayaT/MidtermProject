@@ -41,6 +41,10 @@ public class LoginController {
 			// add user to session
 			session.setAttribute("loggedInUser", loggedInUser);
 			if (loggedInUser.getRole().equals("admin")) {
+				List<Rumble> allRumblesForAllUsers = rumDao.getAllRumbles();
+				model.addAttribute("allRumbles", allRumblesForAllUsers);
+				List<User> allUsers = userDao.findAllUsers();
+				model.addAttribute("allUsers", allUsers);
 				return "admin";
 			}
 			List<Rumble> allUserRumbles = rumDao.getAllRumblesForSpecificUser(loggedInUser.getId());

@@ -105,6 +105,14 @@ public class UserDaoImpl implements UserDAO {
 		String jpql = "select ud from UserDiscipline ud where user_id = :id and enabled = true";
 		userDisciplines = em.createQuery(jpql, UserDiscipline.class).setParameter("id", id).getResultList();
 		return userDisciplines;
+	}
+
+	@Override
+	public List<User> findAllUsers() {
+		List<User> allUsers = null;
+		String jpql = "select u from User u";
+		allUsers = em.createQuery(jpql, User.class).getResultList();
+		return allUsers;
 	}	
 
 }
