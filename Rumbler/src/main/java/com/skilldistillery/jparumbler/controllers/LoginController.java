@@ -12,7 +12,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.skilldistillery.jparumbler.data.RumbleDAO;
 import com.skilldistillery.jparumbler.data.UserDAO;
+import com.skilldistillery.jparumbler.entities.Location;
+import com.skilldistillery.jparumbler.entities.LocationRating;
 import com.skilldistillery.jparumbler.entities.Rumble;
+import com.skilldistillery.jparumbler.entities.RumbleMessage;
 import com.skilldistillery.jparumbler.entities.User;
 import com.skilldistillery.jparumbler.entities.UserDiscipline;
 
@@ -41,6 +44,16 @@ public class LoginController {
 			// add user to session
 			session.setAttribute("loggedInUser", loggedInUser);
 			if (loggedInUser.getRole() != null && loggedInUser.getRole().equals("admin")) {
+				List<Rumble> allRumblesForAllUsers = rumDao.getAllRumbles();
+				model.addAttribute("allRumbles", allRumblesForAllUsers);
+				List<User> allUsers = userDao.findAllUsers();
+				model.addAttribute("allUsers", allUsers);
+				List<Location> allLocations = rumDao.getAllLocations();
+				model.addAttribute("allLocations", allLocations);
+				List<LocationRating> allLocationRatings = rumDao.getAllLocationRatings();
+				model.addAttribute("allLocationRatings", allLocationRatings);
+				List<RumbleMessage> allRumbleMessages = rumDao.getAllRumbleMessages();
+				model.addAttribute("allRumbleMessages", allRumbleMessages);
 				return "admin";
 			}
 			List<Rumble> allUserRumbles = rumDao.getAllRumblesForSpecificUser(loggedInUser.getId());

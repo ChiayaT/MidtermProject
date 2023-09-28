@@ -24,43 +24,45 @@ public class RumbleDaoImpl implements RumbleDAO {
 
 	@PersistenceContext
 	private EntityManager em;
-	
+
 	public LocationType findLocoTypeById(int id) {
 		return em.find(LocationType.class, id);
 	}
-	
+
 	public Discipline findDisciplineById(int id) {
 		return em.find(Discipline.class, id);
 	}
-	
+
 	public Location findlocationById(int id) {
 		return em.find(Location.class, id);
 	}
+
 	@Override
 	public List<LocationRating> getLocationRatings(int locationId) {
 		List<LocationRating> locationRatings = null;
 		String spql = "select lr from LocationRating lr where Location.id = :locationId";
-		locationRatings = em.createQuery(spql, LocationRating.class).setParameter("disciplines", locationId).getResultList();
+		locationRatings = em.createQuery(spql, LocationRating.class).setParameter("disciplines", locationId)
+				.getResultList();
 		return locationRatings;
 	}
-	
+
 	@Override
 	public List<Rumble> getAllRumbles() {
 		String spql = "SELECT R FROM Rumble R";
 		return em.createQuery(spql, Rumble.class).getResultList();
 	}
-	
-	public List<Location> getAllLocations(){
+
+	public List<Location> getAllLocations() {
 		String spql = "SELECT R FROM Location R";
 		return em.createQuery(spql, Location.class).getResultList();
 	}
-	
-	public List<LocationType> getAllLocationTypes(){
+
+	public List<LocationType> getAllLocationTypes() {
 		String spql = "SELECT lt FROM LocationType lt";
 		return em.createQuery(spql, LocationType.class).getResultList();
 	}
-	
-	public List<Discipline> getAllDisciplines(){
+
+	public List<Discipline> getAllDisciplines() {
 		String spql = "SELECT D FROM Discipline D";
 		return em.createQuery(spql, Discipline.class).getResultList();
 	}
@@ -72,8 +74,7 @@ public class RumbleDaoImpl implements RumbleDAO {
 
 	@Override
 	public Rumble createRumble(Rumble rumble) {
-		
-		
+
 		rumble.setEnabled(true);
 		em.persist(rumble);
 		return rumble;
@@ -101,6 +102,7 @@ public class RumbleDaoImpl implements RumbleDAO {
 		updatedLocation.setLocationType(location.getLocationType());
 		return updatedLocation;
 	}
+
 	@Override
 	public Rumble updateRumble(Rumble rumble) {
 		Rumble newRumble = findRumbleById(rumble.getId());
@@ -132,7 +134,7 @@ public class RumbleDaoImpl implements RumbleDAO {
 		managedAddress.setZipCode(address.getZipCode());
 		System.out.println(rumble.getDiscipline());
 		newRumble.setDiscipline(rumble.getDiscipline());
-		
+
 		return newRumble;
 	}
 
@@ -148,13 +150,10 @@ public class RumbleDaoImpl implements RumbleDAO {
 
 	@Override
 	public List<RumbleMessage> getAllRumbleMessagesPerRumble(int rumbleId) {
-
-		// TODO Auto-generated method stub
 		String spql = "SELECT R FROM RumbleMessage R WHERE rumble.id = :rumid and enabled = true ORDER BY createDate";
-
-		
 		return em.createQuery(spql, RumbleMessage.class)
 				.setParameter("rumid", rumbleId).getResultList();
+
 	}
 
 	@Override
@@ -172,7 +171,7 @@ public class RumbleDaoImpl implements RumbleDAO {
 	public RumbleMessage updateRumbleMessage(RumbleMessage rumbleMessage) {
 		RumbleMessage newRM = findRumbleMessageById(rumbleMessage.getId());
 		newRM.setContent(rumbleMessage.getContent());
-		//newRM.setMessageDate(rumbleMessage.getMessageDate());
+		// newRM.setMessageDate(rumbleMessage.getMessageDate());
 		return newRM;
 	}
 
@@ -192,45 +191,84 @@ public class RumbleDaoImpl implements RumbleDAO {
 		em.persist(location.getAddress());
 		em.persist(location);
 		return location;
-  }
-  @Override
+	}
+
+	@Override
 	public List<Rumble> getAllRumblesForSpecificUser(int id) {
-		List <Rumble> allUserRumblesHostOrGuest = null;
+		List<Rumble> allUserRumblesHostOrGuest = null;
 		String jpql = "select r from Rumble r where (host_id = :id or guest_id = :id) and enabled = true";
 		allUserRumblesHostOrGuest = em.createQuery(jpql, Rumble.class).setParameter("id", id).getResultList();
 		return allUserRumblesHostOrGuest;
 	}
 
-@Override
-public LocationRating createLocationRating(LocationRating locationRating) {
-	em.persist(locationRating);
-	return locationRating;
-}
-
-@Override
-public boolean addRatingToRatingList(int locationId, int userId, int ratingScale, String ratingComment) {
-	boolean rated = false;
-	Location location = em.find(Location.class, locationId);
-	User user = em.find(User.class, userId);
-	if (location != null && user != null) {
-		LocationRatingId id = new LocationRatingId(userId, locationId);
-		LocationRating locationRating = new LocationRating();
-		locationRating.setId(id);
-		locationRating.setLocation(location);
-		locationRating.setUser(user);
-		locationRating.setRatingComment(ratingComment);
-		locationRating.setRatingScale(ratingScale);
+	@Override
+	public LocationRating createLocationRating(LocationRating locationRating) {
 		em.persist(locationRating);
-		rated = true;
+		return locationRating;
 	}
-	return rated;
-}
 
+	@Override
+	public boolean addRatingToRatingList(int locationId, int userId, int ratingScale, String ratingComment) {
+		boolean rated = false;
+		Location location = em.find(Location.class, locationId);
+		User user = em.find(User.class, userId);
+		if (location != null && user != null) {
+			LocationRatingId id = new LocationRatingId(userId, locationId);
+			LocationRating locationRating = new LocationRating();
+			locationRating.setId(id);
+			locationRating.setLocation(location);
+			locationRating.setUser(user);
+			locationRating.setRatingComment(ratingComment);
+			locationRating.setRatingScale(ratingScale);
+			em.persist(locationRating);
+			rated = true;
+		}
+		return rated;
+	}
 
+	@Override
+	public boolean deleteLocation(int id) {
+		Location deletedLocation = em.find(Location.class, id);
+		if (deletedLocation != null) {
+			deletedLocation.setEnabled(false);
+			return true;
+		}
+		return false;
 
+	}
 
+	@Override
+	public List<LocationRating> getAllLocationRatings() {
+		List<LocationRating> allLocationRatings = null;
+		String jpql = "select lr from LocationRating lr";
+		allLocationRatings = em.createQuery(jpql, LocationRating.class).getResultList();
+		return allLocationRatings;
+	}
 
+	@Override
+	public boolean deleteLocationRating(int userId, int locationId) {
+		LocationRatingId id = new LocationRatingId(userId, locationId);
+		LocationRating deletedLocationRating = em.find(LocationRating.class, id);
+		if (deletedLocationRating != null) {
+			deletedLocationRating.setEnabled(false);
+			return true;
+		}
+		return false;
+	}
 
+	@Override
+	public LocationRating findLocationRatingById(int userId, int locationId) {
+		LocationRatingId id = new LocationRatingId(userId, locationId);
+		LocationRating locationRating = em.find(LocationRating.class, id);
+		return locationRating;
+	}
 
+	@Override
+	public List<RumbleMessage> getAllRumbleMessages() {
+		List<RumbleMessage> allRumbleMessages = null;
+		String jpql = "select rm from RumbleMessage rm";
+		allRumbleMessages = em.createQuery(jpql, RumbleMessage.class).getResultList();
+		return allRumbleMessages;
+	}
 
 }
