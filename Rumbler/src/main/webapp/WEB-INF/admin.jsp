@@ -61,6 +61,14 @@
 			<p class="lead text-danger">Disabled Location: ${disabledLocation}</p>
 		</c:if>
 		
+		<c:if test="${not empty disabledLocationRating }">
+			<p class="lead text-danger">Disabled Location Rating From User with ID: ${disabledLocationRating}</p>
+		</c:if>
+		
+		<c:if test="${not empty disabledRumbleMessage }">
+			<p class="lead text-danger">Disabled Rumble Message: ${disabledRumbleMessage}</p>
+		</c:if>
+		
 		<h2 class="display-6">All Rumbles</h2>
 		<table class="table table-striped">
 				<thead class="table-dark">
@@ -186,6 +194,38 @@
 							<td class="align-middle">${locationRating.enabled}</td>					
 							<td class="align-middle"><a href="#" class="btn btn-update">Enable Location Rating</a></td>
 							<td class="align-middle"><a href="disableLocationRating.do?userId=${locationRating.user.id}&locationId=${locationRating.location.id}" class="btn btn-danger">Disable Location Rating</a></td>
+						</tr>
+				</c:forEach>
+			</tbody>
+			</table>
+			
+			<h2 class="display-6">All Rumble Messages</h2>
+			<table class="table table-striped">
+				<thead class="table-dark">
+					<tr>
+						<th>ID</th>
+						<th>MESSAGE DATE</th>
+						<th>CONTENT</th>
+						<th>USER ID</th>
+						<th>RUMBLE ID</th>
+						<th>ENABLED</th>
+						<th></th>
+						<th></th>
+						
+
+					</tr>
+				</thead>
+				<tbody>
+				<c:forEach var="rumbleMessage" items="${allRumbleMessages}">
+						<tr>
+							<td class="align-middle">${rumbleMessage.id}</td>
+							<td class="align-middle">${rumbleMessage.messageDate}</td>
+							<td class="align-middle">${rumbleMessage.content}</td>
+							<td class="align-middle">${rumbleMessage.user.id}</td>
+							<td class="align-middle">${rumbleMessage.rumble.id}</td>					
+							<td class="align-middle">${rumbleMessage.enabled}</td>					
+							<td class="align-middle"><a href="#" class="btn btn-update">Enable Rumble Message</a></td>
+							<td class="align-middle"><a href="disableRumbleMessage.do?id=${rumbleMessage.id}" class="btn btn-danger">Disable Rumble Message</a></td>
 						</tr>
 				</c:forEach>
 			</tbody>

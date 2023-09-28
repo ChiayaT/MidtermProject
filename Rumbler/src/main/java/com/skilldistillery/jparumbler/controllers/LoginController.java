@@ -15,6 +15,7 @@ import com.skilldistillery.jparumbler.data.UserDAO;
 import com.skilldistillery.jparumbler.entities.Location;
 import com.skilldistillery.jparumbler.entities.LocationRating;
 import com.skilldistillery.jparumbler.entities.Rumble;
+import com.skilldistillery.jparumbler.entities.RumbleMessage;
 import com.skilldistillery.jparumbler.entities.User;
 import com.skilldistillery.jparumbler.entities.UserDiscipline;
 
@@ -51,6 +52,8 @@ public class LoginController {
 				model.addAttribute("allLocations", allLocations);
 				List<LocationRating> allLocationRatings = rumDao.getAllLocationRatings();
 				model.addAttribute("allLocationRatings", allLocationRatings);
+				List<RumbleMessage> allRumbleMessages = rumDao.getAllRumbleMessages();
+				model.addAttribute("allRumbleMessages", allRumbleMessages);
 				return "admin";
 			}
 			List<Rumble> allUserRumbles = rumDao.getAllRumblesForSpecificUser(loggedInUser.getId());

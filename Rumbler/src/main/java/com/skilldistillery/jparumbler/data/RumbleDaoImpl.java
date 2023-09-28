@@ -257,4 +257,12 @@ public class RumbleDaoImpl implements RumbleDAO {
 		return locationRating;
 	}
 
+	@Override
+	public List<RumbleMessage> getAllRumbleMessages() {
+		List<RumbleMessage> allRumbleMessages = null;
+		String jpql = "select rm from RumbleMessage rm";
+		allRumbleMessages = em.createQuery(jpql, RumbleMessage.class).getResultList();
+		return allRumbleMessages;
+	}
+
 }

@@ -12,6 +12,7 @@ import com.skilldistillery.jparumbler.data.UserDAO;
 import com.skilldistillery.jparumbler.entities.Location;
 import com.skilldistillery.jparumbler.entities.LocationRating;
 import com.skilldistillery.jparumbler.entities.Rumble;
+import com.skilldistillery.jparumbler.entities.RumbleMessage;
 import com.skilldistillery.jparumbler.entities.User;
 
 @Controller
@@ -24,7 +25,7 @@ public class AdminController {
 	private RumbleDAO rumDao;
 
 	@RequestMapping(path = { "adminPage.do" })
-	private String showAllRumbles(Model model, String disabledRumble, String disabledUser, String disabledLocation, String disabledLocationRating) {
+	private String showAllRumbles(Model model, String disabledRumble, String disabledUser, String disabledLocation, String disabledLocationRating, String disabledRumbleMessage) {
 		List<Rumble> allRumblesForAllUsers = rumDao.getAllRumbles();
 		model.addAttribute("allRumbles", allRumblesForAllUsers);
 		List<User> allUsers = userDao.findAllUsers();
@@ -33,6 +34,8 @@ public class AdminController {
 		model.addAttribute("allLocations", allLocations);
 		List<LocationRating> allLocationRatings = rumDao.getAllLocationRatings();
 		model.addAttribute("allLocationRatings", allLocationRatings);
+		List<RumbleMessage> allRumbleMessages = rumDao.getAllRumbleMessages();
+		model.addAttribute("allRumbleMessages", allRumbleMessages);
 		if(disabledRumble != null && disabledRumble.length() > 0) {
 			model.addAttribute("disabledRumble", disabledRumble);
 		}
@@ -44,6 +47,9 @@ public class AdminController {
 		}
 		if(disabledLocationRating != null && disabledLocationRating.length() > 0) {
 			model.addAttribute("disabledLocationRating", disabledLocationRating);
+		}
+		if(disabledRumbleMessage != null && disabledRumbleMessage.length() > 0) {
+			model.addAttribute("disabledRumbleMessage", disabledRumbleMessage);
 		}
 		return "admin";
 	}
@@ -74,6 +80,13 @@ public class AdminController {
 		LocationRating locationRatingToDisable = rumDao.findLocationRatingById(userId, locationId);
 		rumDao.deleteLocationRating(userId, locationId);
 		return "redirect:adminPage.do?disabledLocationRating=" + locationRatingToDisable.getId().getUserId();
+	}
+	
+	@RequestMapping(path = { "disableRumbleMessage.do" })
+	private String disableRumbleMessage(Model model, int id) {
+		RumbleMessage rumbleMessageToDisable = rumDao.findRumbleMessageById(id);
+		rumDao.deleteRumbleMessage(id);
+		return "redirect:adminPage.do?disabledRumbleMessage=" + rumbleMessageToDisable.getId();
 	}
 	
 }
