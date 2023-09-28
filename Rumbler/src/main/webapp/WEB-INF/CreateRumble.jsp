@@ -78,7 +78,7 @@
 		Phone Number<input type="text"  name="location.address.phone"><br>-->
 		<!-- Open To Public? 
 		<input type="checkbox"  name="openToPublics"><br> -->
-		<br><button btn btn-update>Create Your Rumble</button>
+		<br><button class="btn btn-update">Create Your Rumble</button>
 	</form>
 
 <jsp:include page="bootstrapScript.jsp" />
