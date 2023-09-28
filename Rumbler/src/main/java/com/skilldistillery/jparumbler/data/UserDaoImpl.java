@@ -40,6 +40,8 @@ public class UserDaoImpl implements UserDAO {
 
 	@Override
 	public User createUser(User user) {
+		user.setRole("user");
+		user.setEnabled(true);
 		em.persist(user.getAddress());
 		em.persist(user);
 		return user;

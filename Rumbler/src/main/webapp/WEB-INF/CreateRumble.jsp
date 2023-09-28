@@ -31,17 +31,16 @@
 		<input type="time"  name="startTime"><br> 
 		Approximate End Time:
 		<input type="time"  name="endTime"><br>
+		Choose a Location:
 		<select name="locationId">
-		Location:
-			<option value="" >Create a location</option>
 		<c:forEach var="location" items="${locations}">
 			<option value="${location.id }">${location.name }</option>
 		</c:forEach>			
 		</select><br>
-		(If you chose a location, skip creating a location)<br>
+		<%-- (If you chose a location, skip creating a location)<br>
 		Create A Location:<br>
 		Location Name:
-		<input type="text" value="null" name="name" required><br>
+		<input type="text"  name="name" required><br>
 		Location Description:
 		<input type="text" name="description"><br>
 		Location Image Url:
@@ -55,12 +54,13 @@
 		</select><br>
 		<h5>Address For Location</h5>
 		<input type="hidden" name="address.enabled" value="true">
-		Street<input type="text"  name="address.street" required><br>
+		Street<input type="text"  name="address.street" ><br>
 		Street<input type="text"  name="address.street2" ><br>
+
 		City<input type="text"  name="address.city" required><br>
 		State<input type="text"  name="address.state" required><br>
 		Zip Code<input type="text"  name="address.zipCode" required><br>
-		Phone Number<input type="text"  name="address.phone"><br>
+		Phone Number<input type="text"  name="address.phone"><br> --%>
 		
 		
 		
@@ -76,9 +76,9 @@
 		State<input type="text"  name="location.address.state"><br>
 		Zip Code<input type="text"  name="location.address.zipCode"><br>
 		Phone Number<input type="text"  name="location.address.phone"><br>-->
-		Open To Public? 
-		<input type="checkbox"  name="openToPublics"><br>
-		<br><button>Create Your Rumble</button>
+		<!-- Open To Public? 
+		<input type="checkbox"  name="openToPublics"><br> -->
+		<br><button class="btn btn-update">Create Your Rumble</button>
 	</form>
 
 <jsp:include page="bootstrapScript.jsp" />

@@ -150,10 +150,10 @@ public class RumbleDaoImpl implements RumbleDAO {
 
 	@Override
 	public List<RumbleMessage> getAllRumbleMessagesPerRumble(int rumbleId) {
-		String spql = "SELECT R FROM RubleMessage R WHERE R.rumbleMessage.id = :rumid";
+		String spql = "SELECT R FROM RumbleMessage R WHERE rumble.id = :rumid and enabled = true ORDER BY createDate";
+		return em.createQuery(spql, RumbleMessage.class)
+				.setParameter("rumid", rumbleId).getResultList();
 
-		return em.createQuery(spql, RumbleMessage.class).setParameter("rumid", findRumbleById(rumbleId))
-				.getResultList();
 	}
 
 	@Override
@@ -177,11 +177,17 @@ public class RumbleDaoImpl implements RumbleDAO {
 
 	@Override
 	public boolean deleteRumbleMessage(int id) {
+		RumbleMessage deletedRumble = em.find(RumbleMessage.class, id);
+		if (deletedRumble != null) {
+			deletedRumble.setEnabled(false);
+			return true;
+		}
 		return false;
 	}
 
 	@Override
 	public Location createLocation(Location location) {
+		em.persist(location.getLocationType());
 		em.persist(location.getAddress());
 		em.persist(location);
 		return location;
