@@ -23,7 +23,8 @@
 
 		<div class="content-area">
 			<div class="wrapper">
-				<p>Add a lil description about the app here.</p>
+				<p>Having trouble finding a sparing partner? Rumbler is here to help you connect with other 
+				combat sport practitioners.</p>
 
 			</div>
 		</div>
