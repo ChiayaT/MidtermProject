@@ -31,6 +31,7 @@ public interface RumbleDAO {
 	LocationType findLocoTypeById(int id);
 	Location updateLocation(Location location);
 	Location createLocation(Location location);
+	boolean deleteLocation(int id);
 	
 	List<RumbleMessage> getAllRumbleMessagesPerRumble(int rumbleId);
 	RumbleMessage findRumbleMessageById(int id);

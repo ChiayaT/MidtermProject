@@ -2,20 +2,16 @@ package com.skilldistillery.jparumbler.controllers;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.skilldistillery.jparumbler.data.RumbleDAO;
 import com.skilldistillery.jparumbler.data.UserDAO;
+import com.skilldistillery.jparumbler.entities.Location;
 import com.skilldistillery.jparumbler.entities.Rumble;
 import com.skilldistillery.jparumbler.entities.User;
-import com.skilldistillery.jparumbler.entities.UserDiscipline;
 
 @Controller
 public class AdminController {
@@ -27,16 +23,21 @@ public class AdminController {
 	private RumbleDAO rumDao;
 
 	@RequestMapping(path = { "adminPage.do" })
-	private String showAllRumbles(Model model, String disabledRumble, String disabledUser) {
+	private String showAllRumbles(Model model, String disabledRumble, String disabledUser, String disabledLocation) {
 		List<Rumble> allRumblesForAllUsers = rumDao.getAllRumbles();
 		model.addAttribute("allRumbles", allRumblesForAllUsers);
 		List<User> allUsers = userDao.findAllUsers();
 		model.addAttribute("allUsers", allUsers);
+		List<Location> allLocations = rumDao.getAllLocations();
+		model.addAttribute("allLocations", allLocations);
 		if(disabledRumble != null && disabledRumble.length() > 0) {
 			model.addAttribute("disabledRumble", disabledRumble);
 		}
 		if(disabledUser != null && disabledUser.length() > 0) {
 			model.addAttribute("disabledUser", disabledUser);
+		}
+		if(disabledLocation != null && disabledLocation.length() > 0) {
+			model.addAttribute("disabledLocation", disabledLocation);
 		}
 		return "admin";
 	}
@@ -53,6 +54,13 @@ public class AdminController {
 		User userToDisable = userDao.findUserById(id);
 		userDao.deleteUser(userToDisable.getId());
 		return "redirect:adminPage.do?disabledUser=" + userToDisable.getUsername();
+	}
+	
+	@RequestMapping(path = { "disableLocation.do" })
+	private String disableLocation(Model model, int id) {
+		Location locationToDisable = rumDao.findlocationById(id);
+		rumDao.deleteLocation(locationToDisable.getId());
+		return "redirect:adminPage.do?disabledLocation=" + locationToDisable.getName();
 	}
 	
 }

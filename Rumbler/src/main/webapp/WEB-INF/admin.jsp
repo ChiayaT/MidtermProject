@@ -57,6 +57,10 @@
 			<p class="lead text-danger">Disabled User: ${disabledUser}</p>
 		</c:if>
 		
+		<c:if test="${not empty disabledLocation }">
+			<p class="lead text-danger">Disabled Location: ${disabledLocation}</p>
+		</c:if>
+		
 		<table class="table table-striped">
 				<thead class="table-dark">
 					<tr>
@@ -85,7 +89,7 @@
 							<td class="align-middle">${rumble.host.firstName} ${rumble.host.lastName}</td>
 							<td class="align-middle">${rumble.guest.firstName} ${rumble.guest.lastName}</td>
 							<td class="align-middle">${rumble.enabled}</td>
-							<td class="align-middle"><a href="#" class="btn btn-update">Update Rumble</a></td>
+							<td class="align-middle"><a href="#" class="btn btn-update">Enable Rumble</a></td>
 							<td class="align-middle"><a href="disableRumble.do?id=${rumble.id}" class="btn btn-danger">Disable Rumble</a></td>
 						</tr>
 				</c:forEach>
@@ -100,8 +104,8 @@
 						<th>PASSWORD</th>
 						<th>FIRST NAME</th>
 						<th>LAST NAME</th>
-						<th>ENABLED</th>
 						<th>ADDRESS ID</th>
+						<th>ENABLED</th>
 						<th></th>
 						<th></th>
 						
@@ -116,10 +120,39 @@
 							<td class="align-middle">${user.password}</td>
 							<td class="align-middle">${user.firstName}</td>
 							<td class="align-middle">${user.lastName}</td>
-							<td class="align-middle">${user.enabled}</td>					
 							<td class="align-middle">${user.address.id}</td>					
-							<td class="align-middle"><a href="#" class="btn btn-update">Update User</a></td>
+							<td class="align-middle">${user.enabled}</td>					
+							<td class="align-middle"><a href="#" class="btn btn-update">Enable User</a></td>
 							<td class="align-middle"><a href="disableUser.do?id=${user.id}" class="btn btn-danger">Disable User</a></td>
+						</tr>
+				</c:forEach>
+			</tbody>
+			</table>
+			
+			<table class="table table-striped">
+				<thead class="table-dark">
+					<tr>
+						<th>ID</th>
+						<th>NAME</th>
+						<th>DESCRIPTION</th>
+						<th>ADDRESS ID</th>
+						<th>ENABLED</th>
+						<th></th>
+						<th></th>
+						
+
+					</tr>
+				</thead>
+				<tbody>
+				<c:forEach var="location" items="${allLocations}">
+						<tr>
+							<td class="align-middle">${location.id}</td>
+							<td class="align-middle">${location.name}</td>
+							<td class="align-middle">${location.description}</td>
+							<td class="align-middle">${location.address.id}</td>
+							<td class="align-middle">${location.enabled}</td>					
+							<td class="align-middle"><a href="#" class="btn btn-update">Enable Location</a></td>
+							<td class="align-middle"><a href="disableLocation.do?id=${location.id}" class="btn btn-danger">Disable Location</a></td>
 						</tr>
 				</c:forEach>
 			</tbody>
