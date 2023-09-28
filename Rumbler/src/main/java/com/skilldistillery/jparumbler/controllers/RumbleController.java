@@ -148,6 +148,7 @@ public class RumbleController {
 	 private String getLocation(Model model, int locationId) {
 		 Location location = rumDao.findlocationById(locationId);
 		 model.addAttribute("location", location);
+		 model.addAttribute("locationRatings", location.getLocationRatings());
 		return "Location";
 	 }
 	 
@@ -164,9 +165,7 @@ public class RumbleController {
 		locationRating = (LocationRating) session.getAttribute("locationRating");
 		Location location = rumDao.findlocationById(locationId);
 		System.out.println(location.getLocationRatings());
-		 session.setAttribute("locationRatings", location.getLocationRatings());
-		 session.setAttribute("location", location);
-		return"Location" ;
+		return"redirect:getLocation.do?locationId=" + location.getId();
 	 }
 	 
 	 @RequestMapping(path = "updateLocationPage.do")
@@ -179,8 +178,9 @@ public class RumbleController {
 	 @RequestMapping(path = "updateLocation.do", method = RequestMethod.POST)
 	 private String updateLocation(HttpSession session, Model model, Location location) {
 		 rumDao.updateLocation(location);
-		 model.addAttribute("location", location);
-		 return "Location";
+		 session.setAttribute("location", location);
+		 session.getAttribute("locationRatings");
+		 return"redirect:getLocation.do?locationId=" + location.getId();
 	 }
 
 

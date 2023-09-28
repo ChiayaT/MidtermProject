@@ -12,7 +12,12 @@
 	<jsp:include page="navbar.jsp" />
 	<div class="container">
 		<h1>Fellow Rumblers</h1>
-
+			<c:choose> 
+			<c:when test="${empty users}">
+				<p class="lead">No Rumblers Matched Your Search</p>
+			</c:when>  
+			<c:otherwise>
+			
 			<table class="table table-striped">
 				<thead class="table-dark">
 					<tr>
@@ -57,7 +62,8 @@
 				</c:forEach>
 			</tbody>
 			</table>
-
+		</c:otherwise>       
+			</c:choose>
 	</div>
 	<jsp:include page="bootstrapScript.jsp" />
 </body>
