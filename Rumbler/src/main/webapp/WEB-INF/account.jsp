@@ -18,8 +18,16 @@
 				<div class="row">
 					<div class="col">
 						<div class="card" style="width: 20rem;">
+						<c:choose>
+						<c:when test="${empty loggedInUser.profileImageURL}">
+							<img src="/images/defaultProfilePicture.png" class="card-img-top"
+								alt="default profile picture">
+						</c:when>
+						<c:otherwise>
 							<img src="${loggedInUser.profileImageURL }" class="card-img-top"
 								alt="profile picture">
+						</c:otherwise>
+						</c:choose>
 							<div class="card-body">
 								<h5 class="card-title">${loggedInUser.firstName}
 									${loggedInUser.lastName}</h5>
