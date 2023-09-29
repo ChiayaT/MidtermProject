@@ -147,6 +147,7 @@ public class RumbleController {
 		Location location = rumDao.findlocationById(locationId);
 		model.addAttribute("location", location);
 		model.addAttribute("locationRatings", location.getLocationRatings());
+		refreshSessionUser(session);
 		return "Location";
 	}
 
@@ -159,13 +160,15 @@ public class RumbleController {
 
 	@RequestMapping(path = "giveLocationRating.do", method = RequestMethod.POST)
 	private String giveLocationRatingPost(HttpSession session, Model model, Integer locationId,
-			LocationRating locationRating, Integer userId) {
-		rumDao.addRatingToRatingList(locationId, userId, locationRating.getRatingScale(),
-				locationRating.getRatingComment());
-		//locationRating = (LocationRating) session.getAttribute("locationRating");
-		Location location = rumDao.findlocationById(locationId);
-		System.out.println(location.getLocationRatings());
-		return "redirect:getLocation.do?locationId=" + location.getId();
+			LocationRating locationRating) {
+		User currentUser = (User) session.getAttribute("loggedInUser");
+		if (currentUser != null) {
+			locationRating = rumDao.addRatingToRatingList(locationId, currentUser.getId(), locationRating);
+			refreshSessionUser(session);
+			Location location = rumDao.findlocationById(locationId);
+			System.out.println(location.getLocationRatings());
+		}
+		return "redirect:getLocation.do?locationId=" + locationRating.getLocation().getId();
 	}
 
 	@RequestMapping(path = "updateLocationPage.do")
@@ -248,6 +251,16 @@ public class RumbleController {
 
 		return "Rumble";
 
+	}
+	
+	public void refreshSessionUser(HttpSession session) {
+		User user = (User) session.getAttribute("loggedInUser");
+		if (user != null) {
+			User refreshedUser = dao.findUserById(user.getId());
+			refreshedUser.getLocationRatings().size();
+			session.setAttribute("loggedInUser", refreshedUser);
+		}
+		
 	}
 
 }
