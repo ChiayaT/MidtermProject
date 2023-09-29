@@ -54,10 +54,6 @@
 								<td class="align-middle text-center"><strong>${rating.user.username}
 								</strong>gives a ${rating.ratingScale} out of 5</td>
 								<td class="align-middle text-center">${rating.ratingComment}</td>
-								<td> </td>
-								<td> </td>
-								<td> </td>
-								<td> </td>
 							</tr>
 						</c:forEach>
 					</tbody>
