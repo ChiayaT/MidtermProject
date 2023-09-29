@@ -30,27 +30,45 @@
 		</div>
 		<br>
 		<h3 class="text-center">Description: ${location.description}</h3>
-		<c:choose>
-			<c:when test="${!loggedInUser.hasRatedLocation(location.id)}">
-				<a class="btn btn-update"
-					href="giveLocationRating.do?locationId=${location.id}"> Rate
-					This Rumble Ring</a>
-			</c:when>
-			<c:otherwise>
-
-			</c:otherwise>
-		</c:choose>
-		<br> <a class="btn btn-success"
-			href="updateLocationPage.do?locationId=${location.id}">Update
-			This Rumble Ring</a>
+		<div class="text-center">
+			<a class="btn btn-update"
+				href="updateLocationPage.do?locationId=${location.id}">Update
+				This Rumble Ring</a>
+		</div>
 
 		<h2>Rumbler Ring Ratings and Reviews</h2>
-		<c:forEach var="rating" items="${location.locationRatings}">
-	${rating.user.username} gives a ${rating.ratingScale} out of 5 <br>
-			<img width="150" src="${rating.user.profileImageURL}">
-			<br>
-	${rating.ratingComment}<br>
-		</c:forEach>
+		<c:choose>
+		<c:when test="${empty location.locationRatings }">
+		<p class="lead">No Rumblers have rated this location... yet!</p>
+			<a class="btn btn-update"
+				href="giveLocationRating.do?locationId=${location.id}"> Rate
+				This Rumble Ring</a>
+		</c:when>
+			<c:otherwise>
+				<table class="table">
+					<tbody>
+						<c:forEach var="rating" items="${location.locationRatings}">
+							<tr>
+								<td class="align-middle text-center"><img
+									src="${rating.user.profileImageURL}" class="rounded"></td>
+								<td class="align-middle text-center"><strong>${rating.user.username}
+								</strong>gives a ${rating.ratingScale} out of 5</td>
+								<td class="align-middle text-center">${rating.ratingComment}</td>
+								<td> </td>
+								<td> </td>
+								<td> </td>
+								<td> </td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+				<c:if test="${!loggedInUser.hasRatedLocation(location.id)}">
+					<a class="btn btn-update"
+						href="giveLocationRating.do?locationId=${location.id}"> Rate
+						This Rumble Ring</a>
+				</c:if>
+			</c:otherwise>
+		</c:choose>
 	</div>
 	<jsp:include page="bootstrapScript.jsp" />
 </body>
