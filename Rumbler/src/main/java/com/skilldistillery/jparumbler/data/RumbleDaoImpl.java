@@ -226,22 +226,18 @@ public class RumbleDaoImpl implements RumbleDAO {
 	}
 
 	@Override
-	public boolean addRatingToRatingList(int locationId, int userId, int ratingScale, String ratingComment) {
-		boolean rated = false;
+	public LocationRating addRatingToRatingList(int locationId, int userId, LocationRating locationRating) {
 		Location location = em.find(Location.class, locationId);
 		User user = em.find(User.class, userId);
 		if (location != null && user != null) {
 			LocationRatingId id = new LocationRatingId(userId, locationId);
-			LocationRating locationRating = new LocationRating();
 			locationRating.setId(id);
 			locationRating.setLocation(location);
 			locationRating.setUser(user);
-			locationRating.setRatingComment(ratingComment);
-			locationRating.setRatingScale(ratingScale);
 			em.persist(locationRating);
-			rated = true;
+			return locationRating;
 		}
-		return rated;
+		return null;
 	}
 
 	@Override
