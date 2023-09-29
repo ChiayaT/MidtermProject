@@ -79,6 +79,15 @@ public class UserDaoImpl implements UserDAO {
 		return false;
 	}
 	@Override
+	public boolean enableUser(int id) {
+		User enabledUser = em.find(User.class, id);
+		if (enabledUser != null) {
+			enabledUser.setEnabled(true);
+			return true;
+		}
+		return false;
+	}
+	@Override
 	public List<User> findUsersByName(String name) {
 		List<User> users = null;
 		String spql = "select u from User u where u.username like :name or "

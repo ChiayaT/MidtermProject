@@ -19,7 +19,7 @@ public interface UserDAO {
 	User updateUser(User user);
 	boolean deleteUser (int id);
 	List<UserDiscipline> findAllDisciplinesForUser(int id);
-	
+	public boolean enableUser(int id);
 	List<User> findAllUsers();
 	
 

@@ -68,6 +68,21 @@
 		<c:if test="${not empty disabledRumbleMessage }">
 			<p class="lead text-danger">Disabled Rumble Message: ${disabledRumbleMessage}</p>
 		</c:if>
+		<c:if test="${not empty enabledRumble }">
+			<p class="lead text-success">Enabled Rumble: ${enabledRumble}</p>
+		</c:if>
+		<c:if test="${not empty enabledUser }">
+			<p class="lead text-success">Enabled User: ${enabledUser}</p>
+		</c:if>
+		<c:if test="${not empty enabledLocation }">
+			<p class="lead text-success">Enabled Location: ${enabledLocation}</p>
+		</c:if>
+		<c:if test="${not empty enabledLocationRating }">
+			<p class="lead text-success">Enabled Location Rating: ${enabledLocationRating}</p>
+		</c:if>
+		<c:if test="${not empty enabledRumbleMessage }">
+			<p class="lead text-success">Enabled Rumble Message: ${enabledRumbleMessage}</p>
+		</c:if>
 		
 		<h2 class="display-6">All Rumbles</h2>
 		<table class="table table-striped">
@@ -98,7 +113,7 @@
 							<td class="align-middle">${rumble.host.firstName} ${rumble.host.lastName}</td>
 							<td class="align-middle">${rumble.guest.firstName} ${rumble.guest.lastName}</td>
 							<td class="align-middle">${rumble.enabled}</td>
-							<td class="align-middle"><a href="#" class="btn btn-update">Enable Rumble</a></td>
+							<td class="align-middle"><a href="enableRumble.do?id=${rumble.id}" class="btn btn-update">Enable Rumble</a></td>
 							<td class="align-middle"><a href="disableRumble.do?id=${rumble.id}" class="btn btn-danger">Disable Rumble</a></td>
 						</tr>
 				</c:forEach>
@@ -132,7 +147,7 @@
 							<td class="align-middle">${user.lastName}</td>
 							<td class="align-middle">${user.address.id}</td>					
 							<td class="align-middle">${user.enabled}</td>					
-							<td class="align-middle"><a href="#" class="btn btn-update">Enable User</a></td>
+							<td class="align-middle"><a href="enableUser.do?id=${user.id}" class="btn btn-update">Enable User</a></td>
 							<td class="align-middle"><a href="disableUser.do?id=${user.id}" class="btn btn-danger">Disable User</a></td>
 						</tr>
 				</c:forEach>
@@ -162,7 +177,7 @@
 							<td class="align-middle">${location.description}</td>
 							<td class="align-middle">${location.address.id}</td>
 							<td class="align-middle">${location.enabled}</td>					
-							<td class="align-middle"><a href="#" class="btn btn-update">Enable Location</a></td>
+							<td class="align-middle"><a href="enableLocation.do?id=${location.id}" class="btn btn-update">Enable Location</a></td>
 							<td class="align-middle"><a href="disableLocation.do?id=${location.id}" class="btn btn-danger">Disable Location</a></td>
 						</tr>
 				</c:forEach>
@@ -192,7 +207,7 @@
 							<td class="align-middle">${locationRating.ratingScale}</td>
 							<td class="align-middle">${locationRating.ratingComment}</td>
 							<td class="align-middle">${locationRating.enabled}</td>					
-							<td class="align-middle"><a href="#" class="btn btn-update">Enable Location Rating</a></td>
+							<td class="align-middle"><a href="enableLocationRating.do?userId=${locationRating.user.id}&locationId=${locationRating.location.id}" class="btn btn-update">Enable Location Rating</a></td>
 							<td class="align-middle"><a href="disableLocationRating.do?userId=${locationRating.user.id}&locationId=${locationRating.location.id}" class="btn btn-danger">Disable Location Rating</a></td>
 						</tr>
 				</c:forEach>
@@ -224,7 +239,7 @@
 							<td class="align-middle">${rumbleMessage.user.id}</td>
 							<td class="align-middle">${rumbleMessage.rumble.id}</td>					
 							<td class="align-middle">${rumbleMessage.enabled}</td>					
-							<td class="align-middle"><a href="#" class="btn btn-update">Enable Rumble Message</a></td>
+							<td class="align-middle"><a href="enableRumbleMessage.do?id=${rumbleMessage.id}" class="btn btn-update">Enable Rumble Message</a></td>
 							<td class="align-middle"><a href="disableRumbleMessage.do?id=${rumbleMessage.id}" class="btn btn-danger">Disable Rumble Message</a></td>
 						</tr>
 				</c:forEach>
