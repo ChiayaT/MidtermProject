@@ -30,18 +30,18 @@ public interface RumbleDAO {
 	Location findlocationById(int id);
 	public boolean addRatingToRatingList(int locationId, int userId, int ratingScale, String ratingComment);
 	boolean deleteLocationRating(int userId, int locationId);
-	
+	public boolean enableRumble(int id);
 	LocationType findLocoTypeById(int id);
 	Location updateLocation(Location location);
 	Location createLocation(Location location);
 	boolean deleteLocation(int id);
-	
+	public boolean enableLocation(int id);
 	List<RumbleMessage> getAllRumbleMessages();
 	List<RumbleMessage> getAllRumbleMessagesPerRumble(int rumbleId);
 	RumbleMessage findRumbleMessageById(int id);
 	RumbleMessage createRumbleMessage(RumbleMessage rumbleMessage);
 	RumbleMessage updateRumbleMessage(RumbleMessage rumbleMessage);
 	boolean deleteRumbleMessage(int id);
-	
-	
+	public boolean enableLocationRating(int userId, int locationId);
+	public boolean enableRumbleMessage(int id);
 }

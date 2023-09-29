@@ -147,6 +147,15 @@ public class RumbleDaoImpl implements RumbleDAO {
 		}
 		return false;
 	}
+	@Override
+	public boolean enableRumble(int id) {
+		Rumble enabledRumble = em.find(Rumble.class, id);
+		if (enabledRumble != null) {
+			enabledRumble.setEnabled(true);
+			return true;
+		}
+		return false;
+	}
 
 	@Override
 	public List<RumbleMessage> getAllRumbleMessagesPerRumble(int rumbleId) {
@@ -180,6 +189,15 @@ public class RumbleDaoImpl implements RumbleDAO {
 		RumbleMessage deletedRumble = em.find(RumbleMessage.class, id);
 		if (deletedRumble != null) {
 			deletedRumble.setEnabled(false);
+			return true;
+		}
+		return false;
+	}
+	@Override
+	public boolean enableRumbleMessage(int id) {
+		RumbleMessage enabledRumble = em.find(RumbleMessage.class, id);
+		if (enabledRumble != null) {
+			enabledRumble.setEnabled(true);
 			return true;
 		}
 		return false;
@@ -234,7 +252,15 @@ public class RumbleDaoImpl implements RumbleDAO {
 			return true;
 		}
 		return false;
-
+	}
+	@Override
+	public boolean enableLocation(int id) {
+		Location enabledLocation = em.find(Location.class, id);
+		if (enabledLocation != null) {
+			enabledLocation.setEnabled(true);
+			return true;
+		}
+		return false;
 	}
 
 	@Override
@@ -251,6 +277,16 @@ public class RumbleDaoImpl implements RumbleDAO {
 		LocationRating deletedLocationRating = em.find(LocationRating.class, id);
 		if (deletedLocationRating != null) {
 			deletedLocationRating.setEnabled(false);
+			return true;
+		}
+		return false;
+	}
+	@Override
+	public boolean enableLocationRating(int userId, int locationId) {
+		LocationRatingId id = new LocationRatingId(userId, locationId);
+		LocationRating enabledLocationRating = em.find(LocationRating.class, id);
+		if (enabledLocationRating != null) {
+			enabledLocationRating.setEnabled(true);
 			return true;
 		}
 		return false;
