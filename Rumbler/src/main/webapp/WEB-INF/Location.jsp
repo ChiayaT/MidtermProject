@@ -58,6 +58,7 @@
 						</c:forEach>
 					</tbody>
 				</table>
+
 				<c:if test="${!sessionScope.loggedInUser.hasRatedLocation(location.id)}">
 					<a class="btn btn-update"
 						href="giveLocationRating.do?locationId=${location.id}"> Rate
