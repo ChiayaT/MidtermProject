@@ -23,7 +23,7 @@
 
 		<div class="content-area">
 			<div class="wrapper">
-				<p>Having trouble finding a sparing partner? Rumbler is here to help you connect with other 
+				<p>Having trouble finding a sparring partner? Rumbler is here to help you connect with other 
 				combat sport practitioners.</p>
 
 			</div>
