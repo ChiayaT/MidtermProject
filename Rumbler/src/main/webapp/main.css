@@ -47,6 +47,14 @@ a.navbar-brand:hover .logo {
 
 }
 
+.rounded-biggest {
+	height: 350px !important;
+	border-radius: 30% !important;
+	border: 2px solid #96031A;
+	box-shadow: 0px 0px 10px #96031A;
+
+}
+
 .location-list{
 	background: #FBFBFB;
 	
