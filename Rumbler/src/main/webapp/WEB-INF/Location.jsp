@@ -58,7 +58,7 @@
 						</c:forEach>
 					</tbody>
 				</table>
-				<c:if test="${!loggedInUser.hasRatedLocation(location.id)}">
+				<c:if test="${!loggedInUser.hasRatedLocation(location.id}">
 					<a class="btn btn-update"
 						href="giveLocationRating.do?locationId=${location.id}"> Rate
 						This Rumble Ring</a>
