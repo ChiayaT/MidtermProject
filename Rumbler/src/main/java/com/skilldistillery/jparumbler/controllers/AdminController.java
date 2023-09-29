@@ -108,7 +108,7 @@ public class AdminController {
 	private String enableLocation(Model model, int id) {
 		Location locationToEnable = rumDao.findlocationById(id);
 		rumDao.enableLocation(locationToEnable.getId());
-		return "redirect:adminPage.do?disabledLocation=" + locationToEnable.getName();
+		return "redirect:adminPage.do?enabledLocation=" + locationToEnable.getName();
 	}
 	
 	@RequestMapping(path = { "disableLocationRating.do" })

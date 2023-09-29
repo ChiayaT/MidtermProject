@@ -397,6 +397,11 @@ INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip_code`, `
 INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip_code`, `phone`, `enabled`) VALUES (7, '2401 Thornton Rd', 'A1', 'Austin', 'Texas', '78704', '5128400177', 1);
 INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip_code`, `phone`, `enabled`) VALUES (8, '9663 Santa Monica Blvd', '440', 'Beverly Hills', 'California', '90210', '4243247444', 1);
 INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip_code`, `phone`, `enabled`) VALUES (9, 'admin', NULL, 'admin', 'admin', 'admin', NULL, 0);
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip_code`, `phone`, `enabled`) VALUES (10, '789 Lara Croft St', NULL, 'Beverly Hills', 'California', '90210', NULL, 1);
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip_code`, `phone`, `enabled`) VALUES (11, '642 Pearl St', NULL, 'Austin', 'Texas', '78704', NULL, 1);
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip_code`, `phone`, `enabled`) VALUES (12, '9999 Ninth St', NULL, 'Austin', 'Texas', '78704', NULL, 1);
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip_code`, `phone`, `enabled`) VALUES (13, '1357 Odd Blvd', NULL, 'Beverly Hills', 'California', '90210', NULL, 1);
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `zip_code`, `phone`, `enabled`) VALUES (14, '2468 Even Circle', NULL, 'Austin', 'Texas', '78704', NULL, 1);
 
 COMMIT;
 
@@ -411,6 +416,11 @@ INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `pr
 INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `profile_image_url`, `height_in_inches`, `weight_in_pounds`, `address_id`, `enabled`, `date_of_birth`, `role`, `create_date`, `last_update`, `description`) VALUES (3, 'Mike', 'Tyson', 'mtyson', 'mtyson', 'https://cdn.europosters.eu/image/750/art-photo/mike-tyson-i135277.jpg', 70, 220, 3, 1, '1966-06-30', 'user', '2023-09-22', '2023-09-22', 'check out my tattoo');
 INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `profile_image_url`, `height_in_inches`, `weight_in_pounds`, `address_id`, `enabled`, `date_of_birth`, `role`, `create_date`, `last_update`, `description`) VALUES (4, 'Ronda', 'Rousey', 'rrousey', 'rrousey', 'https://media-cldnry.s-nbcnews.com/image/upload/t_fit-1500w,f_auto,q_auto:best/newscms/2018_05/2308511/180129-ronda-rousey-mc-8452.JPG', 66, 135, 5, 1, '1987-02-01', 'user', '2023-09-26', '2023-09-26', 'first female fighter signed to UFC');
 INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `profile_image_url`, `height_in_inches`, `weight_in_pounds`, `address_id`, `enabled`, `date_of_birth`, `role`, `create_date`, `last_update`, `description`) VALUES (5, 'Royce', 'Gracie', 'rgracie', 'rgracie', 'https://cdn.shopify.com/s/files/1/0030/3742/9849/files/Royce_Gracie_s_Details.jpg?v=1676565294', 73, 176, 6, 1, '1966-12-01', 'user', '2023-09-26', '2023-09-26', 'mixed martial arts and Brazilian jiu-jitsu master');
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `profile_image_url`, `height_in_inches`, `weight_in_pounds`, `address_id`, `enabled`, `date_of_birth`, `role`, `create_date`, `last_update`, `description`) VALUES (6, 'Angelina', 'Jolie', 'ajolie', 'ajolie', 'https://i.pinimg.com/564x/60/e1/e4/60e1e42fc4255a9d7c065eeb7702295b.jpg', 67, 119, 10, 1, '1975-07-04', 'user', '2023-09-29', '2023-09-29', 'check me out in Tomb Raider');
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `profile_image_url`, `height_in_inches`, `weight_in_pounds`, `address_id`, `enabled`, `date_of_birth`, `role`, `create_date`, `last_update`, `description`) VALUES (7, 'John', 'Smith', 'jsmith', 'jsmith', 'https://images.pexels.com/photos/290416/pexels-photo-290416.jpeg', 70, 180, 11, 1, '1970-01-26', 'user', '2023-09-29', '2023-09-29', 'personal trainer and boxing enthusiast!');
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `profile_image_url`, `height_in_inches`, `weight_in_pounds`, `address_id`, `enabled`, `date_of_birth`, `role`, `create_date`, `last_update`, `description`) VALUES (8, 'Debbie', 'Walker', 'dwalker', 'dwalker', 'https://images.pexels.com/photos/1288171/pexels-photo-1288171.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2', 60, 123, 12, 1, '1984-09-22', 'user', '2023-09-29', '2023-09-29', 'rugby player looking for new ways to train!');
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `profile_image_url`, `height_in_inches`, `weight_in_pounds`, `address_id`, `enabled`, `date_of_birth`, `role`, `create_date`, `last_update`, `description`) VALUES (9, 'Dwayne', 'Johnson', 'djohnson', 'djohnson', 'https://people.com/thmb/Q5-OY-Q8dKiV0skmtXyIPp3_yP4=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(246x0:248x2):format(webp)/9-495-a99fa3723abc4faaab9d33300b33082f.jpg', 77, 260, 13, 1, '1972-05-02', 'user', '2023-09-29', '2023-09-29', 'best known for my movie The Tooth Fairy');
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `profile_image_url`, `height_in_inches`, `weight_in_pounds`, `address_id`, `enabled`, `date_of_birth`, `role`, `create_date`, `last_update`, `description`) VALUES (10, 'Jimmy', 'Jones', 'jjones', 'jjones', 'https://images.pexels.com/photos/7116213/pexels-photo-7116213.jpeg', 63, 164, 14, 1, '1986-02-14', 'user', '2023-09-29', '2023-09-29', 'just a really cool guy');
 
 COMMIT;
 
@@ -490,6 +500,16 @@ INSERT INTO `user_discipline` (`user_id`, `discipline_id`, `experience_level_id`
 INSERT INTO `user_discipline` (`user_id`, `discipline_id`, `experience_level_id`, `fighting_stance_id`, `description`, `create_date`, `last_update`, `enabled`) VALUES (4, 4, 3, 3, 'I\'m really good at wrestling.', NULL, NULL, 1);
 INSERT INTO `user_discipline` (`user_id`, `discipline_id`, `experience_level_id`, `fighting_stance_id`, `description`, `create_date`, `last_update`, `enabled`) VALUES (2, 4, 1, 1, 'Just started wrestling, looking to get better!', NULL, NULL, 1);
 INSERT INTO `user_discipline` (`user_id`, `discipline_id`, `experience_level_id`, `fighting_stance_id`, `description`, `create_date`, `last_update`, `enabled`) VALUES (3, 3, 2, 3, 'Working on my jiu jitsu skills!', NULL, NULL, 1);
+INSERT INTO `user_discipline` (`user_id`, `discipline_id`, `experience_level_id`, `fighting_stance_id`, `description`, `create_date`, `last_update`, `enabled`) VALUES (6, 1, 2, 1, NULL, NULL, NULL, 1);
+INSERT INTO `user_discipline` (`user_id`, `discipline_id`, `experience_level_id`, `fighting_stance_id`, `description`, `create_date`, `last_update`, `enabled`) VALUES (6, 4, 1, 3, NULL, NULL, NULL, DEFAULT);
+INSERT INTO `user_discipline` (`user_id`, `discipline_id`, `experience_level_id`, `fighting_stance_id`, `description`, `create_date`, `last_update`, `enabled`) VALUES (7, 2, 3, 2, NULL, NULL, NULL, DEFAULT);
+INSERT INTO `user_discipline` (`user_id`, `discipline_id`, `experience_level_id`, `fighting_stance_id`, `description`, `create_date`, `last_update`, `enabled`) VALUES (7, 3, 2, 1, NULL, NULL, NULL, DEFAULT);
+INSERT INTO `user_discipline` (`user_id`, `discipline_id`, `experience_level_id`, `fighting_stance_id`, `description`, `create_date`, `last_update`, `enabled`) VALUES (8, 1, 1, 1, NULL, NULL, NULL, DEFAULT);
+INSERT INTO `user_discipline` (`user_id`, `discipline_id`, `experience_level_id`, `fighting_stance_id`, `description`, `create_date`, `last_update`, `enabled`) VALUES (8, 2, 1, 1, NULL, NULL, NULL, DEFAULT);
+INSERT INTO `user_discipline` (`user_id`, `discipline_id`, `experience_level_id`, `fighting_stance_id`, `description`, `create_date`, `last_update`, `enabled`) VALUES (9, 4, 3, 3, NULL, NULL, NULL, DEFAULT);
+INSERT INTO `user_discipline` (`user_id`, `discipline_id`, `experience_level_id`, `fighting_stance_id`, `description`, `create_date`, `last_update`, `enabled`) VALUES (9, 3, 3, 3, NULL, NULL, NULL, DEFAULT);
+INSERT INTO `user_discipline` (`user_id`, `discipline_id`, `experience_level_id`, `fighting_stance_id`, `description`, `create_date`, `last_update`, `enabled`) VALUES (10, 1, 2, 1, NULL, NULL, NULL, DEFAULT);
+INSERT INTO `user_discipline` (`user_id`, `discipline_id`, `experience_level_id`, `fighting_stance_id`, `description`, `create_date`, `last_update`, `enabled`) VALUES (10, 4, 1, 2, NULL, NULL, NULL, DEFAULT);
 
 COMMIT;
 
@@ -499,7 +519,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rumblerdb`;
-INSERT INTO `rumble` (`id`, `title`, `description`, `host_id`, `guest_id`, `location_id`, `host_rating_comment`, `host_rating_scale`, `guest_rating_comment`, `guest_rating_scale`, `rumble_date`, `start_time`, `end_time`, `create_date`, `last_update`, `enabled`, `open_to_public`, `discipline_id`) VALUES (1, 'First Rumble', 'This is the first rumble.', 2, 3, 2, NULL, 5, NULL, 5, NULL, NULL, NULL, '2023-09-22', NULL, 1, NULL, 1);
+INSERT INTO `rumble` (`id`, `title`, `description`, `host_id`, `guest_id`, `location_id`, `host_rating_comment`, `host_rating_scale`, `guest_rating_comment`, `guest_rating_scale`, `rumble_date`, `start_time`, `end_time`, `create_date`, `last_update`, `enabled`, `open_to_public`, `discipline_id`) VALUES (1, 'Boxing Rumble', 'Working on our uppercuts!', 2, 3, 2, NULL, 5, NULL, 5, '2023-09-22', '2:00', NULL, '2023-09-22', NULL, 1, NULL, 1);
+INSERT INTO `rumble` (`id`, `title`, `description`, `host_id`, `guest_id`, `location_id`, `host_rating_comment`, `host_rating_scale`, `guest_rating_comment`, `guest_rating_scale`, `rumble_date`, `start_time`, `end_time`, `create_date`, `last_update`, `enabled`, `open_to_public`, `discipline_id`) VALUES (2, 'Karate Rumble', 'Trying to learn spin kicks', 2, 6, 1, NULL, 4, NULL, 4, '2023-10-14', '3:00', NULL, '2023-09-22', NULL, 1, NULL, 2);
+INSERT INTO `rumble` (`id`, `title`, `description`, `host_id`, `guest_id`, `location_id`, `host_rating_comment`, `host_rating_scale`, `guest_rating_comment`, `guest_rating_scale`, `rumble_date`, `start_time`, `end_time`, `create_date`, `last_update`, `enabled`, `open_to_public`, `discipline_id`) VALUES (3, 'Karate Rumble', 'Board breaking session', 9, 2, 2, NULL, 5, NULL, 5, '2023-11-08', '5:00', NULL, '2023-09-29', NULL, 1, NULL, 2);
+INSERT INTO `rumble` (`id`, `title`, `description`, `host_id`, `guest_id`, `location_id`, `host_rating_comment`, `host_rating_scale`, `guest_rating_comment`, `guest_rating_scale`, `rumble_date`, `start_time`, `end_time`, `create_date`, `last_update`, `enabled`, `open_to_public`, `discipline_id`) VALUES (4, 'Wrestling Rumble', 'Working on some grappling', 8, 2, 4, NULL, 5, NULL, 5, '2023-08-01', '1:00', NULL, '2023-07-07', NULL, 1, NULL, 4);
 
 COMMIT;
 
@@ -521,6 +544,14 @@ COMMIT;
 START TRANSACTION;
 USE `rumblerdb`;
 INSERT INTO `location_rating` (`user_id`, `location_id`, `rating_scale`, `rating_comment`, `create_date`, `last_update`, `enabled`) VALUES (3, 2, 5, 'I love this place!', '2023-09-22', NULL, 1);
+INSERT INTO `location_rating` (`user_id`, `location_id`, `rating_scale`, `rating_comment`, `create_date`, `last_update`, `enabled`) VALUES (2, 1, 3, 'Pretty nice overall, but I wish there were more boards to break', '2023-09-29', NULL, 1);
+INSERT INTO `location_rating` (`user_id`, `location_id`, `rating_scale`, `rating_comment`, `create_date`, `last_update`, `enabled`) VALUES (4, 4, 4, 'I always feel great after my workouts here!', '2023-09-20', NULL, 1);
+INSERT INTO `location_rating` (`user_id`, `location_id`, `rating_scale`, `rating_comment`, `create_date`, `last_update`, `enabled`) VALUES (5, 3, 1, 'When I visited, a lot of the equipment here is broken', '2023-09-19', NULL, 1);
+INSERT INTO `location_rating` (`user_id`, `location_id`, `rating_scale`, `rating_comment`, `create_date`, `last_update`, `enabled`) VALUES (6, 1, 4, 'Fight Town is my favorite!', '2023-08-17', NULL, 1);
+INSERT INTO `location_rating` (`user_id`, `location_id`, `rating_scale`, `rating_comment`, `create_date`, `last_update`, `enabled`) VALUES (7, 2, 3, 'A little too crowded for me', '2023-07-08', NULL, 1);
+INSERT INTO `location_rating` (`user_id`, `location_id`, `rating_scale`, `rating_comment`, `create_date`, `last_update`, `enabled`) VALUES (8, 2, 4, 'I love sparring outside, this is a great place for it!', '2023-05-05', NULL, 1);
+INSERT INTO `location_rating` (`user_id`, `location_id`, `rating_scale`, `rating_comment`, `create_date`, `last_update`, `enabled`) VALUES (9, 4, 2, 'Had a bad experience with one of the trainers, probably won\'t come here again...', '2023-04-09', NULL, 1);
+INSERT INTO `location_rating` (`user_id`, `location_id`, `rating_scale`, `rating_comment`, `create_date`, `last_update`, `enabled`) VALUES (10, 3, 5, 'Amazing spot!', '2023-09-29', NULL, 1);
 
 COMMIT;
 
@@ -530,8 +561,11 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rumblerdb`;
-INSERT INTO `rumble_message` (`id`, `message_date`, `content`, `create_date`, `user_id`, `rumble_id`, `enabled`) VALUES (1, '2023-09-22', 'This is the first Rumble message.', '2023-09-22', 2, 1, 1);
-INSERT INTO `rumble_message` (`id`, `message_date`, `content`, `create_date`, `user_id`, `rumble_id`, `enabled`) VALUES (2, '2023-09-22', 'This is the second Rumble message.', '2023-09-22', 3, 1, 1);
+INSERT INTO `rumble_message` (`id`, `message_date`, `content`, `create_date`, `user_id`, `rumble_id`, `enabled`) VALUES (1, '2023-09-22', 'Looking forward to this one, Mike!', '2023-09-22', 2, 1, 1);
+INSERT INTO `rumble_message` (`id`, `message_date`, `content`, `create_date`, `user_id`, `rumble_id`, `enabled`) VALUES (2, '2023-09-22', 'Can\'t wait!', '2023-09-22', 3, 1, 1);
+INSERT INTO `rumble_message` (`id`, `message_date`, `content`, `create_date`, `user_id`, `rumble_id`, `enabled`) VALUES (3, '2023-09-29', 'Can\'t believe we\'re finally doing this!!', '2023-09-29', 6, 2, 1);
+INSERT INTO `rumble_message` (`id`, `message_date`, `content`, `create_date`, `user_id`, `rumble_id`, `enabled`) VALUES (4, '2023-09-29', 'I\'m excited!', '2023-09-29', 2, 2, 1);
+INSERT INTO `rumble_message` (`id`, `message_date`, `content`, `create_date`, `user_id`, `rumble_id`, `enabled`) VALUES (5, '2023-09-29', 'Don\'t forget the snacks', '2023-09-29', 2, 2, 1);
 
 COMMIT;
 
