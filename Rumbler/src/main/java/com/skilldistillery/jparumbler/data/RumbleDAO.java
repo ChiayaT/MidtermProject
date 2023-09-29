@@ -28,7 +28,7 @@ public interface RumbleDAO {
 	public List<Discipline> getAllDisciplines();
 	Discipline findDisciplineById(int id);
 	Location findlocationById(int id);
-	public boolean addRatingToRatingList(int locationId, int userId, int ratingScale, String ratingComment);
+	public LocationRating addRatingToRatingList(int locationId, int userId, LocationRating locationRating);
 	boolean deleteLocationRating(int userId, int locationId);
 	public boolean enableRumble(int id);
 	LocationType findLocoTypeById(int id);

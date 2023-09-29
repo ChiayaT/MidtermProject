@@ -18,16 +18,16 @@
 				<div class="row">
 					<div class="col">
 						<div class="card" style="width: 20rem;">
-						<c:choose>
-						<c:when test="${empty loggedInUser.profileImageURL}">
-							<img src="images/defaultProfilePicture.png" class="card-img-top"
-								alt="default profile picture">
-						</c:when>
-						<c:otherwise>
-							<img src="${loggedInUser.profileImageURL }" class="card-img-top"
-								alt="profile picture">
-						</c:otherwise>
-						</c:choose>
+							<c:choose>
+								<c:when test="${empty loggedInUser.profileImageURL}">
+									<img src="images/defaultProfilePicture.png"
+										class="card-img-top" alt="default profile picture">
+								</c:when>
+								<c:otherwise>
+									<img src="${loggedInUser.profileImageURL }"
+										class="card-img-top" alt="profile picture">
+								</c:otherwise>
+							</c:choose>
 							<div class="card-body">
 								<h5 class="card-title">${loggedInUser.firstName}
 									${loggedInUser.lastName}</h5>
@@ -44,21 +44,21 @@
 									<li class="list-group-item"><strong>Weight: </strong>${loggedInUser.weightInPounds}
 										pounds</li>
 								</ul>
-								<br>
-								<a href="update.do" class="btn btn-update">Update Account</a> <a
-									href="deletePage.do" class="btn btn-danger">Delete Account</a>
+								<br> <a href="update.do" class="btn btn-update">Update
+									Account</a> <a href="deletePage.do" class="btn btn-danger">Delete
+									Account</a>
 							</div>
 						</div>
 					</div>
 					<div class="col">
-						<h2 class="display-6">Upcoming Rumbles:</h2>
+						<h2 class="display-6">Rumbles:</h2>
 
 						<c:choose>
 							<c:when test="${not empty allUserRumbles }">
 								<table class="table table-striped">
 									<thead class="table-dark">
 										<tr>
-											<th>ID </th>
+											<th>ID</th>
 											<th>RUMBLE</th>
 											<th>UPDATE</th>
 										</tr>
@@ -69,8 +69,8 @@
 												<td>${rumble.id}</td>
 												<td><a href="Rumble.do?id=${rumble.id}">
 														${rumble.title} @ ${rumble.location.name}</a></td>
-												<td><a href="updateRumble.do?rumbleId=${rumble.id}" class="btn btn-update">
-														Update Rumble</td>
+												<td><a href="updateRumble.do?rumbleId=${rumble.id}"
+													class="btn btn-update"> Update Rumble</a></td>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -80,40 +80,42 @@
 								<p class="lead">No upcoming Rumbles scheduled.</p>
 							</c:otherwise>
 						</c:choose>
-						
-						
-						<h2 class="display-6">Disciplines:</h2>
 
-						<c:choose>
-							<c:when test="${not empty userDisciplines}">
-								<table class="table table-striped">
-									<thead class="table-dark">
-										<tr>
-											<th>DISCIPLINE </th>
-											<th>EXPERIENCE LEVEL</th>
-											<th>FIGHTING STANCE</th>
-										</tr>
-									</thead>
-									<tbody>
-										<c:forEach var="userDiscipline" items="${userDisciplines}">
+						<div class="col">
+
+
+							<h2 class="display-6">Disciplines:</h2>
+
+							<c:choose>
+								<c:when test="${not empty userDisciplines}">
+									<table class="table table-striped">
+										<thead class="table-dark">
 											<tr>
-												<td>${userDiscipline.discipline.name}</td>
-												<td>${userDiscipline.experienceLevel.name}</td>
-												<td>${userDiscipline.fightingStance.stance}</td>
+												<th>DISCIPLINE</th>
+												<th>EXPERIENCE LEVEL</th>
+												<th>FIGHTING STANCE</th>
 											</tr>
-										</c:forEach>
-									</tbody>
-								</table>
-							</c:when>
-							<c:otherwise>
-								<p class="lead">No disciplines added.</p>
-							</c:otherwise>
-						</c:choose>
-						<a href="updateDisciplines.do" class="btn btn-update">Update Disciplines</a>
+										</thead>
+										<tbody>
+											<c:forEach var="userDiscipline" items="${userDisciplines}">
+												<tr>
+													<td>${userDiscipline.discipline.name}</td>
+													<td>${userDiscipline.experienceLevel.name}</td>
+													<td>${userDiscipline.fightingStance.stance}</td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+								</c:when>
+								<c:otherwise>
+									<p class="lead">No disciplines added.</p>
+								</c:otherwise>
+							</c:choose>
+							<a href="updateDisciplines.do" class="btn btn-update">Update
+								Disciplines</a>
 
+						</div>
 					</div>
-				</div>
-
 			</c:when>
 			<c:otherwise>
 				<h2>Not logged in.</h2>
