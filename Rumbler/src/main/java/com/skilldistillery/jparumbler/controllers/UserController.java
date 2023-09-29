@@ -41,6 +41,8 @@ public class UserController {
 	private String postUpdateAccount(User user, HttpSession session, Model model) {
 		User updatedUser = userDao.updateUser(user);
 		session.setAttribute("loggedInUser", updatedUser);
+		List<Rumble> allUserRumbles = rumDao.getAllRumblesForSpecificUser(user.getId());
+		model.addAttribute("allUserRumbles", allUserRumbles);
 		List<UserDiscipline> userDisciplines = userDao.findAllDisciplinesForUser(user.getId());
 		model.addAttribute("userDisciplines", userDisciplines);
 		return "account";
